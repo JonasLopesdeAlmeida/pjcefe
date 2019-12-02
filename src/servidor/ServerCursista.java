@@ -84,7 +84,7 @@ public class ServerCursista extends HttpServlet {
    		nome = nome.toUpperCase();
    		String matricula= request.getParameter("matricula");
    		nome = nome.toUpperCase();
-   		String instituicao = request.getParameter("email");
+   		String email = request.getParameter("email");
    		String fone  = request.getParameter("fone");
    		String funcao = request.getParameter("funcao");
    		String cargo = request.getParameter("cargo");
@@ -103,7 +103,7 @@ public class ServerCursista extends HttpServlet {
    		a.setNome(nome);
    		a.setCpf(cpf);
    		a.setMatricula(matricula);
-   		a.setInstituicao(instituicao);
+   		a.setInstituicao(email);
    		a.setFone(fone);
    		a.setFuncao(funcao);
    		a.setCargo(cargo);

@@ -98,7 +98,7 @@ public class ServerMatricula extends HttpServlet {
    			md.gravar(m);
    		}
 
-   		response.sendRedirect("sucessomatricula.jsp?id_cursista" + id_cursista);
+   		response.sendRedirect("sucessomatricula.jsp");
    	}
 
 }
