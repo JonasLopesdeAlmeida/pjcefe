@@ -133,7 +133,7 @@ if(id_cursista != 0)
 		 	 	{
 		 	      Class.forName("org.postgresql.Driver").newInstance();
 		 	      con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe","postgres","*abomax9637");
-		 	      ps = con.prepareStatement("select id_mat,data_mat,cursista.id as id,cursista.nome as nome,cursista.cpf as cpf,evento.nome_evento as evento,evento.periodo as periodo,evento.horario as horario,evento.data_evento as dias,evento.turno as turno from matricula inner join evento on matricula.id_evento = evento.id inner join cursista on matricula.id_cursista = cursista.id where cursista.id = ?");
+		 	      ps = con.prepareStatement("select id_mat,data_mat,cursista.id_cursista as id_cursista,cursista.nome as nome,cursista.cpf as cpf,evento.nome_evento as evento,evento.periodo as periodo,evento.horario as horario,evento.data_evento as dias,evento.turno as turno from matricula inner join evento on matricula.id_evento = evento.id_evento inner join cursista on matricula.id_cursista = cursista.id_cursista where cursista.id_cursista = ?");
 		 	    // select data_matricula,aluno.id_aluno,aluno.nome as nome,aluno.cpf as cpf,curso.descricao as curso,curso.periodo as periodo,curso.horario as horario,curso.diassemana as dias,curso.turno as turno from matricula inner join curso on matricula.id_curso = curso.id_curso inner join aluno on matricula.id_aluno = aluno.id_aluno
 		 	      
 		 	      ps.setInt(1,id_cursista);
@@ -192,7 +192,7 @@ if(id_cursista != 0)
 </div>
 </div>
 </div>
-        <h1 style="text-align: center;"><a href="consultacursoonline.jsp">Deseja adicionar outro Curso</a></h1> 
+        <h1 style="text-align: center;"><a href="consultaonline.jsp">Deseja adicionar outro Curso?</a></h1> 
         <h1 style="text-align: center;"><a href="consultaMatricula.jsp">Cosulta</a></h1> 
         <h1 style="text-align: center;"><a href="index.html">Sair</a></h1> 
 </div>
