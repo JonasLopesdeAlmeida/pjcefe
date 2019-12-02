@@ -153,7 +153,7 @@
 					<div class="row">
 						<div class="col-sm-2">
 							<label for="exampleInputEmail1">MATRÍCULA</label><br> <input
-								type="text" name="matricula" class="form-control" required="required"/>
+								type="text" minlength="8" maxlength="8" name="matricula" class="form-control" onkeypress="$(this).mask('000000-0')" required="required"/>
 
 						</div>
 						<div class="col-sm-2">

@@ -113,7 +113,7 @@
   				</div>
   				<div class="row">
 				<div class="col-sm-12">
-  				<label >Gestor:</label>
+  				<label >GESTOR:</label>
 				<input type="text" name="gestor" value="" style="text-transform:uppercase;"  class="form-control" required="required"/>
 				<br>
   				</div>
@@ -121,20 +121,20 @@
   				
   				<div class="row">
 				<div class="col-sm-12">
-  				<label >Endereço:</label>
+  				<label >ENDEREÇO:</label>
 				<input type="text" name="endereco" value="" style="text-transform:uppercase;"  class="form-control"/>
 				<br>
   				</div>
   				</div>
   				<div class="row">
 				<div class="col-sm-4">
-  				<label for="exampleInputEmail1">Contato:</label>
-				<input type="text" minlength="14" maxlength="14" name="telefone" onkeypress="$(this).mask('(00) 00000-0000')" class="form-control" /> 
+  				<label for="exampleInputEmail1">FONE/CELULAR:</label>
+				<input type="text" minlength="14" maxlength="14" name="telefone"  class="form-control" onkeypress="$(this).mask('(00) 00000-0000')" /> 
 				<br>
   				</div>
 
 				<div class="col-sm-8">
-  				<label >Email:</label>
+  				<label >EMAIL:</label>
 				<input type="Email" name="email" value="" style="text-transform:uppercase;"  class="form-control"/>
 				<br>
   				</div>
@@ -203,6 +203,7 @@
   <script src="lib/counterup/counterup.min.js"></script>
   <script src="lib/superfish/hoverIntent.js"></script>
   <script src="lib/superfish/superfish.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 
   <!-- Contact Form JavaScript File -->
   <script src="contactform/contactform.js"></script>
