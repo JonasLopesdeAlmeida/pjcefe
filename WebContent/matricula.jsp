@@ -131,11 +131,11 @@
 								Class.forName("org.postgresql.Driver").newInstance();
 								con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres",
 										"*abomax9637");
-								ps = con.prepareStatement(
-										"select data_mat,cursista.id_cursista as id_cursista,cursista.nome as nome,cursista.cpf as cpf,evento.nome_evento as evento,evento.periodo as periodo,evento.horario as horario,evento.data_evento as data_evento,evento.turno as turno from matricula inner join evento on matricula.id_evento= evento.id_evento inner join cursista on matricula.id_cursista = cursista.id_cursista where cpf = ? ");
+								// ps = con.prepareStatement(
+										//"select data_mat,cursista.id_cursista as id_cursista,cursista.nome as nome,cursista.cpf as cpf,evento.nome_evento as evento,evento.periodo as periodo,evento.horario as horario,evento.data_evento as data_evento,evento.turno as turno from matricula inner join evento on matricula.id_evento= evento.id_evento inner join cursista on matricula.id_cursista = cursista.id_cursista where cpf = ? ");
 								//	     select data_matricula,aluno.id_aluno,aluno.nome as nome,aluno.cpf as cpf,curso.descricao as curso,curso.periodo as periodo,curso.horario as horario,curso.diassemana as dias,curso.turno as turno from matricula inner join curso on matricula.id_curso = curso.id_curso inner join aluno on matricula.id_aluno = aluno.id_aluno
 
-				              //  ps = con.prepareStatement("select * from cursista where cpf=?"); 
+							  ps = con.prepareStatement("select * from cursista where cpf=?"); 
 
 								ps.setString(1, cpf);
 								rs = ps.executeQuery();
@@ -146,21 +146,27 @@
 
 					<label for="comment"
 						style="text-transform: uppercase; color: gray;">CPF:</label> <input
-						type="hidden" name="id_cursista" value="<%= rs.getInt("id_cursista")%>"
+						type="hidden" name="id_cursista"
+						value="<%=rs.getInt("id_cursista")%>"
 						style="text-transform: uppercase;" class="form-control" /> <input
-						type="text" name="cpf" value="<%= rs.getString("cpf")%>"
-						style="text-transform: uppercase;" readonly="true" class="form-control" /> <br>
+						type="text" name="cpf" value="<%=rs.getString("cpf")%>"
+						style="text-transform: uppercase;" readonly="true"
+						class="form-control" /> <br>
 				</div>
 				<div class="col-sm-12">
 					<label for="comment"
 						style="text-transform: uppercase; color: gray;">CURSISTA:</label>
-					<input type="text" name="nome" value="<%= rs.getString("nome")%>"
+					<input type="text" name="nome" value="<%=rs.getString("nome")%>"
 						style="text-transform: uppercase;" readonly="true"
 						class="form-control" /> <br>
 				</div>
 
 				<%
-					}
+					} else
+
+								{
+									response.sendRedirect("erroPage.jsp");
+								}
 
 							} catch (ClassNotFoundException erroClass) /*erro caso ele não localize a classe o driver*/
 							{
@@ -209,10 +215,11 @@
 				%>
 				<div class="col-sm-12">
 					<label>EVENTO:</label> <input type="hidden" name="id_evento"
-						style="text-transform: uppercase;" value="<%=rs1.getInt("id_evento")%>"
-						class="form-control" /> <input type="text" name="id_evento"
-						style="text-transform: uppercase;" readonly="true"
-						value="<%=rs1.getString("nome_evento")%>" class="form-control" />
+						style="text-transform: uppercase;"
+						value="<%=rs1.getInt("id_evento")%>" class="form-control" /> <input
+						type="text" name="id_evento" style="text-transform: uppercase;"
+						readonly="true" value="<%=rs1.getString("nome_evento")%>"
+						class="form-control" />
 				</div>
 
 
