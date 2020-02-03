@@ -69,7 +69,6 @@
 			<li class="menu-has-children"><a href="">Cadastro</a>
 				<ul>
 					<li><a href="evento.jsp">Evento</a></li>
-					<li><a href="cursista.jsp">Cursista</a></li>
 					<li><a href="escola.jsp">Escola</a></li>
 				</ul></li>
 		</ul>
@@ -145,7 +144,8 @@
 
 							try {
 								Class.forName("org.postgresql.Driver").newInstance();
-								con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres", "*abomax9637");
+							    con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres","252107");
+								//con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres","*abomax9637");
 								ps = con.prepareStatement("select * from evento limit 5 offset " + offset);
 								//  ps.setString(1,'%'+descricao+'%');
 								rs = ps.executeQuery();
@@ -202,7 +202,10 @@
 				</table>
 				<%
 					Class.forName("org.postgresql.Driver").newInstance();
-					con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres", "*abomax9637");
+				     con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres","252107");	
+				
+					//con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres",
+											//"*abomax9637");
 					ps = con.prepareStatement("select count(*) AS contaRegistros from evento");
 					rs = ps.executeQuery();
 					rs.next();

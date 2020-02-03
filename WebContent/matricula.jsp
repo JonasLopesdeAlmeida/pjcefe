@@ -130,7 +130,7 @@
 
 								Class.forName("org.postgresql.Driver").newInstance();
 								con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres",
-										"*abomax9637");
+										"252107");
 								// ps = con.prepareStatement(
 										//"select data_mat,cursista.id_cursista as id_cursista,cursista.nome as nome,cursista.cpf as cpf,evento.nome_evento as evento,evento.periodo as periodo,evento.horario as horario,evento.data_evento as data_evento,evento.turno as turno from matricula inner join evento on matricula.id_evento= evento.id_evento inner join cursista on matricula.id_cursista = cursista.id_cursista where cpf = ? ");
 								//	     select data_matricula,aluno.id_aluno,aluno.nome as nome,aluno.cpf as cpf,curso.descricao as curso,curso.periodo as periodo,curso.horario as horario,curso.diassemana as dias,curso.turno as turno from matricula inner join curso on matricula.id_curso = curso.id_curso inner join aluno on matricula.id_aluno = aluno.id_aluno
@@ -206,7 +206,7 @@
 							try {
 								Class.forName("org.postgresql.Driver").newInstance();
 								con1 = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres",
-										"*abomax9637");
+										"252107");
 								ps1 = con1.prepareStatement("select * from evento where id_evento = ? ");
 								ps1.setInt(1, id_evento);
 								rs1 = ps1.executeQuery();

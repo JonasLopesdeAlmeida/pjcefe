@@ -66,7 +66,6 @@
            <li class="menu-has-children"><a href="">Cadastro</a>
             <ul>
              <li><a href="evento.jsp">Evento</a></li>
-              <li><a href="cursista.jsp">Cursista</a></li> 
               <li><a href="escola.jsp">Escola</a></li>
             </ul>
           </li>

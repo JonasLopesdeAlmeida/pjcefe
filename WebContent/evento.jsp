@@ -50,12 +50,13 @@
 
 	<script>
 		function validarForm() {
-			var selecao = document.getElementById("tipo_evento").value;
+			var selecao = document.getElementById("cat_evento").value;
 
 			if (selecao == 1) {
 				document.getElementById("periodo").disabled = false;
 			} else {
 				document.getElementById("periodo").disabled = true;
+
 			}
 		}
 	</script>
@@ -82,7 +83,6 @@
 			<li class="menu-has-children"><a href="">Cadastro</a>
 				<ul>
 					<li><a href="evento.jsp">Evento</a></li>
-					<li><a href="cursista.jsp">Cursista</a></li>
 					<li><a href="escola.jsp">Escola</a></li>
 				</ul></li>
 		</ul>
@@ -125,7 +125,7 @@
 					<div class="row">
 
 						<div class="col-sm-6">
-							<label>QUANTIDADE DE TURMAS:</label> <input type="text"
+							<label>QUANTIDADE DE TURMAS:</label> <input type="number"
 								name="qtd_turmas" class="form-control" required="required">
 							<br>
 						</div>
@@ -140,23 +140,32 @@
 							</select> <br>
 						</div>
 
-
 					</div>
 
+
 					<div class="row">
-						<div class="col-sm-12">
+						<div class="col-sm-6">
 							<label>TIPO DO EVENTO:</label> <select name="tipo_evento"
-								id="tipo_evento" class="form-control" onchange="validarForm()">
-								<option value="5"></option>
-								<option value="4">PALESTRAS</option>
-								<option value="3">SIMPÓSIOS</option>
-								<option value="2">CONFERÊNCIAS</option>
-								<option value="1">OFICINAS</option>
+								id="tipo_evento" class="form-control">
+								<option></option>
+								<option>PALESTRAS</option>
+								<option>SIMPÓSIOS</option>
+								<option>CONFERÊNCIAS</option>
+								<option>OFICINAS</option>
+							</select>
+						</div>
+
+
+						<div class="col-sm-6">
+							<label>CATEGORIA EVENTO:</label> <select name="cat_evento"
+								id="cat_evento" onchange="validarForm()" class="form-control"
+								required="required">
+								<option value=""></option>
+								<option value="1">COM PERIODO</option>
+								<option value="0">SEM PERIODO</option>
 							</select> <br>
 						</div>
 					</div>
-
-
 
 
 					<div class="row">
@@ -168,7 +177,7 @@
 						<div class="col-sm-4">
 							<label>PERÍODO:</label> <input type="text" name="periodo"
 								id="periodo" value="" style="text-transform: uppercase;"
-								class="form-control" disabled/> <br>
+								class="form-control" disabled /> <br>
 						</div>
 						<div class="col-sm-4">
 							<label>HORÁRIO:</label> <input type="time" name="horario"
@@ -196,10 +205,51 @@
 							<br>
 						</div>
 					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<label>RESPONSÁVEL PELO EVENTO:</label> <input type="text"
+								name="cargo" value="" style="text-transform: uppercase;"
+								class="form-control" /> <br>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<label>ASSINATURA DIGITAL:</label> <input type="file"
+								name="cargo" value="" style="text-transform: uppercase;"
+								class="form-control" /> <br>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<label>RESPONSÁVEL PELO EVENTO:</label> <input type="text"
+								name="cargo" value="" style="text-transform: uppercase;"
+								class="form-control" /> <br>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<label>ASSINATURA DIGITAL:</label> <input type="file"
+								name="cargo" value="" style="text-transform: uppercase;"
+								class="form-control" /> <br>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<label>RESPONSÁVEL PELO EVENTO:</label> <input type="text"
+								name="cargo" value="" style="text-transform: uppercase;"
+								class="form-control" /> <br>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<label>ASSINATURA DIGITAL:</label> <input type="file"
+								name="cargo" value="" style="text-transform: uppercase;"
+								class="form-control" /> <br>
+						</div>
+					</div>
 
 					<br> <input type="submit" value="Salvar" id="salvar"
 						style="width: 83px;" />
-
 
 
 				</form>

@@ -114,8 +114,9 @@ if(cpf != null)
 		 	 try
 		 	 	{
 		 	      Class.forName("org.postgresql.Driver").newInstance();
-		 	      con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres",
-							"*abomax9637");
+		 	     con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres","252107");
+		 	     //con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres",
+											//"*abomax9637");
 		 	      ps = con.prepareStatement("select * from cursista where cpf=?"); 
 		 	      ps.setString(1,cpf);
 		 	      rs = ps.executeQuery();
@@ -147,6 +148,8 @@ if(cpf != null)
 						} else
 
 									{
+							
+				
 										response.sendRedirect("erroPage.jsp");
 									}
 
@@ -190,7 +193,7 @@ if(id_evento != 0)
 		 	 	{
 		 	      Class.forName("org.postgresql.Driver").newInstance();
 		 	      con1 = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres",
-							"*abomax9637");
+							"252107");
 		 	      ps1 = con1.prepareStatement("select * from evento where id_evento = ?"); 
 		 	      ps1.setInt(1,id_evento);
 		 	      rs1 = ps1.executeQuery();

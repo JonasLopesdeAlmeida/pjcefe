@@ -14,8 +14,8 @@ public class ConectaRel {
 		try
  		{
         Class.forName("org.postgresql.Driver");
- 		con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe","postgres","*abomax9637");
-
+ 		con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe","postgres","252107");
+       // con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe","postgres","*abomax9637");
 	}
 		catch(ClassNotFoundException erroClass) /*erro caso ele não localize a classe o driver*/
 	 	{

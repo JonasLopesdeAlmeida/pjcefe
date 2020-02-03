@@ -41,16 +41,6 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>ServerAlunoAtualizar</display-name>
-    <servlet-name>ServerAlunoAtualizar</servlet-name>
-    <servlet-class>servidor.ServerAlunoAtualizar</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ServerAlunoAtualizar</servlet-name>
-    <url-pattern>/ServerAlunoAtualizar</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
     <display-name>ServerRel</display-name>
     <servlet-name>ServerRel</servlet-name>
     <servlet-class>servidor.ServerRel</servlet-class>
@@ -68,5 +58,35 @@
   <servlet-mapping>
     <servlet-name>ServerMatricula</servlet-name>
     <url-pattern>/ServerMatricula</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>serverAcessoCursista</display-name>
+    <servlet-name>serverAcessoCursista</servlet-name>
+    <servlet-class>servidor.serverAcessoCursista</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>serverAcessoCursista</servlet-name>
+    <url-pattern>/serverAcessoCursista</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServerCursistaAtualizar</display-name>
+    <servlet-name>ServerCursistaAtualizar</servlet-name>
+    <servlet-class>servidor.ServerCursistaAtualizar</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServerCursistaAtualizar</servlet-name>
+    <url-pattern>/ServerCursistaAtualizar</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServerEmail</display-name>
+    <servlet-name>ServerEmail</servlet-name>
+    <servlet-class>servidor.ServerEmail</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServerEmail</servlet-name>
+    <url-pattern>/ServerEmail</url-pattern>
   </servlet-mapping>
 </web-app>

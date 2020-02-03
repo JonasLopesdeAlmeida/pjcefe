@@ -23,19 +23,20 @@ public class Eventodao extends Conecta  {
 
 		{
 
-			stm =  con.prepareStatement("insert into evento( data_evento, nome_evento, turno, tipo_evento,carga_horaria, periodo, horario, ementa, setor, cargo, qtd_turmas)values(?,?,?,?,?,?,?,?,?,?,?)");
+			stm =  con.prepareStatement("insert into evento( data_evento, nome_evento, turno, cat_evento, tipo_evento,carga_horaria, periodo, horario, ementa, setor, cargo, qtd_turmas)values(?,?,?,?,?,?,?,?,?,?,?,?)");
 
 			stm.setString(1,ee.getData_evento());
 			stm.setString(2,ee.getNome_evento()); 
 			stm.setString(3,ee.getTurno());
-			stm.setString(4,ee.getTipo_evento());
-			stm.setString(5,ee.getCarga_horaria());
-			stm.setString(6,ee.getPeriodo());
-			stm.setString(7,ee.getHorario());
-			stm.setString(8,ee.getEmenta());
-			stm.setString(9,ee.getSetor());
-			stm.setString(10,ee.getCargo());
-			stm.setInt(11,ee.getQtd_turmas());
+			stm.setString(4,ee.getCat_evento());
+			stm.setString(5,ee.getTipo_evento());
+			stm.setString(6,ee.getCarga_horaria());
+			stm.setString(7,ee.getPeriodo());
+			stm.setString(8,ee.getHorario());
+			stm.setString(9,ee.getEmenta());
+			stm.setString(10,ee.getSetor());
+			stm.setString(11,ee.getCargo());
+			stm.setInt(12,ee.getQtd_turmas());
 			
 			stm.execute();
 			stm.close();                             
@@ -58,19 +59,20 @@ public class Eventodao extends Conecta  {
 		{
 
 			
-			stm =  con.prepareStatement("update set evento data_evento=?, nome_evento=?, turno=?, tipo_evento=?,carga_horaria=?, periodo=?, horario=?, ementa=?, setor=?, cargo=?, qtd_turmas=?");
+			stm =  con.prepareStatement("update set evento data_evento=?, nome_evento=?, turno=?, cat_evento=?, tipo_evento=?,carga_horaria=?, periodo=?, horario=?, ementa=?, setor=?, cargo=?, qtd_turmas=?");
 
 			stm.setString(1,ee.getData_evento());
 			stm.setString(2,ee.getNome_evento()); 
 			stm.setString(3,ee.getTurno());
-			stm.setString(4,ee.getTipo_evento());
-			stm.setString(5,ee.getCarga_horaria());
-			stm.setString(6,ee.getPeriodo());
-			stm.setString(7,ee.getHorario());
-			stm.setString(8,ee.getEmenta());
-			stm.setString(9,ee.getSetor());
-			stm.setString(10,ee.getCargo());
-			stm.setInt(11,ee.getQtd_turmas());
+			stm.setString(4,ee.getCat_evento());
+			stm.setString(5,ee.getTipo_evento());
+			stm.setString(6,ee.getCarga_horaria());
+			stm.setString(7,ee.getPeriodo());
+			stm.setString(8,ee.getHorario());
+			stm.setString(9,ee.getEmenta());
+			stm.setString(10,ee.getSetor());
+			stm.setString(11,ee.getCargo());
+			stm.setInt(12,ee.getQtd_turmas());
 			stm.executeUpdate();
 			stm.close();
 		}

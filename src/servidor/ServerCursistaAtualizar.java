@@ -1,8 +1,10 @@
 package servidor;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +14,7 @@ import dados.Cursista;
 import dao.Cursistadao;
 
 /**
- * Servlet implementation class ServerAlunoAtualizar
+ * Servlet implementation class ServerCursistaAtualizar
  */
 public class ServerCursistaAtualizar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -24,6 +26,7 @@ public class ServerCursistaAtualizar extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
+
 
     /**
    	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -73,70 +76,69 @@ public class ServerCursistaAtualizar extends HttpServlet {
    		}
    	}
    	
-   	private void doService(HttpServletResponse response, HttpServletRequest request)throws Exception {
+	private void doService(HttpServletResponse response, HttpServletRequest request)throws Exception {
    		// TODO Auto-generated method stub
    		response.setContentType("text/html");
    		
-//   		int id_curso = Integer.parseInt(request.getParameter("id_evento"));
+   		int id_cursista = Integer.parseInt(request.getParameter("id_cursista"));
    		String nome = request.getParameter("nome");
    		nome = nome.toUpperCase();
    		String cpf = request.getParameter("cpf");
    		nome = nome.toUpperCase();
    		String matricula= request.getParameter("matricula");
    		nome = nome.toUpperCase();
-   		String instituicao = request.getParameter("email");
+   		String instituicao = request.getParameter("instituicao");
+   		String email = request.getParameter("email");
    		String fone  = request.getParameter("fone");
    		String funcao = request.getParameter("funcao");
    		String cargo = request.getParameter("cargo");
    		String setor = request.getParameter("setor");
    		String datanasc = request.getParameter("datanasc");
-//   		String email = request.getParameter("email");
-//   		String naturalidade = request.getParameter("naturalidade");
-//   		String uf = request.getParameter("uf");
-//   		String[] documentos = request.getParameterValues("documentos");
-//   		String[] situacao = request.getParameterValues("situacao");
+   		int id_evento = Integer.parseInt(request.getParameter("id_evento"));
+   		
+   		PrintWriter out = response.getWriter();
+
    		
    		Cursista a = new Cursista();
    		Cursistadao ad = new Cursistadao();
-//   		a.setId_curso(id_curso);
+
+   		a.setId_cursista(id_cursista);
    		a.setNome(nome);
    		a.setCpf(cpf);
    		a.setMatricula(matricula);
-   		a.setInstituicao(instituicao);
+   		a.setInstituicao(instituicao);		
+   		a.setEmail(email);
    		a.setFone(fone);
    		a.setFuncao(funcao);
    		a.setCargo(cargo);
    		a.setSetor(setor);
    		a.setDatanasc(datanasc);
-//   		a.setEmail(email);
-//   		a.setNaturalidade(naturalidade);
-//   		a.setUf(uf);
-   		
-//   		if(documentos != null){
-//   			String doc = Arrays.toString(documentos).replaceAll("\\[","").replaceAll("\\]","");
-//   			a.setDocumentos(doc);
-//   			}
-//   		
-//   		
-//   		if(situacao != null){
-//   			String sit = Arrays.toString(situacao).replaceAll("\\[","").replaceAll("\\]","");
-//   			a.setSituacao(sit);
-//   			}
+   		a.setId_evento(id_evento);
    		
    		
    		
-   		
-   		
+		
    		ad.open();
    		if(ad != null)
    		{
    			ad.atualizar(a);
    			
+   			out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
+   	   		out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
+   	   		out.println("<script>");
+   	   		out.println("$(document).ready(function(){");
+   	   		out.println("swal ('Cursista atualizado com sucesso!','','success' );");
+   	   		out.println("});");
+   	   		out.println("</script>");
+   	   		
+   	   		RequestDispatcher rd = request.getRequestDispatcher("consultaCursista.jsp");
+   	        rd.include(request, response);
+   	   		
+   	   		  //response.sendRedirect("sucessocursista.jsp?nome=" + nome);
    		
    		}
    		
-
-   		response.sendRedirect("sucessoaluno.jsp?nome=" + nome);
    	}
+
 
 }

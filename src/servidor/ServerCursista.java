@@ -1,8 +1,10 @@
-package servidor;
+ package servidor;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -92,6 +94,7 @@ public class ServerCursista extends HttpServlet {
    		String setor = request.getParameter("setor");
    		String datanasc = request.getParameter("datanasc");
    		int id_evento = Integer.parseInt(request.getParameter("id_evento"));
+   		PrintWriter out = response.getWriter();
 //   		String email = request.getParameter("email");
 //   		String naturalidade = request.getParameter("naturalidade");
 //   		String uf = request.getParameter("uf");
@@ -128,9 +131,7 @@ public class ServerCursista extends HttpServlet {
 //   			}
    		
    		
-   		
-   		
-   		
+		
    		ad.open();
    		if(ad != null)
    		{
@@ -138,9 +139,18 @@ public class ServerCursista extends HttpServlet {
    			
    		
    		}
+   		out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
+   		out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
+   		out.println("<script>");
+   		out.println("$(document).ready(function(){");
+   		out.println("swal ('Cursista cadastrado com sucesso!','','success' );");
+   		out.println("});");
+   		out.println("</script>");
    		
-
-   		response.sendRedirect("sucessocursista.jsp?nome=" + nome);
+   		RequestDispatcher rd = request.getRequestDispatcher("cursista.jsp");
+        rd.include(request, response);
+   		
+   		  // response.sendRedirect("cursista.jsp?nome=" + nome);
    	}
 
 

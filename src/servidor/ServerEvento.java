@@ -1,8 +1,10 @@
 package servidor;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -81,6 +83,7 @@ public class ServerEvento extends HttpServlet {
    		String data_evento = request.getParameter("data_evento");
    		String nome_evento= request.getParameter("nome_evento");
    		String turno = request.getParameter("turno");
+   		String cat_evento = request.getParameter("cat_evento");
    		String tipo_evento = request.getParameter("tipo_evento");
    		String carga_horaria = request.getParameter("carga_horaria");
    		String periodo = request.getParameter("periodo");		
@@ -89,6 +92,7 @@ public class ServerEvento extends HttpServlet {
    		String setor = request.getParameter("setor");
    		String cargo = request.getParameter("cargo");
    		int qtd_turmas = Integer.parseInt(request.getParameter("qtd_turmas"));
+   		PrintWriter out = response.getWriter();
    
 //   		String email = request.getParameter("email");
 //   		String naturalidade = request.getParameter("naturalidade");
@@ -102,6 +106,7 @@ public class ServerEvento extends HttpServlet {
    		ee.setData_evento(data_evento);
    		ee.setNome_evento(nome_evento);
    		ee.setTurno(turno);
+   		ee.setCat_evento(cat_evento);
    		ee.setTipo_evento (tipo_evento );
    		ee.setCarga_horaria(carga_horaria);
    		ee.setPeriodo(periodo);	
@@ -138,8 +143,19 @@ public class ServerEvento extends HttpServlet {
    		
    		}
    		
+   		out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
+   		out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
+   		out.println("<script>");
+   		out.println("$(document).ready(function(){");
+   		out.println("swal ('Evento cadastrado com sucesso!','','success' );");
+   		out.println("});");
+   		out.println("</script>");
+   		
+   		RequestDispatcher rd = request.getRequestDispatcher("evento.jsp");
+        rd.include(request, response);
+   		
 
-   	response.sendRedirect("sucessoevento.jsp?nome_evento=" + nome_evento);
+   	// response.sendRedirect("sucessoevento.jsp?nome_evento=" + nome_evento);
    	}
 
 

@@ -112,8 +112,10 @@
 
 								try {
 									Class.forName("org.postgresql.Driver").newInstance();
-									con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres",
-											"*abomax9637");
+									con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres","252107");
+									//con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres",
+											//"*abomax9637");
+									
 									ps = con.prepareStatement("select * from evento where id_evento = ? ");
 									ps.setInt(1, id_evento);
 									rs = ps.executeQuery();

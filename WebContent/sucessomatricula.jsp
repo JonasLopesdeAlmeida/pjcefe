@@ -116,11 +116,11 @@
 					  </thead>
     			
 <%
-//int id_cursista = Integer.parseInt(request.getParameter("id_cursista"));
+int id_cursista = Integer.parseInt(request.getParameter ("id_cursista")); 
 		
 	
-//if(id_cursista != 0)
-//{
+if(id_cursista != 0)
+{
 
 
 		     PreparedStatement ps= null;
@@ -132,14 +132,16 @@
 		 	 try
 		 	 	{
 		 	      Class.forName("org.postgresql.Driver").newInstance();
-		 	      con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe","postgres","*abomax9637");
-		 	     ps = con.prepareStatement("select id_mat,data_mat,cursista.id_cursista as id_cursista,cursista.nome as nome,cursista.cpf as cpf,evento.nome_evento as nome_evento,evento.periodo as periodo,evento.horario as horario,evento.data_evento as dias,evento.turno as turno from matricula inner join evento on matricula.id_evento = evento.id_evento inner join cursista on matricula.id_cursista = cursista.id_cursista");
+		 	      con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe","postgres","252107");
+		 	    //con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres",
+											//"*abomax9637");
+		 	      ps = con.prepareStatement("select id_mat,data_mat,cursista.id_cursista as id_cursista,cursista.nome as nome,cursista.cpf as cpf,evento.nome_evento as nome_evento,evento.periodo as periodo,evento.horario as horario,evento.data_evento as dias,evento.turno as turno from matricula inner join evento on matricula.id_evento = evento.id_evento inner join cursista on matricula.id_cursista = cursista.id_cursista where cursista.id_cursista = ? order by data_mat desc limit 1");
 		 	    // select data_matricula,aluno.id_aluno,aluno.nome as nome,aluno.cpf as cpf,curso.descricao as curso,curso.periodo as periodo,curso.horario as horario,curso.diassemana as dias,curso.turno as turno from matricula inner join curso on matricula.id_curso = curso.id_curso inner join aluno on matricula.id_aluno = aluno.id_aluno
 		 	     // ps = con.prepareStatement("select * from cursista where id_cursista = ? ");
-		 	     //ps.setInt(1,id_mat);
+		 	     ps.setInt(1,id_cursista);
 		 	      rs = ps.executeQuery();
 
-		 	      while(rs.next())
+		 	    if(rs.next())
 		      		{
 
 		           %>
@@ -147,6 +149,7 @@
  				<tbody>
   				
  				    <tr>
+ 				    
  				    <td><%= rs.getString("nome")%></td>
  				    <td><%= rs.getString("cpf")%></td>
  				    <td><%= rs.getString("nome_evento")%></td>
@@ -156,29 +159,33 @@
 
   
 			
-  	<%
-		      		}
+  		<%
+						} else
 
-				}
-			catch(ClassNotFoundException erroClass) /*erro caso ele não localize a classe o driver*/
-		 	{
-		 	out.println("Classe Driver JDBC não foi localizado, erro "+erroClass);
-		 	}
+									{
+										response.sendRedirect("erroPage.jsp");
+									}
 
-		 	 catch(SQLException erroSQL) /* erro no banco de dados */
-		 	 {
-		 	 out.println("Erro de conexão com o banco de dados , erro"+erroSQL);
-		 	 }
-		 	 finally
-		          {
-		        	  if(rs!= null)rs.close();
-		        	  if(ps!= null)ps.close();
-		        	  if(con!= null)con.close();
-		          }
-		 	  }
+								} catch (ClassNotFoundException erroClass) /*erro caso ele não localize a classe o driver*/
+								{
+									out.println("Classe Driver JDBC não foi localizado, erro " + erroClass);
+								}
 
+								catch (SQLException erroSQL) /* erro no banco de dados */
+								{
+									out.println("Erro de conexão com o banco de dados , erro" + erroSQL);
+								} finally {
+									if (rs != null)
+										rs.close();
+									if (ps != null)
+										ps.close();
+									if (con != null)
+										con.close();
+								}
+							}
+						}
+					%>
 
-		%>
   	
 
   		</tr>
@@ -193,7 +200,7 @@
 </div>
 </div>
         <h1 style="text-align: center;"><a href="consultaonline.jsp">Deseja adicionar outro Curso?</a></h1> 
-        <h1 style="text-align: center;"><a href="consultaMatricula.jsp">Cosulta</a></h1> 
+     
         <h1 style="text-align: center;"><a href="index.jsp">Sair</a></h1> 
 </div>
 

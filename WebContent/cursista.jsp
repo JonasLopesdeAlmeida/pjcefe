@@ -71,7 +71,6 @@
 			<li class="menu-has-children"><a href="">Cadastro</a>
 				<ul>
 					<li><a href="evento.jsp">Evento</a></li>
-					<li><a href="cursista.jsp">Cursista</a></li>
 					<li><a href="escola.jsp">Escola</a></li>
 				</ul></li>
 		</ul>
@@ -90,15 +89,14 @@
 	<main id="main"> <br>
 	<br>
 	<div class="container">
+
+
 		<div class="card">
 			<div class="card-body">
 
+				
+					
 				<h1 style="text-align: center;">CURSISTA</h1>
-
-
-
-
-
 
 
 				<form method="post" action="ServerCursista" name="frmAdd"
@@ -107,31 +105,35 @@
 					<div class="row">
 						<div class="col-sm-4">
 							<label for="exampleInputEmail1">CPF</label><br> <input
-								type="text" minlength="14" maxlength="14" name="cpf" class="form-control"  onkeypress="$(this).mask('000.000.000-00');"/> <br>
+								type="text" minlength="14" maxlength="14" name="cpf"
+								class="form-control"
+								onkeypress="$(this).mask('000.000.000-00');" required="required" />
+							<br>
 						</div>
 						<div class="col-sm-8">
 							<label for="exampleInputEmail1">NOME</label><br> <input
-								type="text" name="nome" class="form-control" required="required" /> <br>
+								type="text" name="nome" class="form-control" required="required" />
+							<br>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-4">
 							<label>DATA DE NASCIMENTO:</label> <input type="Date"
-								name="datanasc" value="" id="datanasc" class="form-control" required="required"/> <br>
+								name="datanasc" value="" id="datanasc" class="form-control"
+								required="required" /> <br>
 						</div>
-					
-				        
+
+
 						<div class="col-sm-8">
-							<label for="exampleInputEmail1">INSTITUIÇÃO</label><br>
-							<input type="text" name="instituicao" class="form-control" /> <br>
+							<label for="exampleInputEmail1">INSTITUIÇÃO</label><br> <input
+								type="text" name="instituicao" class="form-control" /> <br>
 						</div>
 					</div>
-                  
+
 					<div class="row">
 						<div class="col-sm-12">
-							<label for="exampleInputEmail1">SETOR DE
-								LOTAÇÃO</label><br> <input type="text" name="setor"
-								class="form-control" /> <br>
+							<label for="exampleInputEmail1">SETOR DE LOTAÇÃO</label><br>
+							<input type="text" name="setor" class="form-control" /> <br>
 						</div>
 					</div>
 
@@ -153,23 +155,25 @@
 					<div class="row">
 						<div class="col-sm-2">
 							<label for="exampleInputEmail1">MATRÍCULA</label><br> <input
-								type="text" minlength="8" maxlength="8" name="matricula" class="form-control" onkeypress="$(this).mask('000000-0')" required="required"/>
+								type="text" minlength="6" maxlength="8" name="matricula"
+								class="form-control" required="required" />
 
 						</div>
 						<div class="col-sm-2">
 							<label for="exampleInputEmail1">FONE/CELULAR</label><br> <input
-								type="text" minlength="14" maxlength="14" name="fone" class="form-control" onkeypress="$(this).mask('(00) 00000-0000')"/> <br>
-								
+								type="text" minlength="14" maxlength="14" name="fone"
+								class="form-control"
+								onkeypress="$(this).mask('(00) 00000-0000')" 
+								/> <br>
+
 						</div>
 						<div class="col-sm-8">
 							<label for="exampleInputEmail1">E-MAIL</label><br> <input
-								type="Email" name="email" class="form-control"  />
+								type="Email" name="email" class="form-control" />
 						</div>
 
 					</div>
-
-
-					<div class="row">
+                     <div class="row">
 						<div class="col-sm-12">
 							<label for="exampleInputEmail1">EVENTO
 								FORMATIVO</label><br> <select class="form-control" name="id_evento"
@@ -180,12 +184,10 @@
 									ResultSet rs = null;
 									SimpleDateFormat dateFormat = null;
 									{
-
 										try {
 											Class.forName("org.postgresql.Driver").newInstance();
-											con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres", "*abomax9637");
+											con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres", "252107");
 											ps = con.prepareStatement("select * from evento");
-
 											// ps.setLong(1, id);
 											rs = ps.executeQuery();
 											//  ps.clearParameters();
@@ -196,12 +198,10 @@
 									<%=rs.getString("nome_evento")%></option>
 								<%
 									}
-
 										} catch (ClassNotFoundException erroClass) /*erro caso ele não localize a classe o driver*/
 										{
 											out.println("Classe Driver JDBC não foi localizado, erro " + erroClass);
 										}
-
 										catch (SQLException erroSQL) /* erro no banco de dados */
 										{
 											out.println("Erro de conexão com o banco de dados , erro" + erroSQL);
@@ -220,24 +220,20 @@
 						</div>
 					</div>
 
+
+
 					<input type="submit" value="Salvar" id="salvar"
 						style="width: 83px;" />
-
-
-
+				
 				</form>
-
-
-
 
 			</div>
 		</div>
 	</div>
 
-
-
 	</main>
 	<br>
+
 	<!--==========================
     Footer
   ============================-->
@@ -278,8 +274,12 @@
 	<script src="lib/counterup/counterup.min.js"></script>
 	<script src="lib/superfish/hoverIntent.js"></script>
 	<script src="lib/superfish/superfish.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+	
 
+	
+	
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 	<!-- Contact Form JavaScript File -->
 	<script src="contactform/contactform.js"></script>
 

@@ -19,7 +19,8 @@ public class Conecta {
      		try
      		{
             Class.forName("org.postgresql.Driver");
-     		con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe","postgres","*abomax9637");
+     		con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe","postgres","252107");
+     		//con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe","postgres","*abomax9637");
      		
  	}
 	     		 catch (SQLException e) 

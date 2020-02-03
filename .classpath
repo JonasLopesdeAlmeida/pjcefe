@@ -13,5 +13,12 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="C:/Users/jmdlo/Downloads/javamail-1.4.5/mail.jar"/>
+	<classpathentry kind="lib" path="C:/Users/jmdlo/Downloads/EnvioJavaEmail-master/lib/activation.jar"/>
+	<classpathentry kind="lib" path="C:/Users/jmdlo/Downloads/commons-email-1.5/commons-email-1.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/jmdlo/Downloads/commons-email-1.5/commons-email-1.5-javadoc.jar"/>
+	<classpathentry kind="lib" path="C:/Users/jmdlo/Downloads/commons-email-1.5/commons-email-1.5-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/jmdlo/Downloads/commons-email-1.5/commons-email-1.5-tests.jar"/>
+	<classpathentry kind="lib" path="C:/Users/jmdlo/Downloads/commons-email-1.5/commons-email-1.5-test-sources.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

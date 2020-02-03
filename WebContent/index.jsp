@@ -51,8 +51,9 @@
           <li><a href="consultaonline.jsp">Inscrições On-line</a></li>
           <li><a href="#solicitacoescursos">Solicitação de Cursos</a></li>
           <li><a href="certificado.jsp">Certificado</a></li>
+              <li><a href="acessoCursista.jsp">Espaço Cursista</a></li>
           <li><a href="#team">Espaço Fisico</a></li>
-          <li><a href="#contact">Contato</a></li>
+          <li><a href="contato.jsp">Contato</a></li>
        	  <li class="menu-has-children"><a href="adm.jsp">ADM</a></li>
           
         </ul>

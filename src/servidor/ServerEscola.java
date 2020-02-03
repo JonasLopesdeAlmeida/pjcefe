@@ -1,8 +1,10 @@
 package servidor;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -84,6 +86,7 @@ public class ServerEscola extends HttpServlet {
    		String endereco= request.getParameter("endereco");
    		String telefone = request.getParameter("telefone");
    		String email = request.getParameter("email");
+   		PrintWriter out = response.getWriter();
    
 //   		String email = request.getParameter("email");
 //   		String naturalidade = request.getParameter("naturalidade");
@@ -127,8 +130,17 @@ public class ServerEscola extends HttpServlet {
    			
    		
    		}
+   		out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
+   		out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
+   		out.println("<script>");
+   		out.println("$(document).ready(function(){");
+   		out.println("swal ('Escola cadastrada com sucesso!','','success' );");
+   		out.println("});");
+   		out.println("</script>");
    		
+   		RequestDispatcher rd = request.getRequestDispatcher("escola.jsp");
+        rd.include(request, response);
 
-   	response.sendRedirect("sucessoescola.jsp?instituicao=" + instituicao);
+   	//response.sendRedirect("sucessoescola.jsp?instituicao=" + instituicao);
    	}
 }

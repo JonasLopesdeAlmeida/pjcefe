@@ -6,9 +6,9 @@ public class Cursista implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Long id_cursista;
+	private int id_cursista;
 	private String nome, cpf, matricula, instituicao, email, fone, funcao, cargo, setor, datanasc;
-	private int id_evento;
+    private int id_evento;
 
 
 	private Evento evento;
@@ -17,8 +17,11 @@ public class Cursista implements Serializable {
 
 	}
 
-	public Cursista(Long id_cursista, String nome, String cpf, String matricula, String instituicao, String email, String fone, String funcao,
-			String cargo, String setor, String datanasc, int id_evento) {
+	
+	
+	
+	public Cursista(int id_cursista, String nome, String cpf, String matricula, String instituicao, String email,
+			String fone, String funcao, String cargo, String setor, String datanasc, int id_evento) {
 		super();
 		this.id_cursista = id_cursista;
 		this.nome = nome;
@@ -32,13 +35,15 @@ public class Cursista implements Serializable {
 		this.setor = setor;
 		this.datanasc = datanasc;
 		this.id_evento = id_evento;
+	
 	}
 
-	public Long getId_cursista() {
+
+	public int getId_cursista() {
 		return id_cursista;
 	}
 
-	public void setId_cursista(Long id_cursista) {
+	public void setId_cursista(int id_cursista) {
 		this.id_cursista = id_cursista;
 	}
 
@@ -139,13 +144,19 @@ public class Cursista implements Serializable {
 		this.id_evento = id_evento;
 	}
 
+
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id_cursista == null) ? 0 : id_cursista.hashCode());
+		result = prime * result + id_cursista;
 		return result;
 	}
+
+
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -156,14 +167,12 @@ public class Cursista implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Cursista other = (Cursista) obj;
-		if (id_cursista == null) {
-			if (other.id_cursista != null)
-				return false;
-		} else if (!id_cursista.equals(other.id_cursista))
+		if (id_cursista != other.id_cursista)
 			return false;
 		return true;
 	}
 
+	
 
 	
 	

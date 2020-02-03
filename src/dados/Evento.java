@@ -7,7 +7,7 @@ public class Evento implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	private Long id_evento;
-	private String data_evento, nome_evento, turno, tipo_evento, carga_horaria, periodo, horario, ementa, setor, cargo;
+	private String data_evento, nome_evento, turno,cat_evento, tipo_evento, carga_horaria, periodo, horario, ementa, setor, cargo;
 	private int qtd_turmas;
 	
 	
@@ -17,7 +17,7 @@ public class Evento implements Serializable{
 	}
 
 	
-	public Evento(Long id_evento, String data_evento, String nome_evento, String turno, String tipo_evento,
+	public Evento(Long id_evento, String data_evento, String nome_evento, String turno, String cat_evento, String tipo_evento,
 			String carga_horaria, String periodo, String horario, String ementa, String setor, String cargo,
 			int qtd_turmas) {
 		super();
@@ -25,6 +25,7 @@ public class Evento implements Serializable{
 		this.data_evento = data_evento;
 		this.nome_evento = nome_evento;
 		this.turno = turno;
+		this.cat_evento = cat_evento;
 		this.tipo_evento = tipo_evento;
 		this.carga_horaria = carga_horaria;
 		this.periodo = periodo;
@@ -102,6 +103,17 @@ public class Evento implements Serializable{
 	public void setCargo(String cargo) {
 		this.cargo = cargo;
 	}
+	
+	public String getCat_evento() {
+		return cat_evento;
+	}
+
+
+	public void setCat_evento(String cat_evento) {
+		this.cat_evento = cat_evento;
+	}
+
+
 	public int getQtd_turmas() {
 		return qtd_turmas;
 	}

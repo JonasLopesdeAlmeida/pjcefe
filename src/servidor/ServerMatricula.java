@@ -86,7 +86,7 @@ public class ServerMatricula extends HttpServlet {
    		Matricula m = new Matricula();
    		Matriculadao md = new Matriculadao();
    		
-   	//	m.setId_mat(id_mat);
+   	   // m.setId_mat(id_mat);
    		m.setData_mat(data_mat);
    		m.setId_evento(id_evento);
    		m.setId_cursista(id_cursista);
@@ -98,7 +98,7 @@ public class ServerMatricula extends HttpServlet {
    			md.gravar(m);
    		}
 
-   		response.sendRedirect("sucessomatricula.jsp");
+   		response.sendRedirect("sucessomatricula.jsp?id_cursista="+ id_cursista);
    	}
 
 }
