@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ListaCursistas" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="37d3b558-5cfe-4339-820f-ceb1afd6cf7f">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="dbListaCefe"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<subDataset name="Dataset1" uuid="76e753b6-e5c5-46f5-9703-9a6fdd7c491a">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="dbListaCefe"/>
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+	</subDataset>
+	<parameter name="EVENTO" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[select cursista.nome as nome,cursista.cpf as cpf,evento.nome_evento as nome_evento,evento.turno as turno, evento.data_evento as data_evento from matricula inner join evento on matricula.id_evento = evento.id_evento inner join cursista on matricula.id_cursista = cursista.id_cursista 
+where evento.id_evento =  $P{EVENTO}  ORDER BY nome ASC
+
+]]>
+	</queryString>
+	<field name="nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nome"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cursista"/>
+	</field>
+	<field name="cpf" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="cpf"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cursista"/>
+	</field>
+	<field name="nome_evento" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nome_evento"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="evento"/>
+	</field>
+	<field name="turno" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="turno"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="evento"/>
+	</field>
+	<field name="data_evento" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="data_evento"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="evento"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="114" splitType="Stretch">
+			<frame>
+				<reportElement x="0" y="4" width="560" height="106" uuid="eb3b8d84-e3ab-4290-8a98-1239285e60f9"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<staticText>
+					<reportElement x="21" y="7" width="100" height="30" uuid="65626890-b905-4da9-a745-ac47805e372f"/>
+					<text><![CDATA[EVENTO:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="80" y="7" width="100" height="20" uuid="0bee525d-7421-4b7e-b33d-60319651b8fc"/>
+					<textFieldExpression><![CDATA[$F{nome_evento}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="22" y="41" width="100" height="30" uuid="bda081ef-5ae7-434d-bf56-e15dcf27a704"/>
+					<text><![CDATA[TURNO:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="22" y="77" width="100" height="30" uuid="fbfecffa-855c-4475-a780-60fe5efd7d03"/>
+					<text><![CDATA[DATA:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="81" y="39" width="100" height="30" uuid="a8bb134c-b490-46c3-8f34-32214da67cf5"/>
+					<textFieldExpression><![CDATA[$F{turno}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="82" y="77" width="100" height="30" uuid="b1a0c079-7a84-4377-993f-c1c6ef01dbb2"/>
+					<textFieldExpression><![CDATA[$F{data_evento}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="63" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="26" width="180" height="37" uuid="b67d523e-1f2b-4cd6-b9b3-7c21c715af4f"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[CURSISTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="26" width="200" height="37" uuid="0da83720-fd96-459d-a8bc-c8c6c86fc644"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[CPF]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="26" width="180" height="37" uuid="e41be29f-8aa1-4f61-a374-a64fd8d785b2"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[ASSINATURA]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="69" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.spreadsheet.SpreadsheetLayout"/>
+			<textField>
+				<reportElement x="0" y="0" width="180" height="69" uuid="444aad99-ffeb-4d8c-bebb-fcf0274d1fae"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="0" width="200" height="69" uuid="53e0ee16-9500-4bfc-8ab2-a276c74f61c8"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{cpf}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="380" y="0" width="180" height="69" uuid="4e4dd429-5953-4ce1-8886-b7e5801c3f80"/>
+			</rectangle>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="50" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="68" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout"/>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
