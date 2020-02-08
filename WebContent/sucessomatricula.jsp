@@ -215,17 +215,17 @@ if(id_cursista != 0)
   
 
   </main>
+ <br> <br> <br> <br> <br> <br> <br> <br> 
 
-  <!--==========================
+	<!--==========================
     Footer
-  ============================-->
-  <footer id="footer">
+    ============================-->
+	<footer id="footer" class="foter">
     <div class="footer-top">
       <div class="container">
-
+		<p>Desenvolvimento Secretaria Municipal de Informação de Tecnologia - SEMIT</p>
       </div>
     </div>
-
     <div class="container">
       <div class="credits">
           <br>

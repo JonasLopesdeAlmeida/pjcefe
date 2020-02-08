@@ -27,6 +27,7 @@
 
   <!-- Bootstrap CSS File -->
   <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
   <!-- Libraries CSS Files -->
   <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
   <link href="lib/animate/animate.min.css" rel="stylesheet">
@@ -62,7 +63,13 @@
           <li><a href="#solicitacoescursos">Solicitação de Cursos</a></li>
           <li><a href="#team">Espaço Fisico</a></li>
           <li><a href="#contact">Contato</a></li>
-           <li class="menu-has-children"><a href="adm.jsp">ADM</a></li>
+           <li class="menu-has-children"><a href="">Cadastro</a>
+            <ul>
+             <li><a href="evento.jsp">Evento</a></li>
+              <li><a href="cursista.jsp">Cursista</a></li> 
+              <li><a href="escola.jsp">Escola</a></li>
+            </ul>
+          </li>
         </ul>
       </nav><!-- #nav-menu-container -->
     </div>
@@ -78,49 +85,38 @@
   <main id="main">
 <br>
 <br>
-   <div class="container">
- <div class="card">
-  <div class="card-body">
- 	
-<h1 style="text-align: center;"></h1>
-     			
-  				<form  method="post" action="consultaCursista.jsp" name="frmAdd" enctype="multipart/formdata"> 
-  				<div class="row">
-				<div class="col-sm-6">
-  				<label >NOME:</label>
-				<input type="text" name="nome" value="" id="nome"  class="form-control"/>
-  				</div>
-  				
-				<div class="col-sm-6">
-  				<label >CPF:</label>
-				<input type="text" name="cpf" value="" id="cpf"  class="form-control" onkeypress="$(this).mask('000.000.000-00');" required="required" />
-				<br>
-  				</div>
-  				</div>
-  				
- <input type="submit" value="Salvar" id="salvar" style="width:83px;"/>
+
+<div class="container">
+        	  <br>
+  <br>
+   	<h1 style="text-align: center;">EVENTO NÃO ENCONTRADO</h1>
+   		<h2 style="text-align: center;"><a href="index.jsp">SAIR</a></h2>
+   		<h2 style="text-align: center;"><a href="acessoEvento.jsp">VOLTAR</a></h2>
+ 			
+  <br>
+  <br>
+<br>
+
+
+		
+                    
  
-
-
-</form>
-
-
 </div>
-</div>
-</div>
+
+<br>
+<br>
 
   
 
   </main>
- <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
 
-	<!--==========================
+  <!--==========================
     Footer
-    ============================-->
-	<footer id="footer" class="foter">
+  ============================-->
+  <footer id="footer">
     <div class="footer-top">
       <div class="container">
-		<p>Desenvolvimento Secretaria Municipal de Informação de Tecnologia - SEMIT</p>
+
       </div>
     </div>
 
@@ -157,15 +153,6 @@
   <script src="lib/counterup/counterup.min.js"></script>
   <script src="lib/superfish/hoverIntent.js"></script>
   <script src="lib/superfish/superfish.min.js"></script>
-  
-   <script type="text/javascript">
- 	$('#telefone').mask('(99) 99999-9999');
- 	$('#data').mask('99/99/9999');
- 	$('#cpf').mask('999.999.999-99');
- 	$('#cep').mask('99.999-999');
- </script>
- <script
-		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 
   <!-- Contact Form JavaScript File -->
   <script src="contactform/contactform.js"></script>

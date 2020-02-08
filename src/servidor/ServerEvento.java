@@ -91,6 +91,12 @@ public class ServerEvento extends HttpServlet {
    		String ementa= request.getParameter("ementa");
    		String setor = request.getParameter("setor");
    		String cargo = request.getParameter("cargo");
+   		String responsavel1 = request.getParameter("responsavel1");
+   		String responsavel2 = request.getParameter("responsavel2");
+   		String responsavel3 = request.getParameter("responsavel3");
+   		byte[] img1 = request.getParameter("img1").getBytes();
+   		byte[] img2 = request.getParameter("img2").getBytes();
+   		byte[] img3 = request.getParameter("img3").getBytes();
    		int qtd_turmas = Integer.parseInt(request.getParameter("qtd_turmas"));
    		PrintWriter out = response.getWriter();
    
@@ -114,6 +120,12 @@ public class ServerEvento extends HttpServlet {
    		ee.setEmenta(ementa);
    		ee.setSetor (setor);
    		ee.setCargo(cargo);
+   		ee.setResponsavel1(responsavel1);
+   		ee.setResponsavel2(responsavel2);
+   		ee.setResponsavel3(responsavel3);
+   		ee.setImg1(img1);
+   		ee.setImg2(img2);
+   		ee.setImg3(img3);
    		ee.setQtd_turmas(qtd_turmas);
    
 //   		a.setEmail(email);
@@ -154,9 +166,9 @@ public class ServerEvento extends HttpServlet {
    		RequestDispatcher rd = request.getRequestDispatcher("evento.jsp");
         rd.include(request, response);
    		
-
+        
    	// response.sendRedirect("sucessoevento.jsp?nome_evento=" + nome_evento);
    	}
 
-
+    
 }

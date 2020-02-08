@@ -226,7 +226,7 @@ if (request.getMethod().equals("POST")) {
 
 								<div class="flex-col size2">
 									<span class="txt1 p-b-20"> Endereço </span> <span class="txt2">
-										Mada Center 8th floor, 379 Hudson St, New York, NY 10018 US </span>
+										\*****************************/ </span>
 								</div>
 							</div>
 
@@ -237,7 +237,7 @@ if (request.getMethod().equals("POST")) {
 
 								<div class="flex-col size2">
 									<span class="txt1 p-b-20"> Telefone </span> <span class="txt3">
-										+1 800 1236879 </span>
+										\*****************************/ </span>
 								</div>
 							</div>
 
@@ -248,7 +248,7 @@ if (request.getMethod().equals("POST")) {
 
 								<div class="flex-col size2">
 									<span class="txt1 p-b-20"> Email </span> <span class="txt3">
-										contact@example.com </span>
+										\*****************************/ </span>
 								</div>
 							</div>
 						</div>
@@ -269,11 +269,13 @@ if (request.getMethod().equals("POST")) {
 	<br>
 	<!--==========================
     Footer
-  ============================-->
-	<footer id="footer">
-	<div class="footer-top">
-		<div class="container"></div>
-	</div>
+    ============================-->
+	<footer id="footer" class="foter">
+    <div class="footer-top">
+      <div class="container">
+		<p>Desenvolvimento Secretaria Municipal de Informação de Tecnologia - SEMIT</p>
+      </div>
+    </div>
 
 	<div class="container">
 		<div class="credits">

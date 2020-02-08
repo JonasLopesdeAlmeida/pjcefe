@@ -1,6 +1,7 @@
 package servidor;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 
@@ -10,19 +11,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dados.Cursista;
-import dao.Cursistadao;
+import dados.Evento;
+import dao.Eventodao;
 
 /**
- * Servlet implementation class ServerCursistaAtualizar
+ * Servlet implementation class ServerEventoAtualizar
  */
-public class ServerCursistaAtualizar extends HttpServlet {
+public class ServerEventoAtualizar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServerCursistaAtualizar() {
+    public ServerEventoAtualizar() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -80,62 +81,73 @@ public class ServerCursistaAtualizar extends HttpServlet {
    		// TODO Auto-generated method stub
    		response.setContentType("text/html");
    		
-   		int id_cursista = Integer.parseInt(request.getParameter("id_cursista"));
-   		String nome = request.getParameter("nome");
-   		nome = nome.toUpperCase();
-   		String cpf = request.getParameter("cpf");
-   		nome = nome.toUpperCase();
-   		String matricula= request.getParameter("matricula");
-   		nome = nome.toUpperCase();
-   		String instituicao = request.getParameter("instituicao");
-   		String email = request.getParameter("email");
-   		String fone  = request.getParameter("fone");
-   		String funcao = request.getParameter("funcao");
-   		String cargo = request.getParameter("cargo");
-   		String setor = request.getParameter("setor");
-   		String datanasc = request.getParameter("datanasc");
    		int id_evento = Integer.parseInt(request.getParameter("id_evento"));
-   		
+   		String nome_evento = request.getParameter("nome_evento");
+   		String data_evento = request.getParameter("data_evento");
+   		String turno = request.getParameter("turno");
+   		String cat_evento= request.getParameter("cat_evento");
+   		String tipo_evento = request.getParameter("tipo_evento");
+   		String carga_horaria = request.getParameter("carga_horaria");
+   		String periodo = request.getParameter("periodo");
+   		String horario = request.getParameter("horario");
+   		String ementa = request.getParameter("ementa");
+   		String setor = request.getParameter("setor");
+   		String cargo = request.getParameter("cargo");
+   		String responsavel1 = request.getParameter("responsavel1");
+   		String responsavel2 = request.getParameter("responsavel2");
+   		String responsavel3 = request.getParameter("responsavel3");
+   		byte[] img1 = request.getParameter("img1").getBytes();
+   		byte[] img2 = request.getParameter("img2").getBytes();
+   		byte[] img3 = request.getParameter("img3").getBytes();
+   		int qtd_turmas = Integer.parseInt(request.getParameter("qtd_turmas"));
    		PrintWriter out = response.getWriter();
-
    		
-   		Cursista a = new Cursista();
-   		Cursistadao ad = new Cursistadao();
-
-   		a.setId_cursista(id_cursista);
-   		a.setNome(nome);
-   		a.setCpf(cpf);
-   		a.setMatricula(matricula);
-   		a.setInstituicao(instituicao);		
-   		a.setEmail(email);
-   		a.setFone(fone);
-   		a.setFuncao(funcao);
-   		a.setCargo(cargo);
-   		a.setSetor(setor);
-   		a.setDatanasc(datanasc);
-   		a.setId_evento(id_evento);
+   		Evento ee  = new Evento();
+   		Eventodao ev = new Eventodao();
+   		
+   		ee.setId_evento(id_evento);
+   		ee.setNome_evento(nome_evento);
+   		ee.setData_evento(data_evento);
+   		ee.setTurno(turno);
+   		ee.setCat_evento(cat_evento);
+   		ee.setTipo_evento (tipo_evento );
+   		ee.setCarga_horaria(carga_horaria);
+   		ee.setPeriodo(periodo);	
+   		ee.setHorario(horario);
+   		ee.setEmenta(ementa);
+   		ee.setSetor (setor);
+   		ee.setCargo(cargo);
+   		ee.setResponsavel1(responsavel1);
+   		ee.setResponsavel2(responsavel2);
+   		ee.setResponsavel3(responsavel3);
+   		ee.setImg1(img1);
+   		ee.setImg2(img2);
+   		ee.setImg3(img3);
+   		ee.setQtd_turmas(qtd_turmas);
    		
    		
    		
 		
-   		ad.open();
-   		if(ad != null)
+   		ev.open();
+   		if(ev != null)
    		{
-   			ad.atualizar(a);
+   			ev.atualizar(ee);
    			
    			out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
    	   		out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
    	   		out.println("<script>");
    	   		out.println("$(document).ready(function(){");
-   	   		out.println("swal ('Cursista atualizado com sucesso!','','success' );");
+   	   		out.println("swal ('Evento atualizado com sucesso!','','success' );");
    	   		out.println("});");
    	   		out.println("</script>");
    	   		
-   	   		RequestDispatcher rd = request.getRequestDispatcher("acessoCursista.jsp");
+   	   		
+   	   		RequestDispatcher rd = request.getRequestDispatcher("consultaEvento.jsp");
    	        rd.include(request, response);
    	   		
    	   		  //response.sendRedirect("sucessocursista.jsp?nome=" + nome);
    		
+   	       
    		}
    		
    	}

@@ -1,4 +1,5 @@
 <%@page import="dados.*"%>
+<%@page import="dao.*"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.DateFormat"%>
 <%@page import="java.util.ArrayList"%>
@@ -16,7 +17,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>CEFE</title>
+<title>CLAM</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <!-- Favicons -->
@@ -48,7 +49,7 @@
 
 <body>
 
-	<script>
+<script>
 		function validarForm() {
 			var selecao = document.getElementById("cat_evento").value;
 
@@ -60,7 +61,6 @@
 			}
 		}
 	</script>
-
 	<!--==========================
   Header
   ============================-->
@@ -83,6 +83,7 @@
 			<li class="menu-has-children"><a href="">Cadastro</a>
 				<ul>
 					<li><a href="evento.jsp">Evento</a></li>
+					<li><a href="cursista.jsp">Cursista</a></li>
 					<li><a href="escola.jsp">Escola</a></li>
 				</ul></li>
 		</ul>
@@ -103,22 +104,44 @@
 	<div class="container">
 		<div class="card">
 			<div class="card-body">
+				<%
+					
+					int id_evento = Integer.parseInt(request.getParameter("id_evento"));
+
+					if (id_evento != 0) {
+
+						PreparedStatement ps = null;
+						Connection con = null;
+						ResultSet rs = null;
+						{
+
+							try {
+								Class.forName("org.postgresql.Driver").newInstance();
+								con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres", "252107");
+								ps = con.prepareStatement("select * from evento where id_evento = ?");
+
+								ps.setInt(1, id_evento);
+								rs = ps.executeQuery();
+								if (rs.next()) {
+				%>
 
 				<h1 style="text-align: center;">EVENTO FORMATIVO</h1>
 
-				<form method="post" action="ServerEvento" name="frmAdd"
+				<form method="post" action="ServerEventoAtualizar" name="frmAdd"
 					enctype="multipart/formdata">
 
 					<div class="row">
 						<div class="col-sm-3">
-							<label>DATA DO EVENTO:</label> <input type="Date"
-								name="data_evento" value="" class="form-control"
-								required="required" />
+							<label>DATA DO EVENTO:</label>
+							<input type="hidden" name="id_evento" value="<%= rs.getInt("id_evento")%>"/>
+							 <input type="Date"
+								name="data_evento" class="form-control"
+								required="required" value="<%=rs.getString("data_evento")%>"/>
 						</div>
 						<div class="col-sm-9">
 							<label>NOME DO EVENTO:</label> <input type="text"
-								name="nome_evento" value="" style="text-transform: uppercase;"
-								class="form-control" required="required" /> <br>
+								name="nome_evento"  style="text-transform: uppercase;"
+								class="form-control" required="required" value="<%=rs.getString("nome_evento")%>" /> <br>
 						</div>
 					</div>
 
@@ -126,17 +149,15 @@
 
 						<div class="col-sm-6">
 							<label>QUANTIDADE DE TURMAS:</label> <input type="number"
-								name="qtd_turmas" class="form-control" required="required">
+								name="qtd_turmas" class="form-control" required="required" value="<%=rs.getInt("qtd_turmas")%>"/>
 							<br>
 						</div>
 
 						<div class="col-sm-6">
 							<label>TURNO:</label> <select name="turno" class="form-control"
-								required="required">
-								<option></option>
-								<option>MATUTINO</option>
-								<option>VESPERTINO</option>
-								<option>NOTURNO</option>
+								required="required" >
+								<option value="<%=rs.getString("turno")%>"></option>
+								
 							</select> <br>
 						</div>
 
@@ -146,7 +167,7 @@
 					<div class="row">
 						<div class="col-sm-6">
 							<label>TIPO DO EVENTO:</label> <select name="tipo_evento"
-								id="tipo_evento" class="form-control">
+								id="tipo_evento" class="form-control" >
 								<option></option>
 								<option>PALESTRAS</option>
 								<option>SIMPÓSIOS</option>
@@ -159,8 +180,8 @@
 						<div class="col-sm-6">
 							<label>CATEGORIA EVENTO:</label> <select name="cat_evento"
 								id="cat_evento" onchange="validarForm()" class="form-control"
-								required="required">
-								<option value=""></option>
+								required="required" >
+								<option value="<%=rs.getString("cat_evento")%>"></option>
 								<option value="1">COM PERIODO</option>
 								<option value="0">SEM PERIODO</option>
 							</select> <br>
@@ -171,80 +192,80 @@
 					<div class="row">
 						<div class="col-sm-4">
 							<label>CARGA HORÁRIA:</label> <input type="text"
-								name="carga_horaria" value="" style="text-transform: uppercase;"
-								class="form-control" required="required" /> <br>
+								name="carga_horaria"  style="text-transform: uppercase;"
+								class="form-control" required="required" value="<%=rs.getString("carga_horaria")%>" /> <br>
 						</div>
 						<div class="col-sm-4">
 							<label>PERÍODO:</label> <input type="text" name="periodo"
-								id="periodo" value="" style="text-transform: uppercase;"
-								class="form-control" disabled /> <br>
+								id="periodo" style="text-transform: uppercase;"
+								class="form-control" disabled  value="<%=rs.getString("periodo")%>"/> <br>
 						</div>
 						<div class="col-sm-4">
 							<label>HORÁRIO:</label> <input type="time" name="horario"
-								value="" style="text-transform: uppercase;" class="form-control" />
+							style="text-transform: uppercase;" class="form-control" value="<%=rs.getString("horario")%>"/>
 							<br>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-12">
-							<label>EMENTA:</label> <input type="text" name="ementa" value=""
-								style="text-transform: uppercase;" class="form-control" /> <br>
+							<label>EMENTA:</label> <input type="text" name="ementa" 
+								style="text-transform: uppercase;" class="form-control" value="<%=rs.getString("ementa")%>"/> <br>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-12">
 							<label>SETOR RESPONSÁVEL:</label> <input type="text" name="setor"
-								value="" style="text-transform: uppercase;" class="form-control" />
+								 style="text-transform: uppercase;" class="form-control" value="<%=rs.getString("setor")%>"/>
 							<br>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-12">
 							<label>CARGO/FUNÇÃO:</label> <input type="text" name="cargo"
-								value="" style="text-transform: uppercase;" class="form-control" />
+								 style="text-transform: uppercase;" class="form-control" value="<%=rs.getString("cargo")%>"/>
 							<br>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-12">
 							<label>RESPONSÁVEL PELO EVENTO:</label> <input type="text"
-								name="responsavel1" value="" style="text-transform: uppercase;"
-								class="form-control" /> <br>
+								name="responsavel1"  style="text-transform: uppercase;"
+								class="form-control" value="<%=rs.getString("responsavel1")%>"/> <br>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-12">
 							<label>ASSINATURA DIGITAL:</label> <input type="file"
-								name="img1" value="" style="text-transform: uppercase;"
-								class="form-control" /> <br>
+								name="img1"  style="text-transform: uppercase;"
+								class="form-control"  value="<%=rs.getBytes("img1")%>"> <br>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-12">
 							<label>RESPONSÁVEL PELO EVENTO:</label> <input type="text"
-								name="responsavel2" value="" style="text-transform: uppercase;"
-								class="form-control" /> <br>
+								name="responsavel2"  style="text-transform: uppercase;"
+								class="form-control" value="<%=rs.getString("responsavel2")%>"/> <br>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-12">
 							<label>ASSINATURA DIGITAL:</label> <input type="file"
-								name="img2" value="" style="text-transform: uppercase;"
-								class="form-control" /> <br>
+								name="img2"  style="text-transform: uppercase;"
+								class="form-control" value="<%=rs.getBytes("img2")%>"/> <br>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-12">
 							<label>RESPONSÁVEL PELO EVENTO:</label> <input type="text"
-								name="responsavel3" value="" style="text-transform: uppercase;"
-								class="form-control" /> <br>
+								name="responsavel3"  style="text-transform: uppercase;"
+								class="form-control" value="<%=rs.getString("responsavel3")%>"/> <br>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-12">
 							<label>ASSINATURA DIGITAL:</label> <input type="file"
-								name="img3" value="" style="text-transform: uppercase;"
-								class="form-control" /> <br>
+								name="img3"  style="text-transform: uppercase;"
+								class="form-control" value="<%=rs.getBytes("img3")%>"/> <br>
 						</div>
 					</div>
 
@@ -254,14 +275,41 @@
 
 				</form>
 
+				<%
+								
+								}
+
+							} catch (ClassNotFoundException erroClass) /*erro caso ele não localize a classe o driver*/
+							{
+								out.println("Classe Driver JDBC não foi localizado, erro " + erroClass);
+							}
+
+							catch (SQLException erroSQL) /* erro no banco de dados */
+							{
+								out.println("Erro de conexão com o banco de dados , erro" + erroSQL);
+							} finally {
+								if (rs != null)
+									rs.close();
+								if (ps != null)
+									ps.close();
+								if (con != null)
+									con.close();
+							}
+						}
+					}
+					%>
+
 
 
 
 			</div>
 		</div>
 	</div>
+
+
+
 	</main>
-	<br>
+
 	<!--==========================
     Footer
   ============================-->
@@ -302,6 +350,8 @@
 	<script src="lib/counterup/counterup.min.js"></script>
 	<script src="lib/superfish/hoverIntent.js"></script>
 	<script src="lib/superfish/superfish.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 
 	<!-- Contact Form JavaScript File -->
 	<script src="contactform/contactform.js"></script>

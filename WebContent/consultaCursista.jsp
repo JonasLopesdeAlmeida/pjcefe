@@ -122,9 +122,10 @@
 
 					<%
 						String cpf = request.getParameter("cpf");
+					    String nome = request.getParameter("nome");
 						//int id_curso = Integer.parseInt(request.getParameter("id_curso"));
 
-						if (cpf != null) {
+						if (cpf != null && nome != null) {
 
 							PreparedStatement ps = null;
 							Connection con = null;
@@ -137,8 +138,9 @@
 									con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres", "252107");
 									//con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres",
 									//"*abomax9637");
-									ps = con.prepareStatement("select * from cursista where cpf=?");
+									ps = con.prepareStatement("select * from cursista where cpf=? and nome=?");
 									ps.setString(1, cpf);
+									ps.setString(2, nome);
 									rs = ps.executeQuery();
 
 									if (rs.next()) {

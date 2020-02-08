@@ -62,7 +62,7 @@
           <li><a href="#inscricaoonline">Inscrições On-line</a></li>
           <li><a href="#solicitacoescursos">Solicitação de Cursos</a></li>
           <li><a href="#team">Espaço Fisico</a></li>
-          <li><a href="#contact">Contato</a></li>
+          <li><a href="acessoEvento.jsp">Consultar Evento</a></li>
            <li class="menu-has-children"><a href="">Cadastro</a>
             <ul>
              <li><a href="evento.jsp">Evento</a></li>

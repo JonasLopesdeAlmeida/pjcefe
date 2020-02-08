@@ -89,4 +89,34 @@
     <servlet-name>ServerEmail</servlet-name>
     <url-pattern>/ServerEmail</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServerRelLista</display-name>
+    <servlet-name>ServerRelLista</servlet-name>
+    <servlet-class>servidor.ServerRelLista</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServerRelLista</servlet-name>
+    <url-pattern>/ServerRelLista</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServerEventoAtualizar</display-name>
+    <servlet-name>ServerEventoAtualizar</servlet-name>
+    <servlet-class>servidor.ServerEventoAtualizar</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServerEventoAtualizar</servlet-name>
+    <url-pattern>/ServerEventoAtualizar</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServerEventoDeletar</display-name>
+    <servlet-name>ServerEventoDeletar</servlet-name>
+    <servlet-class>servidor.ServerEventoDeletar</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServerEventoDeletar</servlet-name>
+    <url-pattern>/ServerEventoDeletar</url-pattern>
+  </servlet-mapping>
 </web-app>

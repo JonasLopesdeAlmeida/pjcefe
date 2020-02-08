@@ -6,8 +6,9 @@ import java.io.Serializable;
 public class Evento implements Serializable{
 	private static final long serialVersionUID = 1L;
 
-	private Long id_evento;
-	private String data_evento, nome_evento, turno,cat_evento, tipo_evento, carga_horaria, periodo, horario, ementa, setor, cargo;
+	private int id_evento;
+	private String data_evento, nome_evento, turno,cat_evento, tipo_evento, carga_horaria, periodo, horario, ementa, setor, cargo, responsavel1, responsavel2, responsavel3;
+	private byte[] img1,img2,img3;
 	private int qtd_turmas;
 	
 	
@@ -17,9 +18,14 @@ public class Evento implements Serializable{
 	}
 
 	
-	public Evento(Long id_evento, String data_evento, String nome_evento, String turno, String cat_evento, String tipo_evento,
-			String carga_horaria, String periodo, String horario, String ementa, String setor, String cargo,
-			int qtd_turmas) {
+
+	
+	
+	public Evento(int id_evento, String data_evento, String nome_evento, String turno, String cat_evento,
+			String tipo_evento, String carga_horaria, String periodo, String horario, String ementa, String setor,
+			String cargo, String responsavel1, String responsavel2, String responsavel3, byte[] img1, byte[] img2,
+			byte[] img3, int qtd_turmas) {
+		
 		super();
 		this.id_evento = id_evento;
 		this.data_evento = data_evento;
@@ -33,14 +39,23 @@ public class Evento implements Serializable{
 		this.ementa = ementa;
 		this.setor = setor;
 		this.cargo = cargo;
+		this.responsavel1 = responsavel1;
+		this.responsavel2 = responsavel2;
+		this.responsavel3 = responsavel3;
+		this.img1 = img1;
+		this.img2 = img2;
+		this.img3 = img3;
 		this.qtd_turmas = qtd_turmas;
 	}
-	
-	
-	public Long getId_evento() {
+
+
+
+
+
+	public int getId_evento() {
 		return id_evento;
 	}
-	public void setId_evento(Long id_evento) {
+	public void setId_evento(int id_evento) {
 		this.id_evento = id_evento;
 	}
 	public String getData_evento() {
@@ -120,15 +135,116 @@ public class Evento implements Serializable{
 	public void setQtd_turmas(int qtd_turmas) {
 		this.qtd_turmas = qtd_turmas;
 	}
+	
+	
+
+
+	public String getResponsavel1() {
+		return responsavel1;
+	}
+
+
+
+
+
+	public void setResponsavel1(String responsavel1) {
+		this.responsavel1 = responsavel1;
+	}
+
+
+
+
+
+	public String getResponsavel2() {
+		return responsavel2;
+	}
+
+
+
+
+
+	public void setResponsavel2(String responsavel2) {
+		this.responsavel2 = responsavel2;
+	}
+
+
+
+
+
+	public String getResponsavel3() {
+		return responsavel3;
+	}
+
+
+
+
+
+	public void setResponsavel3(String responsavel3) {
+		this.responsavel3 = responsavel3;
+	}
+
+
+
+
+
+	public byte[] getImg1() {
+		return img1;
+	}
+
+
+
+
+
+	public void setImg1(byte[] img1) {
+		this.img1 = img1;
+	}
+
+
+
+
+
+	public byte[] getImg2() {
+		return img2;
+	}
+
+
+
+
+
+	public void setImg2(byte[] img2) {
+		this.img2 = img2;
+	}
+
+
+
+
+
+	public byte[] getImg3() {
+		return img3;
+	}
+
+
+
+
+
+	public void setImg3(byte[] img3) {
+		this.img3 = img3;
+	}
+
+
+
 
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id_evento == null) ? 0 : id_evento.hashCode());
+		result = prime * result + id_evento;
 		return result;
 	}
+
+
+
 
 
 	@Override
@@ -140,13 +256,15 @@ public class Evento implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Evento other = (Evento) obj;
-		if (id_evento == null) {
-			if (other.id_evento != null)
-				return false;
-		} else if (!id_evento.equals(other.id_evento))
+		if (id_evento != other.id_evento)
 			return false;
 		return true;
 	}
+
+
+
+
+
 	
 
 
