@@ -20,5 +20,13 @@
 	<classpathentry kind="lib" path="C:/Users/jmdlo/Downloads/commons-email-1.5/commons-email-1.5-sources.jar"/>
 	<classpathentry kind="lib" path="C:/Users/jmdlo/Downloads/commons-email-1.5/commons-email-1.5-tests.jar"/>
 	<classpathentry kind="lib" path="C:/Users/jmdlo/Downloads/commons-email-1.5/commons-email-1.5-test-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/jmdlo/Downloads/jasper.jar"/>
+	<classpathentry kind="lib" path="C:/Users/jmdlo/Downloads/jasperreports-annotation-processors-6.11.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/jmdlo/Downloads/jasperreports-chart-themes-6.11.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/jmdlo/Downloads/jasperreports-custom-visualization-6.11.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/jmdlo/Downloads/jasperreports-6.11.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/jmdlo/Downloads/jasperreports-functions-6.11.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/jmdlo/Downloads/jasperreports-javaflow-6.11.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/jmdlo/Downloads/jasperreports-metadata-6.11.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

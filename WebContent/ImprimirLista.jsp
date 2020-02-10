@@ -1,4 +1,5 @@
 <%@page import="dados.*"%>
+<%@page import="dao.*"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.DateFormat"%>
 <%@page import="java.util.ArrayList"%>
@@ -16,7 +17,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>CEFE</title>
+<title>CLAM</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <!-- Favicons -->
@@ -30,6 +31,7 @@
 
 <!-- Bootstrap CSS File -->
 <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
 <!-- Libraries CSS Files -->
 <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 <link href="lib/animate/animate.min.css" rel="stylesheet">
@@ -46,6 +48,19 @@
 </head>
 
 <body>
+
+<script>
+		function validarForm() {
+			var selecao = document.getElementById("cat_evento").value;
+
+			if (selecao == 1) {
+				document.getElementById("periodo").disabled = false;
+			} else {
+				document.getElementById("periodo").disabled = true;
+
+			}
+		}
+	</script>
 	<!--==========================
   Header
   ============================-->
@@ -64,12 +79,14 @@
 			<li><a href="#inscricaoonline">Inscrições On-line</a></li>
 			<li><a href="#solicitacoescursos">Solicitação de Cursos</a></li>
 			<li><a href="#team">Espaço Fisico</a></li>
-			<li><a href="acessoEvento.jsp">Consultar Evento</a></li>
+			<li><a href="#contact">Contato</a></li>
 			<li class="menu-has-children"><a href="">Cadastro</a>
 				<ul>
 					<li><a href="evento.jsp">Evento</a></li>
+					<li><a href="cursista.jsp">Cursista</a></li>
 					<li><a href="escola.jsp">Escola</a></li>
-				</ul>
+				</ul></li>
+		</ul>
 		</nav>
 		<!-- #nav-menu-container -->
 	</div>
@@ -87,53 +104,92 @@
 	<div class="container">
 		<div class="card">
 			<div class="card-body">
+				<%
+					
+					int id_evento = Integer.parseInt(request.getParameter("id_evento"));
 
-				<h1 style="text-align: center;"></h1>
+					if (id_evento != 0) {
 
-				<form method="post" action="consultaEvento.jsp" name="frmAdd"
+						PreparedStatement ps = null;
+						Connection con = null;
+						ResultSet rs = null;
+						{
+
+							try {
+								Class.forName("org.postgresql.Driver").newInstance();
+								con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres", "252107");
+								ps = con.prepareStatement("select nome_evento,turno,data_evento from evento where id_evento = ?");
+
+								ps.setInt(1, id_evento);
+								rs = ps.executeQuery();
+								if (rs.next()) {
+				%>
+
+				<h1 style="text-align: center;">EVENTO FORMATIVO</h1>
+
+					<form method="post" action="ServerRelLista" name="frmAdd"
 					enctype="multipart/formdata">
 					<div class="row">
 						<div class="col-sm-6">
 							<label>NOME DO EVENTO:</label> <input type="text"
-								name="nome_evento" value="" id="nome_evento"
-								class="form-control" />
+								name="nome_evento" id="nome_evento"
+								class="form-control" readonly="true"value="<%=rs.getString("nome_evento")%>"/>
 						</div>
 
 						<div class="col-sm-3">
-							<label>TURNO:</label> <select name="turno" class="form-control"
-								required="required">
-								<option></option>
-								<option>MATUTINO</option>
-								<option>VESPERTINO</option>
-								<option>NOTURNO</option>
-							</select> <br>
+							<label>TURNO:</label> <input type="text" name="turno" class="form-control"
+								readonly="true" value="<%=rs.getString("turno")%>"></input> <br>
 						</div>
 
 					<div class="col-sm-3">
-						<label>DATA:</label> <input type="date" name="data_evento"
-							value="" id="data_evento" class="form-control"
-							onkeypress="$(this).mask('000.000.000-00');" required="required" />
+						<label>DATA:</label> <input type="text" name="data_evento"
+							readonly="true" value="<%=rs.getString("data_evento")%>" id="data_evento" class="form-control"
+							 />
 						<br>
 					</div>
 			</div>
 
-			<input type="submit" value="Salvar" id="salvar" style="width: 83px;" />
+			<input type="submit" value="Confirmar" id="salvar" style="width: 90px;" />
             
        
 
 			</form>
 
-			
+				<%
+								
+								}
 
+							} catch (ClassNotFoundException erroClass) /*erro caso ele não localize a classe o driver*/
+							{
+								out.println("Classe Driver JDBC não foi localizado, erro " + erroClass);
+							}
+
+							catch (SQLException erroSQL) /* erro no banco de dados */
+							{
+								out.println("Erro de conexão com o banco de dados , erro" + erroSQL);
+							} finally {
+								if (rs != null)
+									rs.close();
+								if (ps != null)
+									ps.close();
+								if (con != null)
+									con.close();
+							}
+						}
+					}
+					%>
+
+
+
+
+			</div>
 		</div>
-	</div>
 	</div>
 
 
 
 	</main>
-
-     <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+  <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
 
 	<!--==========================
     Footer
@@ -177,13 +233,6 @@
 	<script src="lib/counterup/counterup.min.js"></script>
 	<script src="lib/superfish/hoverIntent.js"></script>
 	<script src="lib/superfish/superfish.min.js"></script>
-
-	<script type="text/javascript">
-		$('#telefone').mask('(99) 99999-9999');
-		$('#data').mask('99/99/9999');
-		$('#cpf').mask('999.999.999-99');
-		$('#cep').mask('99.999-999');
-	</script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 

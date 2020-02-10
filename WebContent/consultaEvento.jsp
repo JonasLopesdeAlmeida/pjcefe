@@ -107,7 +107,7 @@
 							<th style="text-align: center;">CARGA HORÁRIA</th>
 							<th style="text-align: center;">PERIODO</th>
 							<th style="text-align: center;">CURSISTAS</th>
-							<th style="text-align: center;">IMPRIMIR LISTA</th>
+							<th style="text-align: center;">LISTA DE FREQUÊNCIA</th>
 							<th style="text-align: center;">EDITAR</th>
 							<th style="text-align: center;">DELETAR</th>
 
@@ -157,7 +157,7 @@
 								href="ListaCursista.jsp?id_evento=<%=rs.getInt("id_evento")%>"><img alt=""
 									width="35" src="img/user.png"></a></td>
 									<td align="center"><a
-								href="ServerRelLista?id_evento=<%=rs.getInt("id_evento")%>"><img alt=""
+								href="ImprimirLista.jsp?id_evento=<%=rs.getInt("id_evento")%>"><img alt=""
 									width="35" src="img/listaAlunos.png"></a></td>
 									<td align="center"><a
 								href="alterarEvento.jsp?id_evento=<%=rs.getInt("id_evento")%>"><img alt=""

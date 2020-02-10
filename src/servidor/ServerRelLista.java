@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.lowagie.text.pdf.codec.Base64.InputStream;
+
 import conexao.ConectaRel;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperReport;
@@ -85,10 +87,18 @@ private void gerarRelatorio(HttpServletResponse response, HttpServletRequest req
 		// TODO Auto-generated method stub
 		
 		String erro = "";
-		int id_evento = Integer.parseInt(request.getParameter("id_evento"));
-		String jasper = "relatorio/ListaCursistas.jasper";
+		//int id_evento = Integer.parseInt(request.getParameter("id_evento"));
+		String nome = request.getParameter("nome_evento");
+		String turno = request.getParameter("turno");
+		String data = request.getParameter("data_evento");
+		String jasper = "relatorio/lista.jasper";
 		HashMap<String, Object> param = new HashMap<String, Object>();
-		param.put("EVENTO",id_evento);
+	    
+		
+	
+     	param.put("EVENTO",nome);
+		param.put("TURNO",turno);
+		param.put("DATA",data);
 		byte[] bytes= null;
 		ServletContext contexto = getServletContext();
 		
@@ -100,10 +110,11 @@ private void gerarRelatorio(HttpServletResponse response, HttpServletRequest req
 	
 		try
 		{
-			JasperReport Lista = (JasperReport)JRLoader.loadObjectFromFile(contexto.getRealPath(jasper));
-		    bytes = JasperRunManager.runReportToPdf(Lista, param, conn); 
+
+			JasperReport lista = (JasperReport)JRLoader.loadObjectFromFile(contexto.getRealPath(jasper));
+		    bytes = JasperRunManager.runReportToPdf(lista, param, conn); 
 		    System.out.println("Param:" + param); 
-		    System.out.println("Relatorio: " + Lista);
+		    System.out.println("Relatorio: " + lista);
 		    System.out.println("Bytes: " + bytes); 
 		    System.out.println("Jasper: " + jasper); 
 

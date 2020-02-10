@@ -99,7 +99,7 @@
 		<br>
 		<div class="panel panel-primary">
 			<div class="panel-body">
-				<table class="table">
+				<table class="table" >
 					<thead class="thead-light">
 						<tr>
 
@@ -127,7 +127,7 @@
 									//con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres",
 									//"*abomax9637");
 									ps = con.prepareStatement(
-											"select cursista.nome as nome,cursista.cpf as cpf,evento.nome_evento as nome_evento ,evento.turno as turno, evento.data_evento as data_evento from matricula inner join evento on matricula.id_evento = evento.id_evento inner join cursista on matricula.id_cursista = cursista.id_cursista where evento.id_evento = ? ORDER BY nome ASC");
+											"select cursista.nome as nome,cursista.cpf as cpf,evento.nome_evento as nome_evento  from matricula inner join evento on matricula.id_evento = evento.id_evento inner join cursista on matricula.id_cursista = cursista.id_cursista where evento.id_evento = ? ORDER BY nome ASC");
 									ps.setInt(1, id_evento);
 									rs = ps.executeQuery();
 									while (rs.next()) {
@@ -146,6 +146,7 @@
 
 
 							<%
+							
 								}
 
 										} catch (ClassNotFoundException erroClass) /*erro caso ele não localize a classe o driver*/
