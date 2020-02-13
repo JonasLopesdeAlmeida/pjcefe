@@ -100,7 +100,7 @@ public class ServerRemoverCursistaDoEvento extends HttpServlet {
 		out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
 		out.println("<script>");
 		out.println("$(document).ready(function(){");
-		out.println("swal ('Cursista removido do even!','','success' );");
+		out.println("swal ('Cursista removido do evento!','','success' );");
 		out.println("});");
 		out.println("</script>");
 
