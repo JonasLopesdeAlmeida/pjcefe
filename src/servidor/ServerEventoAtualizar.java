@@ -124,10 +124,7 @@ public class ServerEventoAtualizar extends HttpServlet {
    		ee.setImg2(img2);
    		ee.setImg3(img3);
    		ee.setQtd_turmas(qtd_turmas);
-   		
-   		
-   		
-		
+
    		ev.open();
    		if(ev != null)
    		{

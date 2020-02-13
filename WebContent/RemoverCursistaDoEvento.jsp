@@ -1,19 +1,19 @@
 <%@page import="dados.*"%>
+<%@page import="dao.*"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.DateFormat"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.util.Date"%>
-
 <%@page contentType="text/html; charset=ISO-8859-1" language="java" pageEncoding="UTF-8" import="java.sql.*" errorPage="" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
 <head>
-<META http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>CEFE</title>
 
+<title>CEFE</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <!-- Favicons -->
 <link href="img/favicon.png" rel="icon">
@@ -26,6 +26,7 @@
 
 <!-- Bootstrap CSS File -->
 <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
 <!-- Libraries CSS Files -->
 <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 <link href="lib/animate/animate.min.css" rel="stylesheet">
@@ -42,6 +43,19 @@
 </head>
 
 <body>
+
+<script>
+		function validarForm() {
+			var selecao = document.getElementById("cat_evento").value;
+
+			if (selecao == 1) {
+				document.getElementById("periodo").disabled = false;
+			} else {
+				document.getElementById("periodo").disabled = true;
+
+			}
+		}
+	</script>
 	<!--==========================
   Header
   ============================-->
@@ -57,13 +71,16 @@
 		<nav id="nav-menu-container">
 		<ul class="nav-menu">
 			<li class="menu-active"><a href="index.jsp">Home</a></li>
-			<li><a href="consultaonline.jsp">Inscrições On-line</a></li>
+			<li><a href="#inscricaoonline">Inscrições On-line</a></li>
 			<li><a href="#solicitacoescursos">Solicitação de Cursos</a></li>
-			<li><a href="acessoCursista.jsp">Espaço Cursista</a></li>
 			<li><a href="#team">Espaço Fisico</a></li>
-			<li><a href="#">Contato</a></li>
-			<li class="menu-has-children"><a href="adm.jsp">ADM</a></li>
-
+			<li><a href="#contact">Contato</a></li>
+			<li class="menu-has-children"><a href="">Cadastro</a>
+				<ul>
+					<li><a href="evento.jsp">Evento</a></li>
+					<li><a href="cursista.jsp">Cursista</a></li>
+					<li><a href="escola.jsp">Escola</a></li>
+				</ul></li>
 		</ul>
 		</nav>
 		<!-- #nav-menu-container -->
@@ -82,31 +99,84 @@
 	<div class="container">
 		<div class="card">
 			<div class="card-body">
+				<%
+					
+					int id_mat = Integer.parseInt(request.getParameter("id_mat"));
 
-				<h1 style="text-align: center;"></h1>
+					if (id_mat != 0) {
 
-				<form method="post" action="consultaCursista.jsp" name="frmAdd"
+						PreparedStatement ps = null;
+						Connection con = null;
+						ResultSet rs = null;
+						{
+
+							try {
+								Class.forName("org.postgresql.Driver").newInstance();
+								con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres", "252107");
+								ps = con.prepareStatement("select id_mat, cursista.id_cursista as id_cursista,cursista.nome as nome,cursista.fone as fone,cursista.email as email,evento.nome_evento as nome_evento,evento.periodo as periodo,evento.horario as horario,evento.data_evento as data_evento,evento.turno as turno from matricula inner join evento on matricula.id_evento = evento.id_evento inner join cursista on matricula.id_cursista = cursista.id_cursista where id_mat = ? ");
+
+								ps.setInt(1, id_mat);
+								rs = ps.executeQuery();
+								if (rs.next()) {
+				%>
+
+				
+
+					<form method="post" action="ServerRemoverCursistaDoEvento" name="frmAdd"
 					enctype="multipart/formdata">
 					<div class="row">
 						<div class="col-sm-6">
-							<label>NOME:</label> <input type="text" name="nome" value=""
-								id="nome" class="form-control" />
+							<label>CURSISTA:</label>
+							<input type="hidden" name="id_mat" value="<%= rs.getInt("id_mat")%>"/>
+							 <input type="text"
+								name="nome" id="nome"
+								class="form-control" readonly="true"value="<%=rs.getString("nome")%>"/>
 						</div>
 
-						<div class="col-sm-6">
-							<label>CPF:</label> <input type="text" name="cpf" value=""
-								id="cpf" class="form-control"
-								onkeypress="$(this).mask('000.000.000-00');" required="required" />
-							<br>
+						<div class="col-sm-3">
+							<label>TELEFONE:</label> <input type="text" name="fone" class="form-control"
+								readonly="true" value="<%=rs.getString("fone")%>"></input> <br>
 						</div>
+
+					<div class="col-sm-3">
+						<label>EMAIL:</label> <input type="text" name="data_evento"
+							readonly="true" value="<%=rs.getString("email")%>" id="data_evento" class="form-control"
+							 />
+						<br>
 					</div>
+			</div>
 
-					<input type="submit" value="Salvar" id="salvar"
-						style="width: 83px;" />
+			<input type="submit" value="Confirmar" id="salvar" style="width: 90px;" />
+            
+       
+
+			</form>
+
+				<%
+								
+								}
+
+							} catch (ClassNotFoundException erroClass) /*erro caso ele não localize a classe o driver*/
+							{
+								out.println("Classe Driver JDBC não foi localizado, erro " + erroClass);
+							}
+
+							catch (SQLException erroSQL) /* erro no banco de dados */
+							{
+								out.println("Erro de conexão com o banco de dados , erro" + erroSQL);
+							} finally {
+								if (rs != null)
+									rs.close();
+								if (ps != null)
+									ps.close();
+								if (con != null)
+									con.close();
+							}
+						}
+					}
+					%>
 
 
-
-				</form>
 
 
 			</div>
@@ -116,32 +186,17 @@
 
 
 	</main>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+  <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
 
 	<!--==========================
     Footer
     ============================-->
 	<footer id="footer" class="foter">
-	<div class="footer-top">
-		<div class="container">
-			<p>Desenvolvimento Secretaria Municipal de Informação de
-				Tecnologia - SEMIT</p>
-		</div>
-	</div>
+    <div class="footer-top">
+      <div class="container">
+		<p>Desenvolvimento Secretaria Municipal de Informação de Tecnologia - SEMIT</p>
+      </div>
+    </div>
 
 	<div class="container">
 		<div class="credits">
@@ -175,13 +230,6 @@
 	<script src="lib/counterup/counterup.min.js"></script>
 	<script src="lib/superfish/hoverIntent.js"></script>
 	<script src="lib/superfish/superfish.min.js"></script>
-
-	<script type="text/javascript">
-		$('#telefone').mask('(99) 99999-9999');
-		$('#data').mask('99/99/9999');
-		$('#cpf').mask('999.999.999-99');
-		$('#cep').mask('99.999-999');
-	</script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 

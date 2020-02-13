@@ -6,16 +6,12 @@
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.util.Date"%>
 
-<%@page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.sql.*"%>
-
-
-
-
+<%@page contentType="text/html; charset=ISO-8859-1" language="java" pageEncoding="UTF-8" import="java.sql.*" errorPage="" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
 <head>
-<meta charset="utf-8">
+
 <title>CEFE</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -117,7 +113,7 @@
 						</div>
 						<div class="col-sm-9">
 							<label>NOME DO EVENTO:</label> <input type="text"
-								name="nome_evento" value="" style="text-transform: uppercase;"
+								name="nome_evento" value="" 
 								class="form-control" required="required" /> <br>
 						</div>
 					</div>
@@ -146,7 +142,7 @@
 					<div class="row">
 						<div class="col-sm-6">
 							<label>TIPO DO EVENTO:</label> <select name="tipo_evento"
-								id="tipo_evento" class="form-control">
+								id="tipo_evento" class="form-control" required ="required">
 								<option></option>
 								<option>PALESTRAS</option>
 								<option>SIMPÓSIOS</option>
@@ -188,7 +184,7 @@
 					<div class="row">
 						<div class="col-sm-12">
 							<label>EMENTA:</label> <input type="text" name="ementa" value=""
-								style="text-transform: uppercase;" class="form-control" /> <br>
+								style="text-transform: uppercase;" class="form-control" required="required"/> <br>
 						</div>
 					</div>
 					<div class="row">
@@ -207,42 +203,42 @@
 					</div>
 					<div class="row">
 						<div class="col-sm-12">
-							<label>RESPONSÁVEL PELO EVENTO:</label> <input type="text"
+							<label>1ª RESPONSÁVEL PELO EVENTO:</label> <input type="text"
 								name="responsavel1" value="" style="text-transform: uppercase;"
-								class="form-control" /> <br>
+								class="form-control" required="required"/> <br>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-12">
-							<label>ASSINATURA DIGITAL:</label> <input type="file"
+							<label>1ª ASSINATURA DIGITAL:</label> <input type="file"
 								name="img1" value="" style="text-transform: uppercase;"
-								class="form-control" /> <br>
+								class="form-control" required ="required"/> <br>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-12">
-							<label>RESPONSÁVEL PELO EVENTO:</label> <input type="text"
+							<label>2ª RESPONSÁVEL PELO EVENTO:</label> <input type="text"
 								name="responsavel2" value="" style="text-transform: uppercase;"
 								class="form-control" /> <br>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-12">
-							<label>ASSINATURA DIGITAL:</label> <input type="file"
+							<label>2ª ASSINATURA DIGITAL:</label> <input type="file"
 								name="img2" value="" style="text-transform: uppercase;"
 								class="form-control" /> <br>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-12">
-							<label>RESPONSÁVEL PELO EVENTO:</label> <input type="text"
+							<label>3ª RESPONSÁVEL PELO EVENTO:</label> <input type="text"
 								name="responsavel3" value="" style="text-transform: uppercase;"
 								class="form-control" /> <br>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-12">
-							<label>ASSINATURA DIGITAL:</label> <input type="file"
+							<label>3ª ASSINATURA DIGITAL:</label> <input type="file"
 								name="img3" value="" style="text-transform: uppercase;"
 								class="form-control" /> <br>
 						</div>
@@ -253,7 +249,6 @@
 
 
 				</form>
-
 
 
 

@@ -84,12 +84,10 @@ private void gerarRelatorio(HttpServletResponse response, HttpServletRequest req
 		// TODO Auto-generated method stub
 		
 		String erro = "";
-		String nome = request.getParameter("nome");
-		String data = request.getParameter("datanasc");
+		int id_mat = Integer.parseInt(request.getParameter("id_mat"));
 		String jasper = "relatorio/certificadonovo.jasper";
 		HashMap<String, Object> param = new HashMap<String, Object>();
-		param.put("NOME", nome);
-		param.put("DATA", data);
+		param.put("id_mat", id_mat);
 		byte[] bytes= null;
 		ServletContext contexto = getServletContext();
 		

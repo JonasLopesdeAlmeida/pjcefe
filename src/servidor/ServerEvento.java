@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dados.Evento;
+import dados.Upload;
 import dao.Eventodao;
+import sun.management.snmp.jvminstr.JvmThreadInstanceEntryImpl.ThreadStateMap.Byte0;
 
 /**
  * Servlet implementation class ServerEvento
@@ -78,6 +80,8 @@ public class ServerEvento extends HttpServlet {
    	private void doService(HttpServletResponse response, HttpServletRequest request)throws Exception {
    		// TODO Auto-generated method stub
    		response.setContentType("text/html");
+   		Upload upload = new Upload();
+   		upload.setFolderUpload("imagens");
    		
    	//	int id_curso = Integer.parseInt(request.getParameter("id_evento"));
    		String data_evento = request.getParameter("data_evento");
@@ -106,6 +110,7 @@ public class ServerEvento extends HttpServlet {
 //   		String[] documentos = request.getParameterValues("documentos");
 //   		String[] situacao = request.getParameterValues("situacao");
    		
+   		
    		Evento ee  = new Evento();
    		Eventodao ev = new Eventodao();
 //   		a.setId_curso(id_curso);
@@ -113,7 +118,7 @@ public class ServerEvento extends HttpServlet {
    		ee.setNome_evento(nome_evento);
    		ee.setTurno(turno);
    		ee.setCat_evento(cat_evento);
-   		ee.setTipo_evento (tipo_evento );
+   		ee.setTipo_evento (tipo_evento);
    		ee.setCarga_horaria(carga_horaria);
    		ee.setPeriodo(periodo);	
    		ee.setHorario(horario);
@@ -127,6 +132,12 @@ public class ServerEvento extends HttpServlet {
    		ee.setImg2(img2);
    		ee.setImg3(img3);
    		ee.setQtd_turmas(qtd_turmas);
+   		
+//   		if(!upload.getFiles().isEmpty()) {
+//   	   		ee.setImg1(upload.getFiles().get(0).getBytes());
+//   	   		ee.setImg2(upload.getFiles().get(0).getBytes());
+//   	   		ee.setImg3(upload.getFiles().get(0).getBytes());
+//   	   		}
    
 //   		a.setEmail(email);
 //   		a.setNaturalidade(naturalidade);
@@ -162,6 +173,7 @@ public class ServerEvento extends HttpServlet {
    		out.println("swal ('Evento cadastrado com sucesso!','','success' );");
    		out.println("});");
    		out.println("</script>");
+   		
    		
    		RequestDispatcher rd = request.getRequestDispatcher("evento.jsp");
         rd.include(request, response);

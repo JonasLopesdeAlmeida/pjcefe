@@ -6,16 +6,12 @@
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.util.Date"%>
 
-<%@page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.sql.*"%>
-
-
-
-
+<%@page contentType="text/html; charset=ISO-8859-1" language="java" pageEncoding="UTF-8" import="java.sql.*" errorPage="" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
 <head>
-<meta charset="utf-8">
+
 <title>CEFE</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -62,15 +58,13 @@
 		<nav id="nav-menu-container">
 		<ul class="nav-menu">
 			<li class="menu-active"><a href="index.jsp">Home</a></li>
-			<li><a href="#inscricaoonline">Inscrições On-line</a></li>
+			<li><a href="consultaonline.jsp">Inscrições On-line</a></li>
 			<li><a href="#solicitacoescursos">Solicitação de Cursos</a></li>
+			<li><a href="acessoCursista.jsp">Espaço Cursista</a></li>
 			<li><a href="#team">Espaço Fisico</a></li>
-			<li><a href="#contact">Contato</a></li>
-			<li class="menu-has-children"><a href="">Cadastro</a>
-				<ul>
-					<li><a href="evento.jsp">Evento</a></li>
-					<li><a href="escola.jsp">Escola</a></li>
-				</ul></li>
+			<li><a href="#">Contato</a></li>
+			<li class="menu-has-children"><a href="adm.jsp">ADM</a></li>
+
 		</ul>
 		</nav>
 		<!-- #nav-menu-container -->
@@ -98,7 +92,7 @@
 		<br>
 		<div class="panel panel-primary">
 			<div class="panel-body">
-				<table class="table" >
+				<table class="table">
 					<thead class="thead-light">
 						<tr>
 							<th>Nome</th>
@@ -108,10 +102,6 @@
 							<th style="text-align: center;">Carga Horária</th>
 							<th style="text-align: center;">Periodo</th>
 							<th style="text-align: center;">Horário</th>
-							<th style="text-align: center;">Ementa</th>
-							<th style="text-align: center;">Setor</th>
-							<th style="text-align: center;">Público</th>
-							<th style="text-align: center;">Turmas</th>
 							<th style="text-align: center;">Inscricão</th>
 
 
@@ -144,9 +134,9 @@
 
 							try {
 								Class.forName("org.postgresql.Driver").newInstance();
-							    con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres","252107");
+								con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres", "252107");
 								//con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres","*abomax9637");
-								ps = con.prepareStatement("select * from evento limit 5 offset " + offset);
+								ps = con.prepareStatement("select id_evento, COALESCE(evento.nome_evento,'') as nome_evento, COALESCE(evento.turno,'') as turno, COALESCE(evento.data_evento,'') as data_evento, COALESCE(evento.tipo_evento,'') as tipo_evento, COALESCE(evento.carga_horaria,'') as carga_horaria, COALESCE(evento.periodo,'') as periodo, COALESCE(evento.horario,'') as horario from evento limit 5 offset " + offset);
 								//  ps.setString(1,'%'+descricao+'%');
 								rs = ps.executeQuery();
 
@@ -163,13 +153,9 @@
 							<td align="center"><%=rs.getString("carga_horaria")%></td>
 							<td align="center"><%=rs.getString("periodo")%></td>
 							<td align="center"><%=rs.getString("horario")%></td>
-							<td align="justify"><%=rs.getString("ementa")%></td>
-							<td align="center"><%=rs.getString("setor")%></td>
-							<td align="justify"><%=rs.getString("cargo")%></td>
-							<td align="center"><%=rs.getInt("qtd_turmas")%></td>
 							<td align="center"><a
-								href="acesso.jsp?id_evento=<%=rs.getInt("id_evento")%>"><img alt=""
-									width="30" src="img/insc.png"></a></td>
+								href="acesso.jsp?id_evento=<%=rs.getInt("id_evento")%>"><img
+									alt="" width="30" src="img/insc.png"></a></td>
 
 							<%
 								}
@@ -202,10 +188,10 @@
 				</table>
 				<%
 					Class.forName("org.postgresql.Driver").newInstance();
-				     con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres","252107");	
-				
+					con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres", "252107");
+
 					//con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres",
-											//"*abomax9637");
+					//"*abomax9637");
 					ps = con.prepareStatement("select count(*) AS contaRegistros from evento");
 					rs = ps.executeQuery();
 					rs.next();

@@ -6,55 +6,12 @@
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.util.Date"%>
 
-<%@page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.sql.*"%>
-<%
-String mensagemUsuario=null;
-
-if (request.getMethod().equals("POST")) {
-    EnviarEmail enviar = new EnviarEmail();
-    enviar.setEmailDestinatario("jmdlopes.almeida@gmail.com");
-    enviar.setAssunto("Contato - PORTAL CEFE");
-    //uso StringBuffer para otimizar a concatenação 
-    //de string
-    StringBuffer texto = new StringBuffer(); 
-    texto.append("<h2 align='center'>CEFE</h2>");
-    texto.append("Informações Enviadas:<br/>");
-    texto.append("Contato: ");
-    texto.append(request.getParameter("first-name"));
-    texto.append("<br/>");
-    //texto.append(request.getParameter("last-name"));
-    //texto.append("<br/>");
-    texto.append("Telefone Contato: ");
-    texto.append(request.getParameter("phone"));
-    texto.append("<br/>");
-    texto.append("Email Contato: ");
-    texto.append(request.getParameter("email"));
-    texto.append("<br/>");
-    texto.append("Mensagem: ");
-    texto.append(request.getParameter("message"));
-    
-    enviar.setMsg(texto.toString());
-    
-    boolean enviou = enviar.enviarGmail();
-    if (enviou) {
-            
-            mensagemUsuario = "Dados enviados com sucesso";
-           
-        } else {
-            mensagemUsuario = "Não foi enviar as informações";
-            
-        }
-  
-}
-  
-%>
-
-
+<%@page contentType="text/html; charset=ISO-8859-1" language="java" pageEncoding="UTF-8" import="java.sql.*" errorPage="" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
 <head>
-<meta charset="utf-8">
+
 <title>CEFE</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -122,37 +79,77 @@ if (request.getMethod().equals("POST")) {
 	<!--==========================
   Header
   ============================-->
-	<header id="header">
-	<div class="container">
+	 <header id="header">
+    <div class="container">
 
-		<div id="logo" class="pull-left">
-			<a href="#hero"><img src="img/logo.png" alt="" title="" /></img></a>
-			<!-- Uncomment below if you prefer to use a text logo -->
-			<!--<h1><a href="#hero">Regna</a></h1>-->
-		</div>
-
-		<nav id="nav-menu-container">
-		<ul class="nav-menu">
-			<li class="menu-active"><a href="index.jsp">Home</a></li>
-			<li><a href="#inscricaoonline">Inscrições On-line</a></li>
-			<li><a href="#solicitacoescursos">Solicitação de Cursos</a></li>
-			<li><a href="#team">Espaço Fisico</a></li>
-			<li><a href="#contact">Contato</a></li>
-			<li class="menu-has-children"><a href="">Cadastro</a>
-				<ul>
-					<li><a href="evento.jsp">Evento</a></li>
-					<li><a href="escola.jsp">Escola</a></li>
-				</ul></li>
-		</ul>
-		</nav>
-		<!-- #nav-menu-container -->
-	</div>
-	</header>
-	<!-- #header -->
+      <div id="logo" class="pull-left">
+        <a href="#hero"><img src="img/logo.png" alt="" title="" /></img></a>
+        <!-- Uncomment below if you prefer to use a text logo -->
+        <!--<h1><a href="#hero">Regna</a></h1>-->
+      </div>
+  
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li class="menu-active"><a href="index.jsp">Home</a></li>
+          <li><a href="consultaonline.jsp">Inscrições On-line</a></li>
+          <li><a href="#solicitacoescursos">Solicitação de Cursos</a></li>
+          <li><a href="certificado.jsp">Certificado</a></li>
+              <li><a href="acessoCursista.jsp">Espaço Cursista</a></li>
+          <li><a href="#team">Espaço Fisico</a></li>
+          <li><a href="contato.jsp">Contato</a></li>
+       	  <li class="menu-has-children"><a href="adm.jsp">ADM</a></li>
+          
+        </ul>
+      </nav><!-- #nav-menu-container -->
+    </div>
+  </header><!-- #header -->
 
 	<!--==========================
     Hero Section
   ============================-->
+  
+  <%
+String mensagemUsuario=null;
+
+if (request.getMethod().equals("POST")) {
+    EnviarEmail enviar = new EnviarEmail();
+    enviar.setEmailDestinatario("jmdlopes.almeida@gmail.com");
+    enviar.setAssunto("Contato - PORTAL CEFE");
+    //uso StringBuffer para otimizar a concatenação 
+    //de string
+    StringBuffer texto = new StringBuffer(); 
+    texto.append("<h2 align='center'>CEFE</h2>");
+    texto.append("Informações Enviadas:<br/>");
+    texto.append("Contato: ");
+    texto.append(request.getParameter("first-name"));
+    texto.append("<br/>");
+    //texto.append(request.getParameter("last-name"));
+    //texto.append("<br/>");
+    texto.append("Telefone Contato: ");
+    texto.append(request.getParameter("phone"));
+    texto.append("<br/>");
+    texto.append("Email Contato: ");
+    texto.append(request.getParameter("email"));
+    texto.append("<br/>");
+    texto.append("Mensagem: ");
+    texto.append(request.getParameter("message"));
+    
+    enviar.setMsg(texto.toString());
+    
+    boolean enviou = enviar.enviarGmail();
+    if (enviou) {
+            
+            mensagemUsuario = "Dados enviados com sucesso";
+           
+        } else {
+            mensagemUsuario = "Não foi enviar as informações";
+            
+        }
+  
+}
+  
+%>
+  
 	<section id="hero_1"> </section>
 	<!-- #hero -->
  <%if (mensagemUsuario != null) {%>

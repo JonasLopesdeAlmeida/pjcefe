@@ -6,16 +6,12 @@
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.util.Date"%>
 
-<%@page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.sql.*"%>
-
-
-
-
+<%@page contentType="text/html; charset=ISO-8859-1" language="java" pageEncoding="UTF-8" import="java.sql.*" errorPage="" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
 <head>
-<meta charset="utf-8">
+
 <title>CEFE</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -122,7 +118,7 @@
 
 					<%
 						String cpf = request.getParameter("cpf");
-					    String nome = request.getParameter("nome");
+						String nome = request.getParameter("nome");
 						//int id_curso = Integer.parseInt(request.getParameter("id_curso"));
 
 						if (cpf != null && nome != null) {
@@ -145,13 +141,13 @@
 
 									if (rs.next()) {
 					%>
-                  
+
 					<tbody>
 
 						<tr>
 							<td><%=rs.getString("cpf")%></td>
 							<td><%=rs.getString("nome")%></td>
-							<td ><%=rs.getString("datanasc" )%> </td>
+							<td><%=rs.getString("datanasc")%></td>
 							<td align="center"><%=rs.getString("instituicao")%></td>
 							<td align="center"><%=rs.getString("setor")%></td>
 							<td align="center"><%=rs.getString("cargo")%></td>
@@ -221,6 +217,7 @@
 								<th>HORARIO</th>
 								<th style="text-align: center;">PERIODO</th>
 								<th style="text-align: center;">TURNO</th>
+								<th style="text-align: center;">DATA DA MATRICULA</th>
 								<th style="text-align: center;">CERTIFICADO</th>
 
 
@@ -249,7 +246,7 @@
 										//con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres",
 										//"*abomax9637");
 										ps = con.prepareStatement(
-												"select cursista.id_cursista as id_cursista,cursista.nome as nome,cursista.cpf as cpf,evento.nome_evento as nome_evento,evento.periodo as periodo,evento.horario as horario,evento.data_evento as dias,evento.turno as turno from matricula inner join evento on matricula.id_evento = evento.id_evento inner join cursista on matricula.id_cursista = cursista.id_cursista where cpf = ? order by data_mat desc");
+												"select data_mat,id_mat, cursista.id_cursista as id_cursista,cursista.nome as nome,cursista.cpf as cpf,evento.nome_evento as nome_evento,evento.periodo as periodo,evento.horario as horario,evento.data_evento as dias,evento.turno as turno from matricula inner join evento on matricula.id_evento = evento.id_evento inner join cursista on matricula.id_cursista = cursista.id_cursista where cpf = ? order by data_mat ASC");
 										// select data_matricula,aluno.id_aluno,aluno.nome as nome,aluno.cpf as cpf,curso.descricao as curso,curso.periodo as periodo,curso.horario as horario,curso.diassemana as dias,curso.turno as turno from matricula inner join curso on matricula.id_curso = curso.id_curso inner join aluno on matricula.id_aluno = aluno.id_aluno
 										// ps = con.prepareStatement("select * from cursista where id_cursista = ? ");
 										ps.setString(1, cpf1);
@@ -268,9 +265,12 @@
 								<td><%=rs.getString("horario")%></td>
 								<td align="center"><%=rs.getString("periodo")%></td>
 								<td align="center"><%=rs.getString("turno")%></td>
+								<td align="center"><%=rs.getString("data_mat")%></td>
 								<td align="center"><a
-								href="#"><img
+								href="ImprimirCertificado.jsp?id_mat=<%=rs.getInt("id_mat")%>"><img
 									alt="" width="30" src="img/cert.png"></a></td>
+								
+
 
 
 								<%
@@ -328,7 +328,7 @@
 	<script src="lib/counterup/counterup.min.js"></script>
 	<script src="lib/superfish/hoverIntent.js"></script>
 	<script src="lib/superfish/superfish.min.js"></script>
-<script
+	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 	<!-- Contact Form JavaScript File -->
 	<script src="contactform/contactform.js"></script>

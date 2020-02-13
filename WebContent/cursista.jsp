@@ -6,16 +6,12 @@
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.util.Date"%>
 
-<%@page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.sql.*"%>
-
-
-
-
+<%@page contentType="text/html; charset=ISO-8859-1" language="java" pageEncoding="UTF-8" import="java.sql.*" errorPage="" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
 <head>
-<meta charset="utf-8">
+
 <title>CEFE</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -164,7 +160,7 @@
 								type="text" minlength="14" maxlength="14" name="fone"
 								class="form-control"
 								onkeypress="$(this).mask('(00) 00000-0000')" 
-								/> <br>
+								required="required" /> <br>
 
 						</div>
 						<div class="col-sm-8">
@@ -173,53 +169,11 @@
 						</div>
 
 					</div>
-                     <div class="row">
-						<div class="col-sm-12">
-							<label for="exampleInputEmail1">EVENTO
-								FORMATIVO</label><br> <select class="form-control" name="id_evento"
-								class="form-control">
-								<%
-									PreparedStatement ps = null;
-									Connection con = null;
-									ResultSet rs = null;
-									SimpleDateFormat dateFormat = null;
-									{
-										try {
-											Class.forName("org.postgresql.Driver").newInstance();
-											con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres", "252107");
-											ps = con.prepareStatement("select * from evento");
-											// ps.setLong(1, id);
-											rs = ps.executeQuery();
-											//  ps.clearParameters();
-											while (rs.next()) {
-								%>
-								<option></option>
-								<option value="<%=rs.getInt("id_evento")%>">
-									<%=rs.getString("nome_evento")%></option>
-								<%
-									}
-										} catch (ClassNotFoundException erroClass) /*erro caso ele não localize a classe o driver*/
-										{
-											out.println("Classe Driver JDBC não foi localizado, erro " + erroClass);
-										}
-										catch (SQLException erroSQL) /* erro no banco de dados */
-										{
-											out.println("Erro de conexão com o banco de dados , erro" + erroSQL);
-										} finally {
-											if (rs != null)
-												rs.close();
-											if (ps != null)
-												ps.close();
-											if (con != null)
-												con.close();
-										}
-									}
-								%>
+               
 
-							</select> <br>
 						</div>
 					</div>
-
+                       <br>
 
 
 					<input type="submit" value="Salvar" id="salvar"

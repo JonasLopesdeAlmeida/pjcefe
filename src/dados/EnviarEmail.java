@@ -54,7 +54,7 @@ public class EnviarEmail {
 
     public boolean enviarGmail() {
         boolean retorno = false;
-        //Get the session object  
+        //pega o objeto 
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.socketFactory.port", "465");
@@ -71,7 +71,7 @@ public class EnviarEmail {
                     }
                 });
 
-        //compose message  
+        //mensagem 
         try {
             MimeMessage message = new MimeMessage(s);
             message.setFrom(new InternetAddress("jmdlopes.almeida@gmail.com"));

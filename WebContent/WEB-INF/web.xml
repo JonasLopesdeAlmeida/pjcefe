@@ -119,4 +119,14 @@
     <servlet-name>ServerEventoDeletar</servlet-name>
     <url-pattern>/ServerEventoDeletar</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServerRemoverCursistaDoEvento</display-name>
+    <servlet-name>ServerRemoverCursistaDoEvento</servlet-name>
+    <servlet-class>servidor.ServerRemoverCursistaDoEvento</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServerRemoverCursistaDoEvento</servlet-name>
+    <url-pattern>/ServerRemoverCursistaDoEvento</url-pattern>
+  </servlet-mapping>
 </web-app>

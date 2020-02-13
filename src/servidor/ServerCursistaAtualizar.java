@@ -94,7 +94,7 @@ public class ServerCursistaAtualizar extends HttpServlet {
    		String cargo = request.getParameter("cargo");
    		String setor = request.getParameter("setor");
    		String datanasc = request.getParameter("datanasc");
-   		int id_evento = Integer.parseInt(request.getParameter("id_evento"));
+   	
    		
    		PrintWriter out = response.getWriter();
 
@@ -113,7 +113,7 @@ public class ServerCursistaAtualizar extends HttpServlet {
    		a.setCargo(cargo);
    		a.setSetor(setor);
    		a.setDatanasc(datanasc);
-   		a.setId_evento(id_evento);
+   	
    		
    		
    		

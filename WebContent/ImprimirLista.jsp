@@ -7,17 +7,13 @@
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.util.Date"%>
 
-<%@page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.sql.*"%>
-
-
-
-
+<%@page contentType="text/html; charset=ISO-8859-1" language="java" pageEncoding="UTF-8" import="java.sql.*" errorPage="" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
 <head>
-<meta charset="utf-8">
-<title>CLAM</title>
+
+<title>CEFE</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <!-- Favicons -->
@@ -76,17 +72,12 @@
 		<nav id="nav-menu-container">
 		<ul class="nav-menu">
 			<li class="menu-active"><a href="index.jsp">Home</a></li>
-			<li><a href="#inscricaoonline">Inscrições On-line</a></li>
-			<li><a href="#solicitacoescursos">Solicitação de Cursos</a></li>
-			<li><a href="#team">Espaço Fisico</a></li>
-			<li><a href="#contact">Contato</a></li>
+			<li><a href="acessoEvento.jsp">Consultar Evento</a></li>
 			<li class="menu-has-children"><a href="">Cadastro</a>
 				<ul>
 					<li><a href="evento.jsp">Evento</a></li>
-					<li><a href="cursista.jsp">Cursista</a></li>
 					<li><a href="escola.jsp">Escola</a></li>
-				</ul></li>
-		</ul>
+				</ul>
 		</nav>
 		<!-- #nav-menu-container -->
 	</div>

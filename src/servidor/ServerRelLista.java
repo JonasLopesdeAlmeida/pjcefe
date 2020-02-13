@@ -87,7 +87,6 @@ private void gerarRelatorio(HttpServletResponse response, HttpServletRequest req
 		// TODO Auto-generated method stub
 		
 		String erro = "";
-		//int id_evento = Integer.parseInt(request.getParameter("id_evento"));
 		String nome = request.getParameter("nome_evento");
 		String turno = request.getParameter("turno");
 		String data = request.getParameter("data_evento");

@@ -83,6 +83,7 @@ public class Eventodao extends Conecta {
 			stm.setInt(19, ee.getId_evento());
 			stm.executeUpdate();
 			stm.close();
+			con.close();
 		} catch (SQLException erroSQL) /* erro no banco de dados */
 		{
 			System.out.println("Erro de conexão com o banco de dados , erro" + erroSQL);
@@ -100,6 +101,7 @@ public class Eventodao extends Conecta {
 			stm.setInt(1, ee.getId_evento());
 			stm.executeUpdate();
 			stm.close();
+			con.close();
 		} catch (SQLException erroSQL) /* erro no banco de dados */
 		{
 			System.out.println("Erro de conexão com o banco de dados , erro" + erroSQL);

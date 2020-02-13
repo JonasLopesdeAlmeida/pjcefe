@@ -93,7 +93,6 @@ public class ServerCursista extends HttpServlet {
    		String cargo = request.getParameter("cargo");
    		String setor = request.getParameter("setor");
    		String datanasc = request.getParameter("datanasc");
-   		int id_evento = Integer.parseInt(request.getParameter("id_evento"));
    		PrintWriter out = response.getWriter();
 //   		String email = request.getParameter("email");
 //   		String naturalidade = request.getParameter("naturalidade");
@@ -114,7 +113,7 @@ public class ServerCursista extends HttpServlet {
    		a.setCargo(cargo);
    		a.setSetor(setor);
    		a.setDatanasc(datanasc);
-   		a.setId_evento(id_evento);
+   		
 //   		a.setEmail(email);
 //   		a.setNaturalidade(naturalidade);
 //   		a.setUf(uf);

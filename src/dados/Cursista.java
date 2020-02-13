@@ -8,7 +8,7 @@ public class Cursista implements Serializable {
 
 	private int id_cursista;
 	private String nome, cpf, matricula, instituicao, email, fone, funcao, cargo, setor, datanasc;
-    private int id_evento;
+   
 
 
 	private Evento evento;
@@ -21,7 +21,7 @@ public class Cursista implements Serializable {
 	
 	
 	public Cursista(int id_cursista, String nome, String cpf, String matricula, String instituicao, String email,
-			String fone, String funcao, String cargo, String setor, String datanasc, int id_evento) {
+			String fone, String funcao, String cargo, String setor, String datanasc) {
 		super();
 		this.id_cursista = id_cursista;
 		this.nome = nome;
@@ -34,7 +34,7 @@ public class Cursista implements Serializable {
 		this.cargo = cargo;
 		this.setor = setor;
 		this.datanasc = datanasc;
-		this.id_evento = id_evento;
+	
 	
 	}
 
@@ -135,14 +135,6 @@ public class Cursista implements Serializable {
 		this.datanasc = datanasc;
 	}
 	
-
-	public int getId_evento() {
-		return id_evento;
-	}
-
-	public void setId_evento(int id_evento) {
-		this.id_evento = id_evento;
-	}
 
 
 

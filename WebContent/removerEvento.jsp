@@ -7,17 +7,13 @@
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.util.Date"%>
 
-<%@page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.sql.*"%>
-
-
-
-
+<%@page contentType="text/html; charset=ISO-8859-1" language="java" pageEncoding="UTF-8" import="java.sql.*" errorPage="" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
 <head>
-<meta charset="utf-8">
-<title>CLAM</title>
+
+<title>CEFE</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <!-- Favicons -->
@@ -76,17 +72,12 @@
 		<nav id="nav-menu-container">
 		<ul class="nav-menu">
 			<li class="menu-active"><a href="index.jsp">Home</a></li>
-			<li><a href="#inscricaoonline">Inscrições On-line</a></li>
-			<li><a href="#solicitacoescursos">Solicitação de Cursos</a></li>
-			<li><a href="#team">Espaço Fisico</a></li>
-			<li><a href="#contact">Contato</a></li>
+			<li><a href="acessoEvento.jsp">Consultar Evento</a></li>
 			<li class="menu-has-children"><a href="">Cadastro</a>
 				<ul>
 					<li><a href="evento.jsp">Evento</a></li>
-					<li><a href="cursista.jsp">Cursista</a></li>
 					<li><a href="escola.jsp">Escola</a></li>
-				</ul></li>
-		</ul>
+				</ul>
 		</nav>
 		<!-- #nav-menu-container -->
 	</div>
@@ -125,155 +116,37 @@
 								if (rs.next()) {
 				%>
 
-				<h1 style="text-align: center;">EVENTO FORMATIVO</h1>
+				
 
-				<form method="post" action="ServerEventoDeletar" name="frmAdd"
+					<form method="post" action="ServerEventoDeletar" name="frmAdd"
 					enctype="multipart/formdata">
-
 					<div class="row">
-						<div class="col-sm-3">
-							<label>DATA DO EVENTO:</label>
+						<div class="col-sm-6">
+							<label>EVENTO:</label>
 							<input type="hidden" name="id_evento" value="<%= rs.getInt("id_evento")%>"/>
-							 <input type="Date"
-								name="data_evento" class="form-control"
-								required="required" value="<%=rs.getString("data_evento")%>"/>
-						</div>
-						<div class="col-sm-9">
-							<label>NOME DO EVENTO:</label> <input type="text"
-								name="nome_evento"  style="text-transform: uppercase;"
-								class="form-control" required="required" value="<%=rs.getString("nome_evento")%>" /> <br>
-						</div>
-					</div>
-
-					<div class="row">
-
-						<div class="col-sm-6">
-							<label>QUANTIDADE DE TURMAS:</label> <input type="number"
-								name="qtd_turmas" class="form-control" required="required" value="<%=rs.getInt("qtd_turmas")%>"/>
-							<br>
+							 <input type="text"
+								name="nome_evento" id="nome"
+								class="form-control" readonly="true"value="<%=rs.getString("nome_evento")%>"/>
 						</div>
 
-						<div class="col-sm-6">
-							<label>TURNO:</label> <select name="turno" class="form-control"
-								required="required" >
-								<option value="<%=rs.getString("turno")%>"></option>
-								
-							</select> <br>
+						<div class="col-sm-3">
+							<label>DATA:</label> <input type="text" name="data_evento" class="form-control"
+								readonly="true" value="<%=rs.getString("data_evento")%>"></input> <br>
 						</div>
 
+					<div class="col-sm-3">
+						<label>TURNO:</label> <input type="text" name="data_evento"
+							readonly="true" value="<%=rs.getString("turno")%>" id="data_evento" class="form-control"
+							 />
+						<br>
 					</div>
+			</div>
 
+			<input type="submit" value="Confirmar" id="salvar" style="width: 90px;" />
+            
+       
 
-					<div class="row">
-						<div class="col-sm-6">
-							<label>TIPO DO EVENTO:</label> <select name="tipo_evento"
-								id="tipo_evento" class="form-control" >
-								<option></option>
-								<option>PALESTRAS</option>
-								<option>SIMPÓSIOS</option>
-								<option>CONFERÊNCIAS</option>
-								<option>OFICINAS</option>
-							</select>
-						</div>
-
-
-						<div class="col-sm-6">
-							<label>CATEGORIA EVENTO:</label> <select name="cat_evento"
-								id="cat_evento" onchange="validarForm()" class="form-control"
-								required="required" >
-								<option value="<%=rs.getString("cat_evento")%>"></option>
-								<option value="1">COM PERIODO</option>
-								<option value="0">SEM PERIODO</option>
-							</select> <br>
-						</div>
-					</div>
-
-
-					<div class="row">
-						<div class="col-sm-4">
-							<label>CARGA HORÁRIA:</label> <input type="text"
-								name="carga_horaria"  style="text-transform: uppercase;"
-								class="form-control" required="required" value="<%=rs.getString("carga_horaria")%>" /> <br>
-						</div>
-						<div class="col-sm-4">
-							<label>PERÍODO:</label> <input type="text" name="periodo"
-								id="periodo" style="text-transform: uppercase;"
-								class="form-control" disabled  value="<%=rs.getString("periodo")%>"/> <br>
-						</div>
-						<div class="col-sm-4">
-							<label>HORÁRIO:</label> <input type="time" name="horario"
-							style="text-transform: uppercase;" class="form-control" value="<%=rs.getString("horario")%>"/>
-							<br>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<label>EMENTA:</label> <input type="text" name="ementa" 
-								style="text-transform: uppercase;" class="form-control" value="<%=rs.getString("ementa")%>"/> <br>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<label>SETOR RESPONSÁVEL:</label> <input type="text" name="setor"
-								 style="text-transform: uppercase;" class="form-control" value="<%=rs.getString("setor")%>"/>
-							<br>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<label>CARGO/FUNÇÃO:</label> <input type="text" name="cargo"
-								 style="text-transform: uppercase;" class="form-control" value="<%=rs.getString("cargo")%>"/>
-							<br>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<label>RESPONSÁVEL PELO EVENTO:</label> <input type="text"
-								name="responsavel1"  style="text-transform: uppercase;"
-								class="form-control" value="<%=rs.getString("responsavel1")%>"/> <br>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<label>ASSINATURA DIGITAL:</label> <input type="file"
-								name="img1"  style="text-transform: uppercase;"
-								class="form-control"  value="<%=rs.getBytes("img1")%>"> <br>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<label>RESPONSÁVEL PELO EVENTO:</label> <input type="text"
-								name="responsavel2"  style="text-transform: uppercase;"
-								class="form-control" value="<%=rs.getString("responsavel2")%>"/> <br>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<label>ASSINATURA DIGITAL:</label> <input type="file"
-								name="img2"  style="text-transform: uppercase;"
-								class="form-control" value="<%=rs.getBytes("img2")%>"/> <br>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<label>RESPONSÁVEL PELO EVENTO:</label> <input type="text"
-								name="responsavel3"  style="text-transform: uppercase;"
-								class="form-control" value="<%=rs.getString("responsavel3")%>"/> <br>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<label>ASSINATURA DIGITAL:</label> <input type="file"
-								name="img3"  style="text-transform: uppercase;"
-								class="form-control" value="<%=rs.getBytes("img3")%>"/> <br>
-						</div>
-					</div>
-
-					<br> <input class="demo" type="submit" value="Deletar" id="Deletar"
-						style="width: 83px;" /> <span class="glyphicon glyphicon-remove"></span>
-
-
-				</form>
+			</form>
 
 				<%
 								
@@ -309,15 +182,17 @@
 
 
 	</main>
-	
-	
+  <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+
 	<!--==========================
     Footer
-  ============================-->
-	<footer id="footer">
-	<div class="footer-top">
-		<div class="container"></div>
-	</div>
+    ============================-->
+	<footer id="footer" class="foter">
+    <div class="footer-top">
+      <div class="container">
+		<p>Desenvolvimento Secretaria Municipal de Informação de Tecnologia - SEMIT</p>
+      </div>
+    </div>
 
 	<div class="container">
 		<div class="credits">
@@ -351,8 +226,6 @@
 	<script src="lib/counterup/counterup.min.js"></script>
 	<script src="lib/superfish/hoverIntent.js"></script>
 	<script src="lib/superfish/superfish.min.js"></script>
-	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-	<script src="bootstrap-confirm-delete.js"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 
