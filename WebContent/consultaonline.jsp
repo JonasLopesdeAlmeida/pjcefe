@@ -224,7 +224,7 @@
 					<%
 						for (int i = 1; i <= totalPaginas; i++) {
 
-							out.println("<li class= page-item> <a class=page-link  href= consultaonline.jsp?numpagina=" + i + ">"
+							out.println("<li class= page-item > <a class=page-link  href= consultaonline.jsp?numpagina=" + i + ">"
 									+ i + "</a></li>");
 
 						}

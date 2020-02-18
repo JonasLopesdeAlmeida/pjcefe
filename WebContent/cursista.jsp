@@ -48,33 +48,29 @@
 	<!--==========================
   Header
   ============================-->
-	<header id="header">
-	<div class="container">
+	 <header id="header">
+    <div class="container">
 
-		<div id="logo" class="pull-left">
-			<a href="#hero"><img src="img/logo.png" alt="" title="" /></img></a>
-			<!-- Uncomment below if you prefer to use a text logo -->
-			<!--<h1><a href="#hero">Regna</a></h1>-->
-		</div>
-
-		<nav id="nav-menu-container">
-		<ul class="nav-menu">
-			<li class="menu-active"><a href="index.jsp">Home</a></li>
-			<li><a href="#inscricaoonline">Inscrições On-line</a></li>
-			<li><a href="#solicitacoescursos">Solicitação de Cursos</a></li>
-			<li><a href="#team">Espaço Fisico</a></li>
-			<li><a href="#contact">Contato</a></li>
-			<li class="menu-has-children"><a href="">Cadastro</a>
-				<ul>
-					<li><a href="evento.jsp">Evento</a></li>
-					<li><a href="escola.jsp">Escola</a></li>
-				</ul></li>
-		</ul>
-		</nav>
-		<!-- #nav-menu-container -->
-	</div>
-	</header>
-	<!-- #header -->
+      <div id="logo" class="pull-left">
+        <a href="#hero"><img src="img/logo.png" alt="" title="" /></img></a>
+        <!-- Uncomment below if you prefer to use a text logo -->
+        <!--<h1><a href="#hero">Regna</a></h1>-->
+      </div>
+  
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li class="menu-active"><a href="index.jsp">Home</a></li>
+          <li><a href="consultaonline.jsp">Inscrições On-line</a></li>
+          <li><a href="#solicitacoescursos">Solicitação de Cursos</a></li>
+              <li><a href="acessoCursista.jsp">Espaço Cursista</a></li>
+          <li><a href="#team">Espaço Fisico</a></li>
+          <li><a href="#">Contato</a></li>
+       	  <li class="menu-has-children"><a href="adm.jsp">ADM</a></li>
+          
+        </ul>
+      </nav><!-- #nav-menu-container -->
+    </div>
+  </header><!-- #header -->
 
 	<!--==========================
     Hero Section
@@ -107,7 +103,7 @@
 							<br>
 						</div>
 						<div class="col-sm-8">
-							<label for="exampleInputEmail1">NOME</label><br> <input
+							<label >NOME</label><br> <input
 								type="text" name="nome" class="form-control" required="required" />
 							<br>
 						</div>
@@ -151,7 +147,7 @@
 					<div class="row">
 						<div class="col-sm-2">
 							<label for="exampleInputEmail1">MATRÍCULA</label><br> <input
-								type="text" minlength="6" maxlength="8" name="matricula"
+								type="text" minlength="5" maxlength="6" name="matricula"
 								class="form-control" required="required" />
 
 						</div>
@@ -169,15 +165,15 @@
 						</div>
 
 					</div>
-               
+                        
+					<input type="submit" value="Salvar" id="salvar"
+						style="width: 83px;" />
 
 						</div>
 					</div>
                        <br>
 
 
-					<input type="submit" value="Salvar" id="salvar"
-						style="width: 83px;" />
 				
 				</form>
 
@@ -191,9 +187,12 @@
 	<!--==========================
     Footer
   ============================-->
-	<footer id="footer">
+	<footer id="footer" class="foter">
 	<div class="footer-top">
-		<div class="container"></div>
+		<div class="container">
+			<p>Desenvolvimento Secretaria Municipal de Informação de
+				Tecnologia - SEMIT</p>
+		</div>
 	</div>
 
 	<div class="container">

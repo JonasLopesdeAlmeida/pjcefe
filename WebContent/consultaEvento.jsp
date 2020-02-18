@@ -58,12 +58,14 @@
 		<nav id="nav-menu-container">
 		<ul class="nav-menu">
 			<li class="menu-active"><a href="index.jsp">Home</a></li>
+			<li><a href="acessoEscola.jsp">Consultar Escola</a></li>
 			<li><a href="acessoEvento.jsp">Consultar Evento</a></li>
 			<li class="menu-has-children"><a href="">Cadastro</a>
 				<ul>
 					<li><a href="evento.jsp">Evento</a></li>
 					<li><a href="escola.jsp">Escola</a></li>
-				</ul>
+				</ul></li>
+		</ul>
 		</nav>
 		<!-- #nav-menu-container -->
 	</div>
@@ -127,7 +129,7 @@
 									con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres", "252107");
 
 									ps = con.prepareStatement(
-											"select id_evento, COALESCE(evento.nome_evento,'') as nome_evento , COALESCE(evento.data_evento,'') as data_evento,COALESCE(evento.turno,'') as turno,COALESCE(evento.tipo_evento,'') as tipo_evento,COALESCE(evento.carga_horaria,'') as carga_horaria, COALESCE(evento.periodo,'') as periodo from evento where nome_evento=? and turno=? and data_evento=? ");
+											"select id_evento, COALESCE(evento.nome_evento,'') as nome_evento , COALESCE(evento.data_evento,'') as data_evento,COALESCE(evento.turno,'') as turno,COALESCE(evento.tipo_evento,'') as tipo_evento,COALESCE(evento.carga_horaria,'') as carga_horaria, COALESCE(evento.periodo,'') as periodo from evento where nome_evento~*? and turno=? and data_evento=? ");
 									ps.setString(1, nome_evento);
 									ps.setString(2, turno);
 									ps.setString(3, data_evento);

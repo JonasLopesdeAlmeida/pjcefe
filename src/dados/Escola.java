@@ -7,7 +7,7 @@ public class Escola implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 
-	private Long id_escola;
+	private int id_escola;
 	
 	private String instituicao,modalidade,gestor,endereco,telefone,email;
 	
@@ -16,7 +16,7 @@ public class Escola implements Serializable {
 		
 	}
 	
-	public Escola(Long id_escola, String instituicao, String modalidade, String gestor, String endereco, String telefone,
+	public Escola(int id_escola, String instituicao, String modalidade, String gestor, String endereco, String telefone,
 			String email) {
 		super();
 		this.id_escola = id_escola;
@@ -27,10 +27,10 @@ public class Escola implements Serializable {
 		this.telefone = telefone;
 		this.email = email;
 	}
-	public Long getId_escola() {
+	public int getId_escola() {
 		return id_escola;
 	}
-	public void setId_escola(Long id_escola) {
+	public void setId_escola(int id_escola) {
 		this.id_escola = id_escola;
 	}
 	public String getInstituicao() {
@@ -74,7 +74,7 @@ public class Escola implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id_escola == null) ? 0 : id_escola.hashCode());
+		result = prime * result + id_escola;
 		return result;
 	}
 
@@ -87,13 +87,12 @@ public class Escola implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Escola other = (Escola) obj;
-		if (id_escola == null) {
-			if (other.id_escola != null)
-				return false;
-		} else if (!id_escola.equals(other.id_escola))
+		if (id_escola != other.id_escola)
 			return false;
 		return true;
 	}
+
+	
 
 	
 	

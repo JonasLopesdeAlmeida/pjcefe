@@ -146,7 +146,7 @@ public class ServerCursista extends HttpServlet {
    		out.println("});");
    		out.println("</script>");
    		
-   		RequestDispatcher rd = request.getRequestDispatcher("cursista.jsp");
+   		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
         rd.include(request, response);
    		
    		  // response.sendRedirect("cursista.jsp?nome=" + nome);

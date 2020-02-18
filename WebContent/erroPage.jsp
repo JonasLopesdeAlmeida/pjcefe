@@ -44,33 +44,31 @@
   <!--==========================
   Header
   ============================-->
-  <header id="header">   
-    <div class="container">
+ <header id="header">
+	<div class="container">
 
-      <div id="logo" class="pull-left">
-        <a href="#hero"><img src="img/logo.png" alt="" title="" /></img></a>
-        <!-- Uncomment below if you prefer to use a text logo -->
-        <!--<h1><a href="#hero">Regna</a></h1>-->
-      </div>
-  
-      <nav id="nav-menu-container">
-        <ul class="nav-menu">
-          <li class="menu-active"><a href="index.jsp">Home</a></li>
-          <li><a href="#inscricaoonline">Inscrições On-line</a></li>
-          <li><a href="#solicitacoescursos">Solicitação de Cursos</a></li>
-          <li><a href="#team">Espaço Fisico</a></li>
-          <li><a href="#contact">Contato</a></li>
-           <li class="menu-has-children"><a href="">Cadastro</a>
-            <ul>
-             <li><a href="evento.jsp">Evento</a></li>
-              <li><a href="cursista.jsp">Cursista</a></li> 
-              <li><a href="escola.jsp">Escola</a></li>
-            </ul>
-          </li>
-        </ul>
-      </nav><!-- #nav-menu-container -->
-    </div>
-  </header><!-- #header -->
+		<div id="logo" class="pull-left">
+			<a href="#hero"><img src="img/logo.png" alt="" title="" /></img></a>
+			<!-- Uncomment below if you prefer to use a text logo -->
+			<!--<h1><a href="#hero">Regna</a></h1>-->
+		</div>
+
+		<nav id="nav-menu-container">
+		<ul class="nav-menu">
+			<li class="menu-active"><a href="index.jsp">Home</a></li>
+			<li><a href="consultaonline.jsp">Inscrições On-line</a></li>
+			<li><a href="#solicitacoescursos">Solicitação de Cursos</a></li>
+			<li><a href="acessoCursista.jsp">Espaço Cursista</a></li>
+			<li><a href="#team">Espaço Fisico</a></li>
+			<li><a href="#">Contato</a></li>
+			<li class="menu-has-children"><a href="adm.jsp">ADM</a></li>
+
+		</ul>
+		</nav>
+		<!-- #nav-menu-container -->
+	</div>
+	</header>
+	<!-- #header -->
 
   <!--==========================
     Hero Section
@@ -109,33 +107,7 @@
   <!--==========================
     Footer
   ============================-->
-  <footer id="footer">
-    <div class="footer-top">
-      <div class="container">
-
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="credits">
-          <br>
-        <br>
-         <br>
-
-        <!--
-          All the links in the footer should remain intact.
-          You can delete the links only if you purchased the pro version.
-          Licensing information: https://bootstrapmade.com/license/
-          Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Regna
-        -->
-        <!--
-        Desenvolvimento <a href="https://bootstrapmade.com/">Walter Carvalho Barbosa</a><br>
-        Contato<a href="https://bootstrapmade.com/">(98)98103-6150</a><br>
-        Email <a href="https://bootstrapmade.com/">Waltercarvalhob@gmail.com</a>
-        -->
-      </div>
-    </div>
-  </footer><!-- #footer -->
+  
 
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 

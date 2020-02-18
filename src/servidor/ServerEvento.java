@@ -175,7 +175,7 @@ public class ServerEvento extends HttpServlet {
    		out.println("</script>");
    		
    		
-   		RequestDispatcher rd = request.getRequestDispatcher("evento.jsp");
+   		RequestDispatcher rd = request.getRequestDispatcher("adm.jsp");
         rd.include(request, response);
    		
         

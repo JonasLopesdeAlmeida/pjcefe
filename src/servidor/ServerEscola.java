@@ -127,19 +127,20 @@ public class ServerEscola extends HttpServlet {
    		if(ed != null)
    		{
    			ed.gravar(es);
+   			out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
+   	   		out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
+   	   		out.println("<script>");
+   	   		out.println("$(document).ready(function(){");
+   	   		out.println("swal ('Escola cadastrada com sucesso!','','success' );");
+   	   		out.println("});");
+   	   		out.println("</script>");
+   	   		
+   	   		RequestDispatcher rd = request.getRequestDispatcher("adm.jsp");
+   	        rd.include(request, response);
    			
    		
    		}
-   		out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
-   		out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
-   		out.println("<script>");
-   		out.println("$(document).ready(function(){");
-   		out.println("swal ('Escola cadastrada com sucesso!','','success' );");
-   		out.println("});");
-   		out.println("</script>");
    		
-   		RequestDispatcher rd = request.getRequestDispatcher("escola.jsp");
-        rd.include(request, response);
 
    	//response.sendRedirect("sucessoescola.jsp?instituicao=" + instituicao);
    	}

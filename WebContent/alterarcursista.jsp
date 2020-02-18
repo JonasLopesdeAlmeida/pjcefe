@@ -7,7 +7,8 @@
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.util.Date"%>
 
-<%@page contentType="text/html; charset=ISO-8859-1" language="java" pageEncoding="UTF-8" import="java.sql.*" errorPage="" %>
+<%@page contentType="text/html; charset=ISO-8859-1" language="java"
+	pageEncoding="UTF-8" import="java.sql.*" errorPage=""%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
@@ -48,33 +49,28 @@
   Header
   ============================-->
 	<header id="header">
-	<div class="container">
+    <div class="container">
 
-		<div id="logo" class="pull-left">
-			<a href="#hero"><img src="img/logo.png" alt="" title="" /></img></a>
-			<!-- Uncomment below if you prefer to use a text logo -->
-			<!--<h1><a href="#hero">Regna</a></h1>-->
-		</div>
-
-		<nav id="nav-menu-container">
-		<ul class="nav-menu">
-			<li class="menu-active"><a href="index.jsp">Home</a></li>
-			<li><a href="#inscricaoonline">Inscrições On-line</a></li>
-			<li><a href="#solicitacoescursos">Solicitação de Cursos</a></li>
-			<li><a href="#team">Espaço Fisico</a></li>
-			<li><a href="#contact">Contato</a></li>
-			<li class="menu-has-children"><a href="">Cadastro</a>
-				<ul>
-					<li><a href="evento.jsp">Evento</a></li>
-					<li><a href="cursista.jsp">Cursista</a></li>
-					<li><a href="escola.jsp">Escola</a></li>
-				</ul></li>
-		</ul>
-		</nav>
-		<!-- #nav-menu-container -->
-	</div>
-	</header>
-	<!-- #header -->
+      <div id="logo" class="pull-left">
+        <a href="#hero"><img src="img/logo.png" alt="" title="" /></img></a>
+        <!-- Uncomment below if you prefer to use a text logo -->
+        <!--<h1><a href="#hero">Regna</a></h1>-->
+      </div>
+  
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li class="menu-active"><a href="index.jsp">Home</a></li>
+          <li><a href="consultaonline.jsp">Inscrições On-line</a></li>
+          <li><a href="#solicitacoescursos">Solicitação de Cursos</a></li>
+              <li><a href="acessoCursista.jsp">Espaço Cursista</a></li>
+          <li><a href="#team">Espaço Fisico</a></li>
+          <li><a href="#">Contato</a></li>
+       	  <li class="menu-has-children"><a href="adm.jsp">ADM</a></li>
+          
+        </ul>
+      </nav><!-- #nav-menu-container -->
+    </div>
+  </header><!-- #header -->
 
 	<!--==========================
     Hero Section
@@ -87,6 +83,7 @@
 	<div class="container">
 		<div class="card">
 			<div class="card-body">
+			<h1 style="text-align: center;">CURSISTA</h1>
 				<%
 					//String cpf = request.getParameter("cpf");
 					int id_cursista = Integer.parseInt(request.getParameter("id_cursista"));
@@ -113,22 +110,19 @@
 
 					</select>
 
- 						<div class="row">
+					<div class="row">
 						<div class="col-sm-4">
-							<label for="exampleInputEmail1">CPF</label><br>
-							<input type="hidden" name="id_cursista" value="<%= rs.getInt("id_cursista")%>"/>
-							 <input
-								type="text" minlength="14" maxlength="14" name="cpf"
-								class="form-control" value="<%=rs.getString("cpf")%>" 
-								onkeypress="$(this).mask('000.000.000-00');"  />
-							<br>
+							<label for="exampleInputEmail1">CPF</label><br> <input
+								type="hidden" name="id_cursista"
+								value="<%=rs.getInt("id_cursista")%>" /> <input type="text"
+								minlength="14" maxlength="14" name="cpf" class="form-control"
+								value="<%=rs.getString("cpf")%>"
+								onkeypress="$(this).mask('000.000.000-00');" /> <br>
 						</div>
 						<div class="col-sm-8">
-							<label for="exampleInputEmail1">NOME</label><br>
-							
-							 <input
-								type="text" name="nome" class="form-control" value="<%=rs.getString("nome")%>"  />
-							<br>
+							<label for="exampleInputEmail1">NOME</label><br> <input
+								type="text" name="nome" class="form-control"
+								value="<%=rs.getString("nome")%>" /> <br>
 						</div>
 					</div>
 					<div class="row">
@@ -141,21 +135,24 @@
 
 						<div class="col-sm-8">
 							<label for="exampleInputEmail1">INSTITUIÇÃO</label><br> <input
-								type="text" name="instituicao" class="form-control" value="<%=rs.getString("instituicao")%>" /> <br>
+								type="text" name="instituicao" class="form-control"
+								value="<%=rs.getString("instituicao")%>" /> <br>
 						</div>
 					</div>
 
 					<div class="row">
 						<div class="col-sm-12">
 							<label for="exampleInputEmail1">SETOR DE LOTAÇÃO</label><br>
-							<input type="text" name="setor" class="form-control" value="<%=rs.getString("setor")%>"/> <br>
+							<input type="text" name="setor" class="form-control"
+								value="<%=rs.getString("setor")%>" /> <br>
 						</div>
 					</div>
 
 					<div class="row">
 						<div class="col-sm-12">
 							<label for="exampleInputEmail1"> NOME DO CARGO</label><br> <input
-								type="text" name="cargo" class="form-control" id="text1" value="<%=rs.getString("cargo")%>" /> <br>
+								type="text" name="cargo" class="form-control" id="text1"
+								value="<%=rs.getString("cargo")%>" /> <br>
 						</div>
 					</div>
 
@@ -163,8 +160,8 @@
 					<div class="row">
 						<div class="col-sm-12">
 							<label for="exampleInputEmail1"> NOME DA FUNÇÃO</label><br>
-							<input type="text" name="funcao" class="form-control" id="text1" value="<%=rs.getString("funcao")%>" />
-							<br>
+							<input type="text" name="funcao" class="form-control" id="text1"
+								value="<%=rs.getString("funcao")%>" /> <br>
 						</div>
 					</div>
 					<div class="row">
@@ -172,136 +169,101 @@
 							<label for="exampleInputEmail1">MATRÍCULA</label><br> <input
 								type="text" minlength="8" maxlength="8" name="matricula"
 								class="form-control" onkeypress="$(this).mask('000000-0')"
-								value="<%=rs.getString("matricula")%>"/>
+								value="<%=rs.getString("matricula")%>" />
 
 						</div>
 						<div class="col-sm-2">
 							<label for="exampleInputEmail1">FONE/CELULAR</label><br> <input
 								type="text" minlength="14" maxlength="14" name="fone"
 								class="form-control"
-								onkeypress="$(this).mask('(00) 00000-0000')" value="<%=rs.getString("fone")%>" /> <br>
+								onkeypress="$(this).mask('(00) 00000-0000')"
+								value="<%=rs.getString("fone")%>" /> <br>
 
 						</div>
 						<div class="col-sm-8">
 							<label for="exampleInputEmail1">E-MAIL</label><br> <input
-								type="Email" name="email" class="form-control" value="<%=rs.getString("email")%>" />
+								type="Email" name="email" class="form-control"
+								value="<%=rs.getString("email")%>" />
 						</div>
 
-					</div>
-
-
-					<div class="row">
-						<div class="col-sm-12">
-							<label for="exampleInputEmail1"
-								style="color: black; border-color: black;">EVENTO
-								FORMATIVO</label><br> <select class="form-control" name="id_evento"
-								class="form-control" >
-                                <%
-								
-										try {
-											Class.forName("org.postgresql.Driver").newInstance();
-											con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres", "252107");
-											ps = con.prepareStatement("select * from evento");
-											// ps.setLong(1, id);
-											rs = ps.executeQuery();
-											//  ps.clearParameters();
-											while (rs.next()) {
-								%>
-								<option></option>
-								<option value="<%=rs.getInt("id_evento")%>">
-									<%=rs.getString("nome_evento")%></option>
-								<%
-									}
-										} catch (ClassNotFoundException erroClass) /*erro caso ele não localize a classe o driver*/
-										{
-											out.println("Classe Driver JDBC não foi localizado, erro " + erroClass);
-										}
-										catch (SQLException erroSQL) /* erro no banco de dados */
-										{
-											out.println("Erro de conexão com o banco de dados , erro" + erroSQL);
-										} finally {
-											if (rs != null)
-												rs.close();
-											if (ps != null)
-												ps.close();
-											if (con != null)
-												con.close();
-										}
-									}
-								%>
-
-							</select> <br>
-						</div>
 					</div>
 
 					<input type="submit" value="Atualizar" id="Atualizar"
 						style="width: 83px;" />
-						
-				    	
-						
-				</form>
-				<%
-				
-
-						} catch (ClassNotFoundException erroClass) /*erro caso ele não localize a classe o driver*/
-						{
-							out.println("Classe Driver JDBC não foi localizado, erro " + erroClass);
-						}
-
-						catch (SQLException erroSQL) /* erro no banco de dados */
-						{
-							out.println("Erro de conexão com o banco de dados , erro" + erroSQL);
-						} finally {
-							if (rs != null)
-								rs.close();
-							if (ps != null)
-								ps.close();
-							if (con != null)
-								con.close();
-						}
-					}
-				}
-			%>
-
-
-
-
-
 			</div>
 		</div>
+		<BR>
+
+
+
+
+
+		</form>
+
+		<%
+			}
+
+					} catch (ClassNotFoundException erroClass) /*erro caso ele não localize a classe o driver*/
+					{
+						out.println("Classe Driver JDBC não foi localizado, erro " + erroClass);
+					}
+
+					catch (SQLException erroSQL) /* erro no banco de dados */
+					{
+						out.println("Erro de conexão com o banco de dados , erro" + erroSQL);
+					} finally {
+						if (rs != null)
+							rs.close();
+						if (ps != null)
+							ps.close();
+						if (con != null)
+							con.close();
+					}
+				}
+			}
+		%>
+
+
+
+
+	</div>
+	</div>
 	</div>
 
 
 
 	</main>
-
 	<!--==========================
     Footer
   ============================-->
-	<footer id="footer">
-	<div class="footer-top">
-		<div class="container"></div>
-	</div>
+	<footer id="footer" class="foter">
+    <div class="footer-top">
+      <div class="container">
+		<p>Desenvolvimento Secretaria Municipal de Informação de Tecnologia - SEMIT</p>
+      </div>
+    </div>
 
-	<div class="container">
-		<div class="credits">
-			<br> <br> <br>
+    <div class="container">
+      <div class="credits">
+          <br>
+        <br>
+         <br>
 
-			<!--
+        <!--
           All the links in the footer should remain intact.
           You can delete the links only if you purchased the pro version.
           Licensing information: https://bootstrapmade.com/license/
           Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Regna
         -->
-			<!--
+        <!--
         Desenvolvimento <a href="https://bootstrapmade.com/">Walter Carvalho Barbosa</a><br>
         Contato<a href="https://bootstrapmade.com/">(98)98103-6150</a><br>
         Email <a href="https://bootstrapmade.com/">Waltercarvalhob@gmail.com</a>
         -->
-		</div>
-	</div>
-	</footer>
-	<!-- #footer -->
+      </div>
+    </div>
+  </footer><!-- #footer -->
+
 
 	<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 

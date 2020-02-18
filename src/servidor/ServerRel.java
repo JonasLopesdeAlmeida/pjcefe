@@ -84,10 +84,10 @@ private void gerarRelatorio(HttpServletResponse response, HttpServletRequest req
 		// TODO Auto-generated method stub
 		
 		String erro = "";
-		int id_mat = Integer.parseInt(request.getParameter("id_mat"));
-		String jasper = "relatorio/certificadonovo.jasper";
+		int id_certificado = Integer.parseInt(request.getParameter("id_certificado"));
+		String jasper = "relatoriocert/certificadonovo.jasper";
 		HashMap<String, Object> param = new HashMap<String, Object>();
-		param.put("id_mat", id_mat);
+		param.put("id_certificado", id_certificado);
 		byte[] bytes= null;
 		ServletContext contexto = getServletContext();
 		
@@ -99,10 +99,10 @@ private void gerarRelatorio(HttpServletResponse response, HttpServletRequest req
 	
 		try
 		{
-			JasperReport certificado = (JasperReport)JRLoader.loadObjectFromFile(contexto.getRealPath(jasper));
-		    bytes = JasperRunManager.runReportToPdf(certificado, param, conn); 
+			JasperReport certificadocefe = (JasperReport)JRLoader.loadObjectFromFile(contexto.getRealPath(jasper));
+		    bytes = JasperRunManager.runReportToPdf(certificadocefe, param, conn); 
 		    System.out.println("Param:" + param); 
-		    System.out.println("Relatorio: " + certificado);
+		    System.out.println("Relatorio: " + certificadocefe);
 		    System.out.println("Bytes: " + bytes); 
 		    System.out.println("Jasper: " + jasper); 
 
@@ -126,7 +126,7 @@ private void gerarRelatorio(HttpServletResponse response, HttpServletRequest req
 				sos.close();
 			}else
 			{
-				RequestDispatcher rd = request.getRequestDispatcher("index.html");
+				RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 				request.setAttribute("erro",erro);
 				rd.forward(request, response);
 			}

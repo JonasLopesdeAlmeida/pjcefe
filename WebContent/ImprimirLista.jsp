@@ -45,18 +45,7 @@
 
 <body>
 
-<script>
-		function validarForm() {
-			var selecao = document.getElementById("cat_evento").value;
 
-			if (selecao == 1) {
-				document.getElementById("periodo").disabled = false;
-			} else {
-				document.getElementById("periodo").disabled = true;
-
-			}
-		}
-	</script>
 	<!--==========================
   Header
   ============================-->
@@ -72,12 +61,14 @@
 		<nav id="nav-menu-container">
 		<ul class="nav-menu">
 			<li class="menu-active"><a href="index.jsp">Home</a></li>
+			<li><a href="acessoEscola.jsp">Consultar Escola</a></li>
 			<li><a href="acessoEvento.jsp">Consultar Evento</a></li>
 			<li class="menu-has-children"><a href="">Cadastro</a>
 				<ul>
 					<li><a href="evento.jsp">Evento</a></li>
 					<li><a href="escola.jsp">Escola</a></li>
-				</ul>
+				</ul></li>
+		</ul>
 		</nav>
 		<!-- #nav-menu-container -->
 	</div>

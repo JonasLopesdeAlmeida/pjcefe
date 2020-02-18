@@ -6,7 +6,8 @@
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.util.Date"%>
 
-<%@page contentType="text/html; charset=ISO-8859-1" language="java" pageEncoding="UTF-8" import="java.sql.*" errorPage="" %>
+<%@page contentType="text/html; charset=ISO-8859-1" language="java"
+	pageEncoding="UTF-8" import="java.sql.*" errorPage=""%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
@@ -58,12 +59,14 @@
 		<nav id="nav-menu-container">
 		<ul class="nav-menu">
 			<li class="menu-active"><a href="index.jsp">Home</a></li>
+			<li><a href="acessoEscola.jsp">Consultar Escola</a></li>
 			<li><a href="acessoEvento.jsp">Consultar Evento</a></li>
 			<li class="menu-has-children"><a href="">Cadastro</a>
 				<ul>
 					<li><a href="evento.jsp">Evento</a></li>
 					<li><a href="escola.jsp">Escola</a></li>
-				</ul>
+				</ul></li>
+		</ul>
 		</nav>
 		<!-- #nav-menu-container -->
 	</div>
@@ -73,117 +76,143 @@
 	<!--==========================
     Hero Section
   ============================-->
+	<script>
+
+
+	Você assim para coletar os IDs que deseja alterar, depois envia o novo array com IDs para seu PHP salva no banco.
+
+	function coletaDados(){
+	   var ids = document.getElementsByClassName('editar');
+	   coletaIDs(ids);         
+	}  
+	        
+	function coletaIDs(dados){
+	   var array_dados = dados; 
+	   var newArray = [];
+	   for(var x = 0; x <= array_dados.length; x++){     
+	        if(typeof array_dados[x] == 'object'){
+	          if(array_dados[x].checked){
+	             newArray.push(array_dados[x].id)          
+	          }          
+	        }
+	   }
+	  if(newArray.length <= 0){
+	    alert("Selecione um pelo menos 1 item!");     
+	  }else{
+	    alert("Seu novo array de IDs tem os seguites ids [ "+newArray+" ]");
+	  }  
+	}
+	</script>
+
 	<section id="hero_1"> </section>
 	<!-- #hero -->
 
 	<main id="main"> <br>
 	<br>
+	<div class="panel panel-primary">
+		<div class="panel-body">
+			<table class="table">
+				<thead class="thead-light">
+					<tr>
 
 
+						<th style="text-align: center;">NOME</th>
+						<th style="text-align: center;">TELEFONE</th>
+						<th style="text-align: center;">EMAIL</th>
+						<th style="text-align: center;">CERTIFICADO</th>
+						<th style="text-align: center;">REMOVER</th>
 
 
+					</tr>
+				</thead>
 
-	<h1 style="text-align: center;">LISTA DE CURSISTAS</h1>
+				<%
+					int id_evento = Integer.parseInt(request.getParameter("id_evento"));
 
+					if (id_evento != 0) {
 
-	<div class="container-fluid">
+						PreparedStatement ps = null;
+						Connection con = null;
+						ResultSet rs = null;
 
-		<br>
-		<div class="panel panel-primary">
-			<div class="panel-body">
-				<table class="table">
-					<thead class="thead-light">
-						<tr>
+						{
 
-							<th style="text-align: center;">NOME</th>
-							<th style="text-align: center;">TELEFONE</th>
-							<th style="text-align: center;">EMAIL</th>
-							<th style="text-align: center;">REMOVER</th>
+							try {
+								Class.forName("org.postgresql.Driver").newInstance();
+								con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres", "252107");
+								//con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres",
+								//"*abomax9637");
+								ps = con.prepareStatement(
+										"select id_mat,cursista.id_cursista as id_cursista, cursista.nome as nome,cursista.fone as fone, COALESCE(cursista.email,'') as email, evento.nome_evento as nome_evento  from matricula inner join evento on matricula.id_evento = evento.id_evento inner join cursista on matricula.id_cursista = cursista.id_cursista where evento.id_evento = ? ORDER BY nome ASC");
 
+								ps.setInt(1, id_evento);
+								rs = ps.executeQuery();
 
-						</tr>
-					</thead>
-
-					<%
-						int id_evento = Integer.parseInt(request.getParameter("id_evento"));
-
-						if (id_evento != 0) {
-
-							PreparedStatement ps = null;
-							Connection con = null;
-							ResultSet rs = null;
-
-							{
-
-								try {
-									Class.forName("org.postgresql.Driver").newInstance();
-									con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres", "252107");
-									//con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres",
-									//"*abomax9637");
-									ps = con.prepareStatement(
-											"select id_mat, cursista.nome as nome,cursista.fone as fone, COALESCE(cursista.email,'') as email, evento.nome_evento as nome_evento  from matricula inner join evento on matricula.id_evento = evento.id_evento inner join cursista on matricula.id_cursista = cursista.id_cursista where evento.id_evento = ? ORDER BY nome ASC");
-
-									ps.setInt(1, id_evento);
-									rs = ps.executeQuery();
-									while (rs.next()) {
-					%>
+								while (rs.next()) {
+				%>
 
 
-					<tbody>
+				<tbody>
 
-						<tr>
+					<tr>
 
-							<td align="center"><%=rs.getString("nome")%></td>
-							<td align="center"><%=rs.getString("fone")%></td>
-							<td align="center"><%=rs.getString("email")%></td>
+						<td align="center"><%=rs.getString("nome")%></td>
+						<td align="center"><%=rs.getString("fone")%></td>
+						<td align="center"><%=rs.getString("email")%></td>
+						<td align="center"><a
+							href="adicionarCursistaCertificado.jsp?id_mat=<%=rs.getInt("id_mat")%>">ADICIONAR</a>
 							<td align="center"><a
-								href="RemoverCursistaDoEvento.jsp?id_mat=<%=rs.getInt("id_mat")%>"><img
-									alt="" width="35" src="img/delete.png"></a></td>
+							href="RemoverCursistaDoEvento.jsp?id_mat=<%=rs.getInt("id_mat")%>"><img alt="" width="35" src="img/delete.png"></a></td>
 
 
 
 
 
-							<%
-								}
 
-										} catch (ClassNotFoundException erroClass) /*erro caso ele não localize a classe o driver*/
-										{
-											out.println("Classe Driver JDBC não foi localizado, erro " + erroClass);
-										}
+								<%
+									}
 
-										catch (SQLException erroSQL) /* erro no banco de dados */
-										{
-											out.println("Erro de conexão com o banco de dados , erro" + erroSQL);
-										} finally {
-											if (rs != null)
-												rs.close();
-											if (ps != null)
-												ps.close();
-											if (con != null)
-												con.close();
+											} catch (ClassNotFoundException erroClass) /*erro caso ele não localize a classe o driver*/
+											{
+												out.println("Classe Driver JDBC não foi localizado, erro " + erroClass);
+											}
+
+											catch (SQLException erroSQL) /* erro no banco de dados */
+											{
+												out.println("Erro de conexão com o banco de dados , erro" + erroSQL);
+											} finally {
+												if (rs != null)
+													rs.close();
+												if (ps != null)
+													ps.close();
+												if (con != null)
+													con.close();
+											}
+
 										}
 									}
-								}
-							%>
+								%>
+						
+					</tr>
 
-
-						</tr>
-					</tbody>
-				</table>
-
-
-				</ul>
-				</nav>
+				</tbody>
+			</table>
 
 
 
+			</ul>
+			</nav>
 
-			</div>
+
+
 
 
 		</div>
+
+
+	</div>
 	</main>
+
 	<br>
 
 

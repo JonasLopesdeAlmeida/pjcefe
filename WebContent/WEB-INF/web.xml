@@ -129,4 +129,34 @@
     <servlet-name>ServerRemoverCursistaDoEvento</servlet-name>
     <url-pattern>/ServerRemoverCursistaDoEvento</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServerEscolaAtualizar</display-name>
+    <servlet-name>ServerEscolaAtualizar</servlet-name>
+    <servlet-class>servidor.ServerEscolaAtualizar</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServerEscolaAtualizar</servlet-name>
+    <url-pattern>/ServerEscolaAtualizar</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServerEscolaDeletar</display-name>
+    <servlet-name>ServerEscolaDeletar</servlet-name>
+    <servlet-class>servidor.ServerEscolaDeletar</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServerEscolaDeletar</servlet-name>
+    <url-pattern>/ServerEscolaDeletar</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServerCertificado</display-name>
+    <servlet-name>ServerCertificado</servlet-name>
+    <servlet-class>servidor.ServerCertificado</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServerCertificado</servlet-name>
+    <url-pattern>/ServerCertificado</url-pattern>
+  </servlet-mapping>
 </web-app>

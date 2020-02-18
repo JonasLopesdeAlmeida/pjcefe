@@ -52,7 +52,7 @@ public class Escoladao extends Conecta  {
 
 		{
 
-			stm =  con.prepareStatement("update set escola instituicao=?, modalidade=?, gestor=?, endereco=?, telefone=?, email=?");
+			stm =  con.prepareStatement("update escola set instituicao=?, modalidade=?, gestor=?, endereco=?, telefone=?, email=? where id_escola=?");
 
 			stm.setString(1,es.getInstituicao());
 			stm.setString(2,es.getModalidade()); 
@@ -60,14 +60,35 @@ public class Escoladao extends Conecta  {
 			stm.setString(4,es.getEndereco());
 			stm.setString(5,es.getTelefone());
 			stm.setString(6,es.getEmail());
+			stm.setInt(7, es.getId_escola());
 			stm.executeUpdate();
 			stm.close();
+			con.close();
 		}
 		catch(SQLException erroSQL) /* erro no banco de dados */
 		{
 			System.out.println("Erro de conexão com o banco de dados , erro"+erroSQL);
 		} 
 
+
+	}
+	
+	
+	public void delete(Escola es) {
+
+		try
+
+		{
+
+			stm = con.prepareStatement("delete from escola where id_escola=?");
+			stm.setInt(1, es.getId_escola());
+			stm.executeUpdate();
+			stm.close();
+			con.close();
+		} catch (SQLException erroSQL) /* erro no banco de dados */
+		{
+			System.out.println("Erro de conexão com o banco de dados , erro" + erroSQL);
+		}
 
 	}
 }

@@ -72,12 +72,14 @@
 		<nav id="nav-menu-container">
 		<ul class="nav-menu">
 			<li class="menu-active"><a href="index.jsp">Home</a></li>
+			<li><a href="acessoEscola.jsp">Consultar Escola</a></li>
 			<li><a href="acessoEvento.jsp">Consultar Evento</a></li>
 			<li class="menu-has-children"><a href="">Cadastro</a>
 				<ul>
 					<li><a href="evento.jsp">Evento</a></li>
 					<li><a href="escola.jsp">Escola</a></li>
-				</ul>
+				</ul></li>
+		</ul>
 		</nav>
 		<!-- #nav-menu-container -->
 	</div>
@@ -147,7 +149,6 @@
 						<div class="col-sm-6">
 							<label>TURNO:</label> <select name="turno" value="<%=rs.getString("turno")%>" class="form-control"
 								required="required" >
-								<option></option>
 								<option>MATUTINO</option>
 								<option>VESPERTINO</option>
 								<option>NOTURNO</option>
@@ -158,9 +159,8 @@
 
 					<div class="row">
 						<div class="col-sm-6">
-							<label>TIPO DO EVENTO:</label> <select name="tipo_evento"
-								id="tipo_evento" class="form-control" >
-								<option></option>
+							<label>TIPO DO EVENTO:</label> <select  name="tipo_evento"
+								value="<%=rs.getString("tipo_evento")%>" id="tipo_evento" class="form-control" >
 								<option>PALESTRAS</option>
 								<option>SIMPÓSIOS</option>
 								<option>CONFERÊNCIAS</option>
@@ -173,7 +173,7 @@
 							<label>CATEGORIA EVENTO:</label> <select name="cat_evento"
 								id="cat_evento" onchange="validarForm()" class="form-control"
 								required="required" >
-								<option value="<%=rs.getString("cat_evento")%>"></option>
+								<option></option>
 								<option value="1">COM PERIODO</option>
 								<option value="0">SEM PERIODO</option>
 							</select> <br>
@@ -305,14 +305,16 @@
 	<!--==========================
     Footer
   ============================-->
-	<footer id="footer">
-	<div class="footer-top">
-		<div class="container"></div>
-	</div>
+	<footer id="footer" class="foter">
+    <div class="footer-top">
+      <div class="container">
+		<p>Desenvolvimento Secretaria Municipal de Informação de Tecnologia - SEMIT</p>
+      </div>
+    </div>
 
 	<div class="container">
 		<div class="credits">
-			<br> <br> <br>
+			<br>
 
 			<!--
           All the links in the footer should remain intact.

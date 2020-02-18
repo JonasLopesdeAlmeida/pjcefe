@@ -44,18 +44,7 @@
 
 <body>
 
-<script>
-		function validarForm() {
-			var selecao = document.getElementById("cat_evento").value;
 
-			if (selecao == 1) {
-				document.getElementById("periodo").disabled = false;
-			} else {
-				document.getElementById("periodo").disabled = true;
-
-			}
-		}
-	</script>
 	<!--==========================
   Header
   ============================-->

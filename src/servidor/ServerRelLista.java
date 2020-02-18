@@ -1,6 +1,7 @@
 package servidor;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -26,123 +27,124 @@ import net.sf.jasperreports.engine.util.JRLoader;
  */
 public class ServerRelLista extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ServerRelLista() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-    /**
-   	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-   	 */
-   	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-   		// TODO Auto-generated method stub
-   		response.getWriter().append("Served at: ").append(request.getContextPath());
-   		try {
-   			gerarRelatorio(response,request);
-   		
-   	} catch (ClassNotFoundException e) {
-   			// TODO Auto-generated catch block
-   			e.printStackTrace();
-   		} catch (java.text.ParseException e) {
-   			// TODO Auto-generated catch block
-   			e.printStackTrace();
-   		} catch (SQLException e) {
-   			// TODO Auto-generated catch block
-   			e.printStackTrace();
-   		} catch (Exception e) {
-   		// TODO Auto-generated catch block
-   		e.printStackTrace();
-   	}
-   	}
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public ServerRelLista() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
- 	/**
-   	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-   	 */
-   	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-   		// TODO Auto-generated method stub
-   	
-   		try {
-   			gerarRelatorio(response,request);
-   		} catch (ClassNotFoundException e) {
-   			// TODO Auto-generated catch block
-   			e.printStackTrace();
-   		} catch (java.text.ParseException e) {
-   			// TODO Auto-generated catch block
-   			e.printStackTrace();
-   		} catch (SQLException e) {
-   			// TODO Auto-generated catch block
-   			e.printStackTrace();
-   		} catch (Exception e) {
-   			// TODO Auto-generated catch block
-   			e.printStackTrace();
-   		}
-   	}
-
-private void gerarRelatorio(HttpServletResponse response, HttpServletRequest request)throws Exception
-	{
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+		try {
+			gerarRelatorio(response, request);
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (java.text.ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+
+		try {
+			gerarRelatorio(response, request);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (java.text.ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	private void gerarRelatorio(HttpServletResponse response, HttpServletRequest request) throws Exception {
+		// TODO Auto-generated method stub
+
 		String erro = "";
 		String nome = request.getParameter("nome_evento");
 		String turno = request.getParameter("turno");
 		String data = request.getParameter("data_evento");
-		String jasper = "relatorio/lista.jasper";
+		String jasper = "relatoriolista/lista.jasper";
 		HashMap<String, Object> param = new HashMap<String, Object>();
-	    
-		
 	
-     	param.put("EVENTO",nome);
-		param.put("TURNO",turno);
-		param.put("DATA",data);
-		byte[] bytes= null;
+		param.put("EVENTO", nome);
+		param.put("TURNO", turno);
+		param.put("DATA", data);
+		byte[] bytes = null;
 		ServletContext contexto = getServletContext();
-		
-		
-		  
+
 		Connection conn = null;
-    	conn = new  ConectaRel().getConnection();
+		conn = new ConectaRel().getConnection();
+		
 
-	
-		try
-		{
+		try {
 
-			JasperReport lista = (JasperReport)JRLoader.loadObjectFromFile(contexto.getRealPath(jasper));
-		    bytes = JasperRunManager.runReportToPdf(lista, param, conn); 
-		    System.out.println("Param:" + param); 
-		    System.out.println("Relatorio: " + lista);
-		    System.out.println("Bytes: " + bytes); 
-		    System.out.println("Jasper: " + jasper); 
+			JasperReport lista = (JasperReport) JRLoader.loadObjectFromFile(contexto.getRealPath(jasper));
+			bytes = JasperRunManager.runReportToPdf(lista, param, conn);
+			System.out.println("Param:" + param);
+			System.out.println("Relatorio: " + lista);
+			System.out.println("Bytes: " + bytes);
+			System.out.println("Jasper: " + jasper);
 
-	    
-		}catch (JRException e) 
-		{
+		} catch (JRException e) {
+			
 			erro = e.getMessage();
 			System.out.println("erro "+e);
-		
 			
-		}
-		finally
-		{
 
-			if(bytes != null) {
+		} finally {
+
+			if (bytes != null) {
 				response.setContentType("Application/pdf");
 				response.setContentLength(bytes.length);
-      			ServletOutputStream sos = response.getOutputStream();
+				ServletOutputStream sos = response.getOutputStream();
 				sos.write(bytes);
 				sos.flush();
 				sos.close();
-			}else
-			{
-				RequestDispatcher rd = request.getRequestDispatcher("index.html");
+			} else {
+				
+				
+				RequestDispatcher rd = request.getRequestDispatcher("adm.jsp");
 				request.setAttribute("erro",erro);
 				rd.forward(request, response);
+                
+				
+				
 			}
+			
 		}
+		
 
-}
+	}
 
 }

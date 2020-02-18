@@ -99,9 +99,9 @@
 			<div class="card-body">
 				<%
 					
-					int id_mat = Integer.parseInt(request.getParameter("id_mat"));
+					int id_certificado = Integer.parseInt(request.getParameter("id_certificado"));
 
-					if (id_mat != 0) {
+					if (id_certificado != 0) {
 
 						PreparedStatement ps = null;
 						Connection con = null;
@@ -111,9 +111,9 @@
 							try {
 								Class.forName("org.postgresql.Driver").newInstance();
 								con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres", "252107");
-								ps = con.prepareStatement("select id_mat, cursista.id_cursista as id_cursista,cursista.nome as nome,cursista.cpf as cpf,evento.nome_evento as nome_evento,evento.periodo as periodo,evento.horario as horario,evento.data_evento as data_evento,evento.turno as turno from matricula inner join evento on matricula.id_evento = evento.id_evento inner join cursista on matricula.id_cursista = cursista.id_cursista where id_mat = ? ");
+								ps = con.prepareStatement("select id_certificado,data_cert,cursista.id_cursista as id_cursista,cursista.nome as nome,cursista.cpf as cpf, evento.nome_evento as nome_evento,COALESCE(evento.periodo,'') as periodo,evento.horario as horario, evento.data_evento as data_evento,evento.turno as turno from certificado inner join evento on certificado.id_evento = evento.id_evento  inner join cursista on certificado.id_cursista = cursista.id_cursista where id_certificado=? order by data_cert DESC");
 
-								ps.setInt(1, id_mat);
+								ps.setInt(1, id_certificado);
 								rs = ps.executeQuery();
 								if (rs.next()) {
 				%>
@@ -125,7 +125,7 @@
 					<div class="row">
 						<div class="col-sm-6">
 							<label>NOME DO EVENTO:</label>
-							<input type="hidden" name="id_mat" value="<%= rs.getInt("id_mat")%>"/>
+							<input type="hidden" name="id_certificado" value="<%= rs.getInt("id_certificado")%>"/>
 							 <input type="text"
 								name="nome_evento" id="nome_evento"
 								class="form-control" readonly="true"value="<%=rs.getString("nome_evento")%>"/>

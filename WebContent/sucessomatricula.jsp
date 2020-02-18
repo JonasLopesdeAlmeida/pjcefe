@@ -131,7 +131,7 @@ if(id_cursista != 0)
 		 	      con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe","postgres","252107");
 		 	    //con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres",
 											//"*abomax9637");
-		 	      ps = con.prepareStatement("select id_mat,data_mat,cursista.id_cursista as id_cursista,cursista.nome as nome,cursista.cpf as cpf,evento.nome_evento as nome_evento,evento.periodo as periodo,evento.horario as horario,evento.data_evento as dias,evento.turno as turno from matricula inner join evento on matricula.id_evento = evento.id_evento inner join cursista on matricula.id_cursista = cursista.id_cursista where cursista.id_cursista = ? order by data_mat desc limit 1");
+		 	      ps = con.prepareStatement("select id_mat,data_mat,cursista.id_cursista as id_cursista,cursista.nome as nome,cursista.cpf as cpf,evento.nome_evento as nome_evento,COALESCE(evento.periodo,'') as periodo,evento.horario as horario,evento.data_evento as dias,evento.turno as turno from matricula inner join evento on matricula.id_evento = evento.id_evento inner join cursista on matricula.id_cursista = cursista.id_cursista where cursista.id_cursista = ? order by data_mat desc limit 1");
 		 	    // select data_matricula,aluno.id_aluno,aluno.nome as nome,aluno.cpf as cpf,curso.descricao as curso,curso.periodo as periodo,curso.horario as horario,curso.diassemana as dias,curso.turno as turno from matricula inner join curso on matricula.id_curso = curso.id_curso inner join aluno on matricula.id_aluno = aluno.id_aluno
 		 	     // ps = con.prepareStatement("select * from cursista where id_cursista = ? ");
 		 	     ps.setInt(1,id_cursista);

@@ -139,7 +139,7 @@ public class ServerEventoAtualizar extends HttpServlet {
    	   		out.println("</script>");
    	   		
    	   		
-   	   		RequestDispatcher rd = request.getRequestDispatcher("consultaEvento.jsp");
+   	   		RequestDispatcher rd = request.getRequestDispatcher("acessoEvento.jsp");
    	        rd.include(request, response);
    	   		
    	   		  //response.sendRedirect("sucessocursista.jsp?nome=" + nome);
