@@ -6,7 +6,8 @@
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.util.Date"%>
 
-<%@page contentType="text/html; charset=ISO-8859-1" language="java" pageEncoding="UTF-8" import="java.sql.*" errorPage="" %>
+<%@page contentType="text/html; charset=ISO-8859-1" language="java"
+	pageEncoding="UTF-8" import="java.sql.*" errorPage=""%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
@@ -62,9 +63,27 @@
 			<li><a href="acessoCursista.jsp">Espaço Cursista</a></li>
 			<li><a href="#team">Espaço Fisico</a></li>
 			<li><a href="#">Contato</a></li>
-			<li class="menu-has-children"><a href="adm.jsp">ADM</a></li>
+			<li class="menu-has-children"><a href="#">ADM </a>
+				<ul class="dropdown-menu dropdown-menu-right mt-2">
+					<li class="px-1 py-1">
+						<form class="form" role="form">
+							<div class="form-group">
+								<input id="nome" placeholder="Usuário" class="form-control"
+									type="text" required="">
+							</div>
 
+							<div class="form-group">
+								<input id="senha" placeholder="Senha" class="form-control"
+									type="text" required="">
+							</div>
+							<div class="form-group">
+								<button type="submit" class="btn btn-success btn-block">Login</button>
+							</div>
+
+						</form>
+					</li></li>
 		</ul>
+
 		</nav>
 		<!-- #nav-menu-container -->
 	</div>
@@ -101,8 +120,9 @@
 						</div>
 					</div>
 
-					<input type="submit" value="Salvar" id="salvar"
-						style="width: 83px;" />
+					<button type="submit" class="btn btn-success btn-block"
+						style="width: 83px;">Salvar</button>
+
 
 
 

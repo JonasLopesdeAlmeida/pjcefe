@@ -112,7 +112,9 @@
 					</div>
 			</div>
 
-			<input type="submit" value="Salvar" id="salvar" style="width: 83px;" />
+			
+					<button type="submit" class="btn btn-success btn-block"
+						style="width: 83px;">Salvar</button>
             
        
 

@@ -46,7 +46,7 @@
 	<!--==========================
   Header
   ============================-->
-	<header id="header">
+<header id="header">
 	<div class="container">
 
 		<div id="logo" class="pull-left">
@@ -63,9 +63,27 @@
 			<li><a href="acessoCursista.jsp">Espaço Cursista</a></li>
 			<li><a href="#team">Espaço Fisico</a></li>
 			<li><a href="#">Contato</a></li>
-			<li class="menu-has-children"><a href="adm.jsp">ADM</a></li>
+			<li class="menu-has-children"><a href="#">ADM </a>
+				<ul class="dropdown-menu dropdown-menu-right mt-2">
+					<li class="px-1 py-1">
+						<form class="form" role="form">
+							<div class="form-group">
+								<input id="nome" placeholder="Usuário" class="form-control"
+									type="text" required="">
+							</div>
 
+							<div class="form-group">
+								<input id="senha" placeholder="Senha" class="form-control"
+									type="text" required="">
+							</div>
+							<div class="form-group">
+								<button type="submit" class="btn btn-success btn-block">Login</button>
+							</div>
+
+						</form>
+					</li></li>
 		</ul>
+
 		</nav>
 		<!-- #nav-menu-container -->
 	</div>
@@ -240,8 +258,10 @@
 					}
 				%>
 
-			</div>
-			<br> <input type="submit" value="Adicionar">
+			</div><br>
+			
+					<button type="submit" class="btn btn-success btn-block"
+						style="width:95px;">Adicionar</button>
 
 
 		</form>

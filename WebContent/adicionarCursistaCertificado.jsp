@@ -242,7 +242,8 @@
 				%>
 
 			</div>
-			<br> <input type="submit" value="Adicionar">
+			<br><button type="submit" class="btn btn-success btn-block"
+						style="width: 105px;">Confirmar</button>
 
 
 		</form>

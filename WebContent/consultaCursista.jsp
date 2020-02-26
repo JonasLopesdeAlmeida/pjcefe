@@ -24,7 +24,19 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700"
 	rel="stylesheet">
+<!-- Favicons -->
+<link href="img/favicon.png" rel="icon">
+<link href="img/apple-touch-icon.png" rel="apple-touch-icon">
 
+<!-- Bootstrap CSS File -->
+<link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Libraries CSS Files -->
+<link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="lib/animate/animate.min.css" rel="stylesheet">
+
+<!-- Main Stylesheet File -->
+<link href="css/style.css" rel="stylesheet">
 <!-- Bootstrap CSS File -->
 <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -64,9 +76,27 @@
 			<li><a href="acessoCursista.jsp">Espaço Cursista</a></li>
 			<li><a href="#team">Espaço Fisico</a></li>
 			<li><a href="#">Contato</a></li>
-			<li class="menu-has-children"><a href="adm.jsp">ADM</a></li>
+			<li class="menu-has-children"><a href="#">ADM </a>
+				<ul class="dropdown-menu dropdown-menu-right mt-2">
+					<li class="px-1 py-1">
+						<form class="form" role="form">
+							<div class="form-group">
+								<input id="nome" placeholder="Usuário" class="form-control"
+									type="text" required="">
+							</div>
 
+							<div class="form-group">
+								<input id="senha" placeholder="Senha" class="form-control"
+									type="text" required="">
+							</div>
+							<div class="form-group">
+								<button type="submit" class="btn btn-success btn-block">Login</button>
+							</div>
+
+						</form>
+					</li></li>
 		</ul>
+
 		</nav>
 		<!-- #nav-menu-container -->
 	</div>
@@ -81,10 +111,6 @@
 
 	<main id="main"> <br>
 	<br>
-
-
-
-
 
 	<h1 style="text-align: center;">CURSISTA CADASTRADO</h1>
 
@@ -218,7 +244,7 @@
 								<th style="text-align: center;">PERIODO</th>
 								<th style="text-align: center;">TURNO</th>
 								<th style="text-align: center;">DATA DA MATRICULA</th>
-								
+
 
 
 
@@ -233,7 +259,7 @@
 							//int id_cursista = Integer.parseInt(request.getParameter ("id_cursista")); 
 							String cpf1 = request.getParameter("cpf");
 
-							if (cpf1 != null ) {
+							if (cpf1 != null) {
 
 								PreparedStatement ps = null;
 								Connection con = null;
@@ -247,7 +273,7 @@
 										//con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres",
 										//"*abomax9637");
 										ps = con.prepareStatement(
-												"select data_mat,id_mat, cursista.id_cursista as id_cursista,cursista.nome as nome,cursista.cpf as cpf,evento.nome_evento as nome_evento,COALESCE(evento.periodo,'') as periodo,evento.horario as horario,evento.data_evento as data_evento,evento.turno as turno from matricula inner join evento on matricula.id_evento = evento.id_evento inner join cursista on matricula.id_cursista = cursista.id_cursista where cpf = ? order by data_mat DESC");
+												"select data_mat,id_mat, cursista.id_cursista as id_cursista,cursista.nome as nome,cursista.cpf as cpf,evento.nome_evento as nome_evento,COALESCE(evento.periodo,'-') as periodo,evento.horario as horario,evento.data_evento as data_evento,evento.turno as turno from matricula inner join evento on matricula.id_evento = evento.id_evento inner join cursista on matricula.id_cursista = cursista.id_cursista where cpf = ? order by data_mat DESC");
 										// select data_matricula,aluno.id_aluno,aluno.nome as nome,aluno.cpf as cpf,curso.descricao as curso,curso.periodo as periodo,curso.horario as horario,curso.diassemana as dias,curso.turno as turno from matricula inner join curso on matricula.id_curso = curso.id_curso inner join aluno on matricula.id_aluno = aluno.id_aluno
 										// ps = con.prepareStatement("select * from cursista where id_cursista = ? ");
 										ps.setString(1, cpf1);
@@ -268,120 +294,6 @@
 								<td align="center"><%=rs.getString("periodo")%></td>
 								<td align="center"><%=rs.getString("turno")%></td>
 								<td align="center"><%=rs.getString("data_mat")%></td>
-								
-
-
-								<%
-									}
-
-											} catch (ClassNotFoundException erroClass) /*erro caso ele não localize a classe o driver*/
-											{
-												out.println("Classe Driver JDBC não foi localizado, erro " + erroClass);
-											}
-
-											catch (SQLException erroSQL) /* erro no banco de dados */
-											{
-												out.println("Erro de conexão com o banco de dados , erro" + erroSQL);
-											} finally {
-												if (rs != null)
-													rs.close();
-												if (ps != null)
-													ps.close();
-												if (con != null)
-													con.close();
-											}
-										}
-									}
-								%>
-
-
-
-							</tr>
-						</tbody>
-					</table>
-
-
-					</ul>
-					</nav>
-
-
-
-
-				</div>
-			</div>
-			
-			
-		<h1 style="text-align: center;">EVENTOS CONCLUÍDOS</h1>
-
-		<div class="container-fluid">
-
-			<br>
-			<div class="panel panel-primary">
-				<div class="panel-body">
-					<table class="table">
-						<thead class="thead-light">
-							<tr>
-								<th>CURSISTA</th>
-								<th>CPF</th>
-								<th>EVENTO</th>
-								<th>DATA DO EVENTO</th>
-								<th>HORARIO</th>
-								<th style="text-align: center;">PERIODO</th>
-								<th style="text-align: center;">TURNO</th>
-								<th style="text-align: center;">DATA DE CONCLUSÃO</th>
-								<th  style="text-align: center;">CERTIFICADO</th>
-
-
-
-
-
-
-							</tr>
-						</thead>
-
-
-						<%
-							//int id_cursista = Integer.parseInt(request.getParameter ("id_cursista")); 
-							String cpf2 = request.getParameter("cpf");
-
-							if (cpf2 != null ) {
-
-								PreparedStatement ps = null;
-								Connection con = null;
-								ResultSet rs = null;
-
-								{
-
-									try {
-										Class.forName("org.postgresql.Driver").newInstance();
-										con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres", "252107");
-										//con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres",
-										//"*abomax9637");
-										ps = con.prepareStatement("select id_certificado,data_cert,cursista.id_cursista as id_cursista,cursista.nome as nome,cursista.cpf as cpf,evento.nome_evento as nome_evento,COALESCE(evento.periodo,'') as periodo,evento.horario as horario, evento.data_evento as data_evento,evento.turno as turno from certificado inner join evento on certificado.id_evento = evento.id_evento inner join cursista on certificado.id_cursista = cursista.id_cursista where cpf = ? order by data_cert DESC");
-										// select data_matricula,aluno.id_aluno,aluno.nome as nome,aluno.cpf as cpf,curso.descricao as curso,curso.periodo as periodo,curso.horario as horario,curso.diassemana as dias,curso.turno as turno from matricula inner join curso on matricula.id_curso = curso.id_curso inner join aluno on matricula.id_aluno = aluno.id_aluno
-										// ps = con.prepareStatement("select * from cursista where id_cursista = ? ");
-										ps.setString(1, cpf2);
-										rs = ps.executeQuery();
-
-										while (rs.next()) {
-						%>
-
-						<tbody>
-
-							<tr>
-
-								<td><%=rs.getString("nome")%></td>
-								<td><%=rs.getString("cpf")%></td>
-								<td><%=rs.getString("nome_evento")%></td>
-								<td><%=rs.getString("data_evento")%></td>
-								<td><%=rs.getString("horario")%></td>
-								<td align="center"><%=rs.getString("periodo")%></td>
-								<td align="center"><%=rs.getString("turno")%></td>
-								<td align="center"><%=rs.getString("data_cert")%></td>
-								<td align="center"><a 
-									href="ImprimirCertificado.jsp?id_certificado=<%=rs.getInt("id_certificado")%>"><img
-										id="cetificado" alt="" width="30" src="img/cert.png"></a></td>
-
 
 
 
@@ -423,6 +335,121 @@
 
 				</div>
 			</div>
+
+
+			<h1 style="text-align: center;">EVENTOS CONCLUÍDOS</h1>
+
+			<div class="container-fluid">
+
+				<br>
+				<div class="panel panel-primary">
+					<div class="panel-body">
+						<table class="table">
+							<thead class="thead-light">
+								<tr>
+									<th>CURSISTA</th>
+									<th>CPF</th>
+									<th>EVENTO</th>
+									<th>DATA DO EVENTO</th>
+									<th>HORARIO</th>
+									<th style="text-align: center;">PERIODO</th>
+									<th style="text-align: center;">TURNO</th>
+									<th style="text-align: center;">DATA DE CONCLUSÃO</th>
+									<th style="text-align: center;">OBTER CERTIFICADO</th>
+
+
+
+
+
+
+								</tr>
+							</thead>
+
+
+							<%
+								//int id_cursista = Integer.parseInt(request.getParameter ("id_cursista")); 
+								String cpf2 = request.getParameter("cpf");
+
+								if (cpf2 != null) {
+
+									PreparedStatement ps = null;
+									Connection con = null;
+									ResultSet rs = null;
+
+									{
+
+										try {
+											Class.forName("org.postgresql.Driver").newInstance();
+											con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres", "252107");
+											//con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres",
+											//"*abomax9637");
+											ps = con.prepareStatement(
+													"select id_certificado,data_cert,cursista.id_cursista as id_cursista,cursista.nome as nome,cursista.cpf as cpf,evento.nome_evento as nome_evento,COALESCE(evento.periodo,'-') as periodo,evento.horario as horario, evento.data_evento as data_evento,evento.turno as turno from certificado inner join evento on certificado.id_evento = evento.id_evento inner join cursista on certificado.id_cursista = cursista.id_cursista where cpf = ? order by data_cert DESC");
+											// select data_matricula,aluno.id_aluno,aluno.nome as nome,aluno.cpf as cpf,curso.descricao as curso,curso.periodo as periodo,curso.horario as horario,curso.diassemana as dias,curso.turno as turno from matricula inner join curso on matricula.id_curso = curso.id_curso inner join aluno on matricula.id_aluno = aluno.id_aluno
+											// ps = con.prepareStatement("select * from cursista where id_cursista = ? ");
+											ps.setString(1, cpf2);
+											rs = ps.executeQuery();
+
+											while (rs.next()) {
+							%>
+
+							<tbody>
+
+								<tr>
+
+									<td><%=rs.getString("nome")%></td>
+									<td><%=rs.getString("cpf")%></td>
+									<td><%=rs.getString("nome_evento")%></td>
+									<td><%=rs.getString("data_evento")%></td>
+									<td><%=rs.getString("horario")%></td>
+									<td align="center"><%=rs.getString("periodo")%></td>
+									<td align="center"><%=rs.getString("turno")%></td>
+									<td align="center"><%=rs.getString("data_cert")%></td>
+									<td align="center"><a
+										href="ImprimirCertificado.jsp?id_certificado=<%=rs.getInt("id_certificado")%>"><img
+											id="cetificado" alt="" width="30" src="img/cert.png"></a></td>
+
+
+
+
+									<%
+										}
+
+												} catch (ClassNotFoundException erroClass) /*erro caso ele não localize a classe o driver*/
+												{
+													out.println("Classe Driver JDBC não foi localizado, erro " + erroClass);
+												}
+
+												catch (SQLException erroSQL) /* erro no banco de dados */
+												{
+													out.println("Erro de conexão com o banco de dados , erro" + erroSQL);
+												} finally {
+													if (rs != null)
+														rs.close();
+													if (ps != null)
+														ps.close();
+													if (con != null)
+														con.close();
+												}
+											}
+										}
+									%>
+
+
+
+								</tr>
+							</tbody>
+						</table>
+
+
+						</ul>
+						</nav>
+
+
+
+
+					</div>
+				</div>
 	</main>
 	<br>
 

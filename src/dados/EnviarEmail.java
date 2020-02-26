@@ -67,7 +67,7 @@ public class EnviarEmail {
                 new javax.mail.Authenticator() {
                     protected PasswordAuthentication getPasswordAuthentication() {
 
-                        return new PasswordAuthentication("jmdlopes.almeida@gmail.com", "*DmmAbomai7369");//email e senha usuário 
+                        return new PasswordAuthentication("jmdlopes.almeida@gmail.com", "");//email e senha usuário 
                     }
                 });
 

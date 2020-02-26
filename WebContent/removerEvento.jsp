@@ -144,7 +144,9 @@
 					</div>
 			</div>
 
-			<input type="submit" value="Confirmar" id="salvar" style="width: 90px;" />
+			
+					<button type="submit" class="btn btn-success btn-block"
+						style="width: 105px;">Confirmar</button>
             
        
 

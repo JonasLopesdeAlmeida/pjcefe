@@ -48,29 +48,50 @@
 	<!--==========================
   Header
   ============================-->
-	<header id="header">
-    <div class="container">
+<header id="header">
+	<div class="container">
 
-      <div id="logo" class="pull-left">
-        <a href="#hero"><img src="img/logo.png" alt="" title="" /></img></a>
-        <!-- Uncomment below if you prefer to use a text logo -->
-        <!--<h1><a href="#hero">Regna</a></h1>-->
-      </div>
+		<div id="logo" class="pull-left">
+			<a href="#hero"><img src="img/logo.png" alt="" title="" /></img></a>
+			<!-- Uncomment below if you prefer to use a text logo -->
+			<!--<h1><a href="#hero">Regna</a></h1>-->
+		</div>
+
+		<nav id="nav-menu-container">
+		<ul class="nav-menu">
+			<li class="menu-active"><a href="index.jsp">Home</a></li>
+			<li><a href="consultaonline.jsp">Inscrições On-line</a></li>
+			<li><a href="#solicitacoescursos">Solicitação de Cursos</a></li>
+			<li><a href="acessoCursista.jsp">Espaço Cursista</a></li>
+			<li><a href="#team">Espaço Fisico</a></li>
+			<li><a href="#">Contato</a></li>
+			<li class="menu-has-children"><a href="#">ADM </a>
+				<ul class="dropdown-menu dropdown-menu-right mt-2">
+					<li class="px-1 py-1">
+						<form class="form" role="form">
+							<div class="form-group">
+								<input id="nome" placeholder="Usuário" class="form-control"
+									type="text" required="">
+							</div>
+
+							<div class="form-group">
+								<input id="senha" placeholder="Senha" class="form-control"
+									type="text" required="">
+							</div>
+							<div class="form-group">
+								<button type="submit" class="btn btn-success btn-block">Login</button>
+							</div>
+
+						</form>
+					</li></li>
+		</ul>
+
+		</nav>
+		<!-- #nav-menu-container -->
+	</div>
+	</header>
   
-      <nav id="nav-menu-container">
-        <ul class="nav-menu">
-          <li class="menu-active"><a href="index.jsp">Home</a></li>
-          <li><a href="consultaonline.jsp">Inscrições On-line</a></li>
-          <li><a href="#solicitacoescursos">Solicitação de Cursos</a></li>
-              <li><a href="acessoCursista.jsp">Espaço Cursista</a></li>
-          <li><a href="#team">Espaço Fisico</a></li>
-          <li><a href="#">Contato</a></li>
-       	  <li class="menu-has-children"><a href="adm.jsp">ADM</a></li>
-          
-        </ul>
-      </nav><!-- #nav-menu-container -->
-    </div>
-  </header><!-- #header -->
+  <!-- #header -->
 
 	<!--==========================
     Hero Section
@@ -188,8 +209,8 @@
 
 					</div>
 
-					<input type="submit" value="Atualizar" id="Atualizar"
-						style="width: 83px;" />
+					<button type="submit" class="btn btn-success btn-block"
+						style="width: 83px;">Salvar</button>
 			</div>
 		</div>
 		<BR>
