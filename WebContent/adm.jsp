@@ -84,14 +84,69 @@
 		<div class="card">
 			<div class="card-body">
 
-				<section id="hero">
-				<div class="hero-container">
+<%
+						String usuario = request.getParameter("usuario");
+						String senha = request.getParameter("senha");
+						//int id_curso = Integer.parseInt(request.getParameter("id_curso"));
+
+						if (usuario != null && senha != null) {
+
+							PreparedStatement ps = null;
+							Connection con = null;
+							ResultSet rs = null;
+
+							{
+
+								try {
+									Class.forName("org.postgresql.Driver").newInstance();
+									con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres", "252107");
+									//con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres",
+									//"*abomax9637");
+									ps = con.prepareStatement("select * from login where usuario=? and senha=?");
+									ps.setString(1, usuario);
+									ps.setString(2, senha);
+									rs = ps.executeQuery();
+
+									if (rs.next()) {
+					%>
+
+					<section id="hero">
+				    <div class="hero-container">
 					<h1>SECRETARIA MUNICIPAL DE EDUCAÇÃO</h1>
 					<h2>CENTRO DE FORMAÇÃO DO EDUCADOR.</h2>
 
 				</div>
 				</section>
 				<!-- #hero -->
+
+							<%
+								} else
+
+											{
+
+												response.sendRedirect("erroPageLogin.jsp");
+											}
+										} catch (ClassNotFoundException erroClass) /*erro caso ele não localize a classe o driver*/
+										{
+											out.println("Classe Driver JDBC não foi localizado, erro " + erroClass);
+										}
+
+										catch (SQLException erroSQL) /* erro no banco de dados */
+										{
+											out.println("Erro de conexão com o banco de dados , erro" + erroSQL);
+										} finally {
+											if (rs != null)
+												rs.close();
+											if (ps != null)
+												ps.close();
+											if (con != null)
+												con.close();
+										}
+									}
+								}
+							%>
+
+				
 
 
 

@@ -65,10 +65,8 @@
               <li><a href="acessoCursista.jsp">Espaço Cursista</a></li>
           <li><a href="#team">Espaço Fisico</a></li>
           <li><a href="#">Contato</a></li>
-       	  <li class="menu-has-children"><a href="adm.jsp">ADM</a></li>
-          
-        </ul>
-      </nav><!-- #nav-menu-container -->
+       	 
+      <!-- #nav-menu-container -->
     </div>
   </header><!-- #header -->
 
@@ -166,8 +164,8 @@
 
 					</div>
                         
-					<input type="submit" value="Salvar" id="salvar"
-						style="width: 83px;" />
+					<button type="submit" class="btn btn-success btn-block"
+						style="width: 83px;">Salvar</button>
 
 						</div>
 					</div>

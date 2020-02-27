@@ -80,9 +80,9 @@
 <div class="container">
         	  <br>
   <br>
-   	<h1 style="text-align: center;">CURSISTA NÃO ENCONTRADO</h1>
+   	<h1 style="text-align: center;">LOGIN OU SENHA INCORRETOS</h1>
    		<h2 style="text-align: center;"><a href="index.jsp">SAIR</a></h2>
- 			<h2 style="text-align: center;"><a href="cursista.jsp">CADASTRE - SE</a></h2>
+ 			
   <br>
   <br>
 <br>

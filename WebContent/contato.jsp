@@ -97,10 +97,8 @@
               <li><a href="acessoCursista.jsp">Espaço Cursista</a></li>
           <li><a href="#team">Espaço Fisico</a></li>
           <li><a href="contato.jsp">Contato</a></li>
-       	  <li class="menu-has-children"><a href="adm.jsp">ADM</a></li>
-          
-        </ul>
-      </nav><!-- #nav-menu-container -->
+       	   
+      <!-- #nav-menu-container -->
     </div>
   </header><!-- #header -->
 

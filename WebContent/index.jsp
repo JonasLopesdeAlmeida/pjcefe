@@ -65,17 +65,18 @@
 			<li><a href="acessoCursista.jsp">Espaço Cursista</a></li>
 			<li><a href="#team">Espaço Fisico</a></li>
 			<li><a href="#">Contato</a></li>
-			<li class="menu-has-children"><a href="adm.jsp">ADM </a>
+			<li class="menu-has-children"><a href="#">ADM </a>
 				<ul class="dropdown-menu dropdown-menu-right mt-2">
 					<li class="px-1 py-1">
-						<form class="form" role="form">
+						<form method="post" action="adm.jsp" name="frmAdd"
+					enctype="multipart/formdata">
 							<div class="form-group">
-								<input id="nome" placeholder="Usuário" class="form-control"
+								<input name="usuario" id="usuario" placeholder="Usuário" class="form-control"
 									type="text" required="">
 							</div>
 
 							<div class="form-group">
-								<input id="senha" placeholder="Senha" class="form-control"
+								<input name="senha" id="senha" placeholder="Senha" class="form-control"
 									type="text" required="">
 							</div>
 							<div class="form-group">
