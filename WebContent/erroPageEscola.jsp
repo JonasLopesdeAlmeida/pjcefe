@@ -84,9 +84,8 @@
 <div class="container">
         	  <br>
   <br>
-   	<h1 style="text-align: center;">EVENTO NÃO ENCONTRADO</h1>
- 
-   		<h2 style="text-align: center;"><a href="acessoEvento.jsp">VOLTAR</a></h2>
+   	<h1 style="text-align: center;">ESCOLA NÃO ENCONTRADA</h1>
+   		<h2 style="text-align: center;"><a href="acessoEscola.jsp">VOLTAR</a></h2>
  			
   <br>
   <br>

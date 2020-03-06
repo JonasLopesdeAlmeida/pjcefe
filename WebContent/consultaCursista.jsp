@@ -138,7 +138,7 @@
 									con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres", "252107");
 									//con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres",
 									//"*abomax9637");
-									ps = con.prepareStatement("select * from cursista where cpf=? and nome~*?");
+									ps = con.prepareStatement("select * from cursista where cpf=? and nome LIKE ?");
 									ps.setString(1, cpf);
 									ps.setString(2, nome);
 									rs = ps.executeQuery();

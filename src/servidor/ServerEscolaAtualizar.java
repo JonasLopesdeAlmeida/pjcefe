@@ -86,7 +86,7 @@ public class ServerEscolaAtualizar extends HttpServlet {
    		String endereco= request.getParameter("endereco");
    		String telefone = request.getParameter("telefone");
    		String email = request.getParameter("email");
-   		PrintWriter out = response.getWriter();
+   		//PrintWriter out = response.getWriter();
    
    		
    		Escola es  = new Escola();
@@ -105,20 +105,22 @@ public class ServerEscolaAtualizar extends HttpServlet {
    		{
    			ed.atualizar(es);
    			
-   			out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
-	   		out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
-	   		out.println("<script>");
-	   		out.println("$(document).ready(function(){");
-	   		out.println("swal ('Escola cadastrada com sucesso!','','success' );");
-	   		out.println("});");
-	   		out.println("</script>");
-	   		
-	   		RequestDispatcher rd = request.getRequestDispatcher("acessoEscola.jsp");
-	        rd.include(request, response);
+//   			out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
+//	   		out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
+//	   		out.println("<script>");
+//	   		out.println("$(document).ready(function(){");
+//	   		out.println("swal ('Escola cadastrada com sucesso!','','success' );");
+//	   		out.println("});");
+//	   		out.println("</script>");
+//	   		
+//	   		RequestDispatcher rd = request.getRequestDispatcher("acessoEscola.jsp");
+//	        rd.include(request, response);
+   			
+   		response.sendRedirect("sucessoescolaalterar.jsp?id_escola=" + id_escola);
    		
    		}
    		
 
-   	//response.sendRedirect("sucessoescola.jsp?instituicao=" + instituicao);
+   	
    	}
 }

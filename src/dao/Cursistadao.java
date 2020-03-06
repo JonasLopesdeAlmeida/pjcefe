@@ -67,6 +67,7 @@ public class Cursistadao extends Conecta  {
 		    stm.setInt(11,a.getId_cursista());
 			stm.executeUpdate();
 			stm.close();
+			con.close();
 		}
 		catch(SQLException erroSQL) /* erro no banco de dados */
 		{

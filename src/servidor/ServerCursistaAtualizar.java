@@ -96,7 +96,7 @@ public class ServerCursistaAtualizar extends HttpServlet {
    		String datanasc = request.getParameter("datanasc");
    	
    		
-   		PrintWriter out = response.getWriter();
+   		//PrintWriter out = response.getWriter();
 
    		
    		Cursista a = new Cursista();
@@ -123,18 +123,18 @@ public class ServerCursistaAtualizar extends HttpServlet {
    		{
    			ad.atualizar(a);
    			
-   			out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
-   	   		out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
-   	   		out.println("<script>");
-   	   		out.println("$(document).ready(function(){");
-   	   		out.println("swal ('Cursista atualizado com sucesso!','','success' );");
-   	   		out.println("});");
-   	   		out.println("</script>");
+//   			out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
+//   	   		out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
+//   	   		out.println("<script>");
+//   	   		out.println("$(document).ready(function(){");
+//   	   		out.println("swal ('Cursista atualizado com sucesso!','','success' );");
+//   	   		out.println("});");
+//   	   		out.println("</script>");
    	   		
-   	   		RequestDispatcher rd = request.getRequestDispatcher("acessoCursista.jsp");
-   	        rd.include(request, response);
+//   	   		RequestDispatcher rd = request.getRequestDispatcher("acessoCursista.jsp");
+//   	        rd.include(request, response);
    	   		
-   	   		  //response.sendRedirect("sucessocursista.jsp?nome=" + nome);
+   	   		  response.sendRedirect("sucessocursistaalterar.jsp?id_cursista=" + id_cursista);
    		
    		}
    		

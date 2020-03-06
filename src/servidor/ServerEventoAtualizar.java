@@ -94,13 +94,13 @@ public class ServerEventoAtualizar extends HttpServlet {
    		String setor = request.getParameter("setor");
    		String cargo = request.getParameter("cargo");
    		String responsavel1 = request.getParameter("responsavel1");
-   		String responsavel2 = request.getParameter("responsavel2");
-   		String responsavel3 = request.getParameter("responsavel3");
-   		byte[] img1 = request.getParameter("img1").getBytes();
-   		byte[] img2 = request.getParameter("img2").getBytes();
-   		byte[] img3 = request.getParameter("img3").getBytes();
-   		int qtd_turmas = Integer.parseInt(request.getParameter("qtd_turmas"));
-   		PrintWriter out = response.getWriter();
+//   		String responsavel2 = request.getParameter("responsavel2");
+//   		String responsavel3 = request.getParameter("responsavel3");
+//   		byte[] img1 = request.getParameter("img1").getBytes();
+//   		byte[] img2 = request.getParameter("img2").getBytes();
+//   		byte[] img3 = request.getParameter("img3").getBytes();
+   		String qtd_turmas = request.getParameter("qtd_turmas");
+   	//	PrintWriter out = response.getWriter();
    		
    		Evento ee  = new Evento();
    		Eventodao ev = new Eventodao();
@@ -118,11 +118,11 @@ public class ServerEventoAtualizar extends HttpServlet {
    		ee.setSetor (setor);
    		ee.setCargo(cargo);
    		ee.setResponsavel1(responsavel1);
-   		ee.setResponsavel2(responsavel2);
-   		ee.setResponsavel3(responsavel3);
-   		ee.setImg1(img1);
-   		ee.setImg2(img2);
-   		ee.setImg3(img3);
+//   		ee.setResponsavel2(responsavel2);
+//   		ee.setResponsavel3(responsavel3);
+//   		ee.setImg1(img1);
+//   		ee.setImg2(img2);
+//   		ee.setImg3(img3);
    		ee.setQtd_turmas(qtd_turmas);
 
    		ev.open();
@@ -130,19 +130,19 @@ public class ServerEventoAtualizar extends HttpServlet {
    		{
    			ev.atualizar(ee);
    			
-   			out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
-   	   		out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
-   	   		out.println("<script>");
-   	   		out.println("$(document).ready(function(){");
-   	   		out.println("swal ('Evento atualizado com sucesso!','','success' );");
-   	   		out.println("});");
-   	   		out.println("</script>");
+//   			out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
+//   	   		out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
+//   	   		out.println("<script>");
+//   	   		out.println("$(document).ready(function(){");
+//   	   		out.println("swal ('Evento atualizado com sucesso!','','success' );");
+//   	   		out.println("});");
+//   	   		out.println("</script>");
+//   	   		
+//   	   		
+//   	   		RequestDispatcher rd = request.getRequestDispatcher("acessoEvento.jsp");
+//   	        rd.include(request, response);
    	   		
-   	   		
-   	   		RequestDispatcher rd = request.getRequestDispatcher("acessoEvento.jsp");
-   	        rd.include(request, response);
-   	   		
-   	   		  //response.sendRedirect("sucessocursista.jsp?nome=" + nome);
+   	   		 response.sendRedirect("sucessoeventoalterar.jsp?id_evento=" + id_evento);
    		
    	       
    		}

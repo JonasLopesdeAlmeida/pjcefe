@@ -47,29 +47,22 @@
   Header
   ============================-->
 	<header id="header">
-	<div class="container">
+    <div class="container">
 
-		<div id="logo" class="pull-left">
-			<a href="#hero"><img src="img/logo.png" alt="" title="" /></img></a>
-			<!-- Uncomment below if you prefer to use a text logo -->
-			<!--<h1><a href="#hero">Regna</a></h1>-->
-		</div>
-
-		<nav id="nav-menu-container">
-		<ul class="nav-menu">
-			<li class="menu-active"><a href="index.jsp">Home</a></li>
-			<li><a href="#inscricaoonline">Inscrições On-line</a></li>
-			<li><a href="#solicitacoescursos">Solicitação de Cursos</a></li>
-			<li><a href="#team">Espaço Fisico</a></li>
-			<li><a href="#contact">Contato</a></li>
-			<li class="menu-has-children"><a href="">Cadastro</a>
-				<ul>
-					<li><a href="evento.jsp">Evento</a></li>
-					<li><a href="cursista.jsp">Cursista</a></li>
-					<li><a href="escola.jsp">Escola</a></li>
-				</ul></li>
-		</ul>
-		</nav>
+      <div id="logo" class="pull-left">
+        <a href="#hero"><img src="img/logo.png" alt="" title="" /></img></a>
+        <!-- Uncomment below if you prefer to use a text logo -->
+        <!--<h1><a href="#hero">Regna</a></h1>-->
+      </div>
+  
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li class="menu-active"><a href="index.jsp">Home</a></li>
+          <li><a href="consultaonline.jsp">Inscrições On-line</a></li>
+          <li><a href="#solicitacoescursos">Solicitação de Cursos</a></li>
+              <li><a href="acessoCursista.jsp">Espaço Cursista</a></li>
+          <li><a href="#team">Espaço Fisico</a></li>
+          <li><a href="#">Contato</a></li>
 		<!-- #nav-menu-container -->
 	</div>
 	</header>
@@ -105,16 +98,11 @@
 					if (rs.next()) {
 		%>
 		<br>
-		<h2 style="text-align: center">Cursista atualizado com Sucesso!</h2>
+		<h2 style="text-align: center">Cursista cadastrado com Sucesso!</h2>
 		<hr>
 		<h1 style="text-align: center"><%=rs.getString("nome")%></h1>
 		<hr>
-	</div>
 
-	<h1 style="text-align: center;">
-		<a href="index.jsp">Sair</a>
-	</h1>
-	</div>
 
 
 	<%
@@ -146,17 +134,26 @@
 
 	<br>
 	<br>
-
-
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 
 	</main>
 
 	<!--==========================
     Footer
   ============================-->
-	<footer id="footer">
+	<footer id="footer" class="foter">
 	<div class="footer-top">
-		<div class="container"></div>
+		<div class="container">
+			<p>Desenvolvimento Secretaria Municipal de Informação de
+				Tecnologia - SEMIT</p>
+		</div>
 	</div>
 
 	<div class="container">

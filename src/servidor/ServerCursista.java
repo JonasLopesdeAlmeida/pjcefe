@@ -79,7 +79,6 @@ public class ServerCursista extends HttpServlet {
    		// TODO Auto-generated method stub
    		response.setContentType("text/html");
    		
-//   		int id_curso = Integer.parseInt(request.getParameter("id_evento"));
    		String nome = request.getParameter("nome");
    		nome = nome.toUpperCase();
    		String cpf = request.getParameter("cpf");
@@ -93,12 +92,8 @@ public class ServerCursista extends HttpServlet {
    		String cargo = request.getParameter("cargo");
    		String setor = request.getParameter("setor");
    		String datanasc = request.getParameter("datanasc");
-   		PrintWriter out = response.getWriter();
-//   		String email = request.getParameter("email");
-//   		String naturalidade = request.getParameter("naturalidade");
-//   		String uf = request.getParameter("uf");
-//   		String[] documentos = request.getParameterValues("documentos");
-//   		String[] situacao = request.getParameterValues("situacao");
+   		//PrintWriter out = response.getWriter();
+
    		
    		Cursista a = new Cursista();
    		Cursistadao ad = new Cursistadao();
@@ -114,23 +109,8 @@ public class ServerCursista extends HttpServlet {
    		a.setSetor(setor);
    		a.setDatanasc(datanasc);
    		
-//   		a.setEmail(email);
-//   		a.setNaturalidade(naturalidade);
-//   		a.setUf(uf);
    		
-//   		if(documentos != null){
-//   			String doc = Arrays.toString(documentos).replaceAll("\\[","").replaceAll("\\]","");
-//   			a.setDocumentos(doc);
-//   			}
-//   		
-//   		
-//   		if(situacao != null){
-//   			String sit = Arrays.toString(situacao).replaceAll("\\[","").replaceAll("\\]","");
-//   			a.setSituacao(sit);
-//   			}
-   		
-   		
-		
+  
    		ad.open();
    		if(ad != null)
    		{
@@ -138,18 +118,18 @@ public class ServerCursista extends HttpServlet {
    			
    		
    		}
-   		out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
-   		out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
-   		out.println("<script>");
-   		out.println("$(document).ready(function(){");
-   		out.println("swal ('Cursista cadastrado com sucesso!','','success' );");
-   		out.println("});");
-   		out.println("</script>");
+//   		out.println("<script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'></script>");
+//   		out.println("<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>");
+//   		out.println("<script>");
+//   		out.println("$(document).ready(function(){");
+//   		out.println("swal ('Cursista cadastrado com sucesso!','','success' );");
+//   		out.println("});");
+//   		out.println("</script>");
+//   		
+//   		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+//        rd.include(request, response);
    		
-   		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-        rd.include(request, response);
-   		
-   		  // response.sendRedirect("cursista.jsp?nome=" + nome);
+   		  response.sendRedirect("sucessocursista.jsp?nome=" + nome);
    	}
 
 

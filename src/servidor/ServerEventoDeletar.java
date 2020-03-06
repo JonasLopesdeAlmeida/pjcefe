@@ -109,7 +109,7 @@ public class ServerEventoDeletar extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("acessoEvento.jsp");
 		rd.include(request, response);
 
-		// response.sendRedirect("cursista.jsp?nome=" + nome);
+		 //response.sendRedirect("sucessoeventodeletar.jsp?id_evento=" + id_evento);
 	}
 
 }

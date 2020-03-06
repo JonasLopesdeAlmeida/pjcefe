@@ -107,7 +107,7 @@ public class ServerEscolaDeletar extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("acessoEscola.jsp");
 		rd.include(request, response);
 
-		// response.sendRedirect("cursista.jsp?nome=" + nome);
+		 //response.sendRedirect("sucessoescoladeletar.jsp?id_escola=" + id_escola);
 	}
 
 }

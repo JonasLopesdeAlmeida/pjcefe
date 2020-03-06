@@ -58,14 +58,11 @@
 		<nav id="nav-menu-container">
 		<ul class="nav-menu">
 			<li class="menu-active"><a href="index.jsp">Home</a></li>
-			<li><a href="#inscricaoonline">Inscrições On-line</a></li>
-			<li><a href="#solicitacoescursos">Solicitação de Cursos</a></li>
-			<li><a href="#team">Espaço Fisico</a></li>
-			<li><a href="#contact">Contato</a></li>
+			<li><a href="acessoEscola.jsp">Consultar Escola</a></li>
+			<li><a href="acessoEvento.jsp">Consultar Evento</a></li>
 			<li class="menu-has-children"><a href="">Cadastro</a>
 				<ul>
 					<li><a href="evento.jsp">Evento</a></li>
-					<li><a href="cursista.jsp">Cursista</a></li>
 					<li><a href="escola.jsp">Escola</a></li>
 				</ul></li>
 		</ul>
@@ -106,12 +103,7 @@
 		<h1 style="text-align: center"><%=rs.getString("instituicao")%></h1>
 		<hr>
 
-	</div>
-
-	<h1 style="text-align: center;">
-		<a href="index.jsp">Sair</a>
-	</h1>
-	</div>
+	
 	<%
 		}
 
@@ -141,22 +133,36 @@
 
 	<br>
 	<br>
-
-
-
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	
+	
 	</main>
 
 	<!--==========================
     Footer
   ============================-->
-	<footer id="footer">
+	<footer id="footer" class="foter">
 	<div class="footer-top">
-		<div class="container"></div>
+		<div class="container">
+			<p>Desenvolvimento Secretaria Municipal de Informação de
+				Tecnologia - SEMIT</p>
+		</div>
 	</div>
 
 	<div class="container">
 		<div class="credits">
 			<br> <br> <br>
+
 
 			<!--
           All the links in the footer should remain intact.

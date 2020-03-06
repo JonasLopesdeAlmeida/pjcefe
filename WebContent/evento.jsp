@@ -99,17 +99,17 @@
 				<h1 style="text-align: center;">EVENTO FORMATIVO</h1>
 
 				<form method="post" action="ServerEvento" name="frmAdd"
-					enctype="multipart/formdata">
+					enctype="multipart/form-data">
 
 					<div class="row">
 						<div class="col-sm-3">
 							<label>DATA DO EVENTO:</label> <input type="Date"
-								name="data_evento" value="" class="form-control"
+								name="data_evento"  class="form-control"
 								required="required" />
 						</div>
 						<div class="col-sm-9">
 							<label>NOME DO EVENTO:</label> <input type="text"
-								name="nome_evento" value="" 
+								name="nome_evento"  
 								class="form-control" required="required" /> <br>
 						</div>
 					</div>
@@ -117,7 +117,7 @@
 					<div class="row">
 
 						<div class="col-sm-6">
-							<label>QUANTIDADE DE TURMAS:</label> <input type="number"
+							<label>QUANTIDADE DE TURMAS:</label> <input type="text"
 								name="qtd_turmas" class="form-control" required="required">
 							<br>
 						</div>
@@ -163,82 +163,55 @@
 					<div class="row">
 						<div class="col-sm-4">
 							<label>CARGA HORÁRIA:</label> <input type="text"
-								name="carga_horaria" value="" style="text-transform: uppercase;"
+								name="carga_horaria"  style="text-transform: uppercase;"
 								class="form-control" required="required" /> <br>
 						</div>
 						<div class="col-sm-4">
 							<label>PERÍODO:</label> <input type="text" name="periodo"
-								id="periodo" value="" style="text-transform: uppercase;"
+								id="periodo"  
 								class="form-control" disabled /> <br>
 						</div>
 						<div class="col-sm-4">
 							<label>HORÁRIO:</label> <input type="time" name="horario"
-								value="" style="text-transform: uppercase;" class="form-control" />
+								value=""  class="form-control" />
 							<br>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-12">
-							<label>EMENTA:</label> <input type="text" name="ementa" value=""
-								style="text-transform: uppercase;" class="form-control" required="required"/> <br>
+							<label>EMENTA:</label> <input type="text" name="ementa" 
+								 class="form-control" required="required"/> <br>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-12">
 							<label>SETOR RESPONSÁVEL:</label> <input type="text" name="setor"
-								value="" style="text-transform: uppercase;" class="form-control" />
+								  class="form-control" />
 							<br>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-12">
 							<label>CARGO/FUNÇÃO:</label> <input type="text" name="cargo"
-								value="" style="text-transform: uppercase;" class="form-control" />
+								  class="form-control" />
 							<br>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-12">
 							<label>1ª RESPONSÁVEL PELO EVENTO:</label> <input type="text"
-								name="responsavel1" value="" style="text-transform: uppercase;"
+								name="responsavel1" 
 								class="form-control" required="required"/> <br>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-12">
 							<label>1ª ASSINATURA DIGITAL:</label> <input type="file"
-								name="img1" value="" style="text-transform: uppercase;"
-								class="form-control" required ="required"/> <br>
+								name="file"  
+								class="form-control" required ="required" /> <br>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<label>2ª RESPONSÁVEL PELO EVENTO:</label> <input type="text"
-								name="responsavel2" value="" style="text-transform: uppercase;"
-								class="form-control" /> <br>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<label>2ª ASSINATURA DIGITAL:</label> <input type="file"
-								name="img2" value="" style="text-transform: uppercase;"
-								class="form-control" /> <br>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<label>3ª RESPONSÁVEL PELO EVENTO:</label> <input type="text"
-								name="responsavel3" value="" style="text-transform: uppercase;"
-								class="form-control" /> <br>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<label>3ª ASSINATURA DIGITAL:</label> <input type="file"
-								name="img3" value="" style="text-transform: uppercase;"
-								class="form-control" /> <br>
-						</div>
-					</div>
+					
 
 					
 					<button type="submit" class="btn btn-success btn-block"
@@ -298,7 +271,7 @@
 	<script src="lib/superfish/superfish.min.js"></script>
 
 	<!-- Contact Form JavaScript File -->
-	<script src="contactform/contactform.js"></script>
+	<!--<script src="contactform/contactform.js"></script>-->
 
 	<!-- Template Main Javascript File -->
 	<script src="js/main.js"></script>

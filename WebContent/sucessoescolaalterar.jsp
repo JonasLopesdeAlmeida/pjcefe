@@ -64,7 +64,8 @@
 				<ul>
 					<li><a href="evento.jsp">Evento</a></li>
 					<li><a href="escola.jsp">Escola</a></li>
-				</ul>
+				</ul></li>
+		</ul>
 		</nav>
 		<!-- #nav-menu-container -->
 	</div>
@@ -80,124 +81,111 @@
 	<main id="main"> <br>
 	<br>
 
+	<div class="container">
+		<%
+		int id_escola = Integer.parseInt(request.getParameter("id_escola"));
 
+			if (id_escola != 0) {
 
+				PreparedStatement ps = null;
+				Connection con = null;
+				ResultSet rs = null;
 
-
-	<h1 style="text-align: center;">ESCOLA SELECIONADA</h1>
-
-	<div class="container-fluid">
-
+				try {
+					Class.forName("org.postgresql.Driver").newInstance();
+					con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres","252107");
+					//con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres",
+											//"*abomax9637");
+					ps = con.prepareStatement("select * from escola where id_escola=?");
+					ps.setInt(1, id_escola);
+					rs = ps.executeQuery();
+					if (rs.next()) {
+		%>
 		<br>
-		<div class="panel panel-primary">
-			<div class="panel-body">
-				<table class="table">
-					<thead class="thead-light">
-						<tr>
-							<th style="text-align: center;">NOME DA ESCOLA</th>
-							<th style="text-align: center;">MODALIDADE</th>
-							<th style="text-align: center;">GESTOR</th>
-							<th style="text-align: center;">ENDEREÇO</th>
-							<th style="text-align: center;">FONE</th>
-							<th style="text-align: center;">EMAIL</th>
-							<th style="text-align: center;">EDITAR</th>
-							<th style="text-align: center;">EXCLUIR</th>
+		<h2 style="text-align: center">Escola atualizada com Sucesso!</h2>
+		<hr>
+		<h1 style="text-align: center"><%=rs.getString("instituicao")%></h1>
+		<hr>
+	</div>
 
-						</tr>
-					</thead>
-
-					<%
-						String instituicao = request.getParameter("instituicao");
-						String modalidade = request.getParameter("modalidade");
+	<h1 style="text-align: center;">
+		<a href="acessoEscola.jsp">Sair</a>
+	</h1>
+	</div>
 
 
-						//int id_curso = Integer.parseInt(request.getParameter("id_curso"));
+	<%
+		}
 
-						if (instituicao != null && modalidade != null ) {
+			} catch (ClassNotFoundException erroClass) /*erro caso ele não localize a classe o driver*/
+			{
+				out.println("Classe Driver JDBC não foi localizado, erro " + erroClass);
+			}
 
-							PreparedStatement ps = null;
-							Connection con = null;
-							ResultSet rs = null;
-
-							{
-
-								try {
-									Class.forName("org.postgresql.Driver").newInstance();
-									con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres", "252107");
-
-									ps = con.prepareStatement(
-											"select * from escola where instituicao~*? and modalidade=? ");
-									ps.setString(1, instituicao);
-									ps.setString(2, modalidade);
-									
-									rs = ps.executeQuery();
-
-									if (rs.next()) {
-					%>
-
-					<tbody>
-
-						<tr>
-							<td style="text-align: center;"><%=rs.getString("instituicao")%></td>
-							<td style="text-align: center;"><%=rs.getString("modalidade")%></td>
-							<td style="text-align: center;"><%=rs.getString("gestor")%>
-							</td>
-							<td align="center"><%=rs.getString("endereco")%></td>
-							<td align="center"><%=rs.getString("telefone")%></td>
-							<td align="center"><%=rs.getString("email")%></td>
-									<td align="center"><a
-								href="alterarEscola.jsp?id_escola=<%=rs.getInt("id_escola")%>"><img alt=""
-									width="35" src="img/editar.png"></a></td>
-									<td align="center"><a
-								href="removerEscola.jsp?id_escola=<%=rs.getInt("id_escola")%>"><img alt=""
-									width="35" src="img/delete.png"></a></td>
-							
-
-							<%
-								} else
-
-											{
-
-												response.sendRedirect("erroPageEscola.jsp");
-											}
-										} catch (ClassNotFoundException erroClass) /*erro caso ele não localize a classe o driver*/
-										{
-											out.println("Classe Driver JDBC não foi localizado, erro " + erroClass);
-										}
-
-										catch (SQLException erroSQL) /* erro no banco de dados */
-										{
-											out.println("Erro de conexão com o banco de dados , erro" + erroSQL);
-										} finally {
-											if (rs != null)
-												rs.close();
-											if (ps != null)
-												ps.close();
-											if (con != null)
-												con.close();
-										}
-									}
-								}
-							%>
-
-
-						</tr>
-					</tbody>
-				</table>
-
-
-				</ul>
-				</nav>
+			catch (SQLException erroSQL) /* erro no banco de dados */
+			{
+				out.println("Erro de conexão com o banco de dados , erro" + erroSQL);
+			} finally {
+				if (rs != null)
+					rs.close();
+				if (ps != null)
+					ps.close();
+				if (con != null)
+					con.close();
+			}
+		}
+	%>
 
 
 
 
-			</div>
-		</div>
-	</main>
+	</div>
+
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 	<br>
 
 
+
+	</main>
+
+	<!--==========================
+    Footer
+  ============================-->
+	<footer id="footer" class="foter">
+	<div class="footer-top">
+		<div class="container">
+			<p>Desenvolvimento Secretaria Municipal de Informação de
+				Tecnologia - SEMIT</p>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="credits">
+			<br> <br> <br>
+
+			<!--
+          All the links in the footer should remain intact.
+          You can delete the links only if you purchased the pro version.
+          Licensing information: https://bootstrapmade.com/license/
+          Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Regna
+        -->
+			<!--
+        Desenvolvimento <a href="https://bootstrapmade.com/">Walter Carvalho Barbosa</a><br>
+        Contato<a href="https://bootstrapmade.com/">(98)98103-6150</a><br>
+        Email <a href="https://bootstrapmade.com/">Waltercarvalhob@gmail.com</a>
+        -->
+		</div>
+	</div>
+	</footer>
+	<!-- #footer -->
 
 	<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
@@ -211,8 +199,7 @@
 	<script src="lib/counterup/counterup.min.js"></script>
 	<script src="lib/superfish/hoverIntent.js"></script>
 	<script src="lib/superfish/superfish.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
 	<!-- Contact Form JavaScript File -->
 	<script src="contactform/contactform.js"></script>
 
