@@ -117,7 +117,7 @@
 					<div class="row">
 
 						<div class="col-sm-6">
-							<label>QUANTIDADE DE TURMAS:</label> <input type="text"
+							<label>QUANTIDADE DE TURMAS:</label> <input type="number"
 								name="qtd_turmas" class="form-control" required="required">
 							<br>
 						</div>
@@ -208,6 +208,34 @@
 						<div class="col-sm-12">
 							<label>1ª ASSINATURA DIGITAL:</label> <input type="file"
 								name="file"  
+								class="form-control" required ="required" /> <br>
+						</div>
+					</div>
+						<div class="row">
+						<div class="col-sm-12">
+							<label>2ª RESPONSÁVEL PELO EVENTO:</label> <input type="text"
+								name="responsavel2" 
+								class="form-control" required="required"/> <br>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<label>2ª ASSINATURA DIGITAL:</label> <input type="file"
+								name="file2"  
+								class="form-control" required ="required" /> <br>
+						</div>
+					</div>
+						<div class="row">
+						<div class="col-sm-12">
+							<label>3ª RESPONSÁVEL PELO EVENTO:</label> <input type="text"
+								name="responsavel3" 
+								class="form-control" required="required"/> <br>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<label>3ª ASSINATURA DIGITAL:</label> <input type="file"
+								name="file3"  
 								class="form-control" required ="required" /> <br>
 						</div>
 					</div>

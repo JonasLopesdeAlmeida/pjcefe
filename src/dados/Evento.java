@@ -7,7 +7,7 @@ public class Evento implements Serializable {
 
 	private int id_evento;
 	private String data_evento, nome_evento, turno, cat_evento, tipo_evento, carga_horaria, periodo, horario, ementa,
-			setor, cargo, responsavel1,qtd_turmas, file;
+			setor, cargo, responsavel1,qtd_turmas, file, responsavel2, file2, responsavel3, file3;
 	// private byte[] img1,img2,img3;
 
 
@@ -17,7 +17,7 @@ public class Evento implements Serializable {
 
 	public Evento(int id_evento, String data_evento, String nome_evento, String turno, String cat_evento,
 			String tipo_evento, String carga_horaria, String periodo, String horario, String ementa, String setor,
-			String cargo, String responsavel1,  String qtd_turmas, String file) {
+			String cargo, String responsavel1,  String qtd_turmas, String file, String responsavel2, String file2, String responsavel3, String file3) {
 
 		super();
 		this.id_evento = id_evento;
@@ -32,14 +32,14 @@ public class Evento implements Serializable {
 		this.ementa = ementa;
 		this.setor = setor;
 		this.cargo = cargo;
-		this.responsavel1 = responsavel1;
-//		this.responsavel2 = responsavel2;
+		this.responsavel1 = responsavel1; 	
 //		this.responsavel3 = responsavel3;
 		this.qtd_turmas = qtd_turmas;
 		this.file = file;
-//		this.img1 = img1;
-//		this.img2 = img2;
-//		this.img3 = img3;
+		this.responsavel2 = responsavel2;
+		this.file2 = file2;
+		this.responsavel3 = responsavel3;
+		this.file3 = file3;
 		
 	}
 
@@ -155,77 +155,25 @@ public class Evento implements Serializable {
 		this.responsavel1 = responsavel1;
 	}
 
-//	public String getResponsavel2() {
-//		return responsavel2;
-//	}
-//
-//
-//
-//
-//
-//	public void setResponsavel2(String responsavel2) {
-//		this.responsavel2 = responsavel2;
-//	}
-//
-//
-//
-//
-//
-//	public String getResponsavel3() {
-//		return responsavel3;
-//	}
-//
-//
-//
-//
-//
-//	public void setResponsavel3(String responsavel3) {
-//		this.responsavel3 = responsavel3;
-//	}
+	public String getResponsavel2() {
+		return responsavel2;
+	}
 
-//	public byte[] getImg1() {
-//		return img1;
-//	}
-//
-//
-//
-//
-//
-//	public void setImg1(byte[] img1) {
-//		this.img1 = img1;
-//	}
-//
-//
-//
-//
-//
-//	public byte[] getImg2() {
-//		return img2;
-//	}
-//
-//
-//
-//
-//
-//	public void setImg2(byte[] img2) {
-//		this.img2 = img2;
-//	}
-//
-//
-//
-//
-//
-//	public byte[] getImg3() {
-//		return img3;
-//	}
-//
-//
-//
-//
-//
-//	public void setImg3(byte[] img3) {
-//		this.img3 = img3;
-//	}
+	public void setResponsavel2(String responsavel2) {
+		this.responsavel2 = responsavel2;
+	}
+	
+
+	public String getResponsavel3() {
+		return responsavel3;
+	}
+
+
+	public void setResponsavel3(String responsavel3) {
+		this.responsavel3 = responsavel3;
+	}
+
+
 
 	public String getFile() {
 		return file;
@@ -235,6 +183,20 @@ public class Evento implements Serializable {
 		this.file = file;
 	}
 
+	public String getFile2() {
+		return file2;
+	}
+
+	public void setFile2(String file2) {
+		this.file2 = file2;
+	}
+	public String getFile3() {
+		return file3;
+	}
+
+	public void setFile3(String file3) {
+		this.file3 = file3;
+	}
 	
 	
 	@Override

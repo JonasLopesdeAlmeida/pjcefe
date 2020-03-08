@@ -88,7 +88,10 @@ public class ServerEvento extends HttpServlet {
 		if (upload.formProcess(getServletContext(), request)) {
 			
 			//usando cast para converter de objeto para String. 
-			String file = (String) UPLOAD_DIRECTORY + "/" + upload.getFiles().get(0);
+			
+	        String file = (String) UPLOAD_DIRECTORY + "/" + upload.getFiles().get(0);
+            String file2 = (String) UPLOAD_DIRECTORY + "/" + upload.getFiles().get(1);
+            String file3 = (String) UPLOAD_DIRECTORY + "/" + upload.getFiles().get(2);
 			String data_evento = (String) upload.getForm().get("data_evento");
 			String nome_evento = (String) upload.getForm().get("nome_evento");
 			String turno = (String) upload.getForm().get("turno");
@@ -102,6 +105,8 @@ public class ServerEvento extends HttpServlet {
 			String cargo = (String) upload.getForm().get("cargo");
 			String responsavel1 = (String) upload.getForm().get("responsavel1");
 			String qtd_turmas = (String) upload.getForm().get("qtd_turmas");
+			String responsavel2 = (String) upload.getForm().get("responsavel2");
+			String responsavel3 = (String) upload.getForm().get("responsavel3");
 
 
 			Evento ee = new Evento();
@@ -121,6 +126,10 @@ public class ServerEvento extends HttpServlet {
 			ee.setResponsavel1(responsavel1);
 			ee.setQtd_turmas(qtd_turmas);
 			ee.setFile(file);
+			ee.setResponsavel2(responsavel2);
+			ee.setFile2(file2);
+			ee.setResponsavel3(responsavel3);
+			ee.setFile3(file3);
 
 			ev.open();
 			if (ev != null) {
