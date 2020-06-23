@@ -5,7 +5,8 @@
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.util.Date"%>
-<%@page contentType="text/html; charset=ISO-8859-1" language="java" pageEncoding="UTF-8" import="java.sql.*" errorPage="" %>
+<%@page contentType="text/html; charset=ISO-8859-1" language="java"
+	pageEncoding="UTF-8" import="java.sql.*" errorPage=""%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
@@ -45,7 +46,7 @@
 	<!--==========================
   Header
   ============================-->
-<header id="header">
+	<header id="header">
 	<div class="container">
 
 		<div id="logo" class="pull-left">
@@ -62,8 +63,8 @@
 			<li><a href="acessoCursista.jsp">Espaço Cursista</a></li>
 			<li><a href="#team">Espaço Fisico</a></li>
 			<li><a href="#">Contato</a></li>
-			
-		<!-- #nav-menu-container -->
+
+			<!-- #nav-menu-container -->
 	</div>
 	</header>
 	<!-- #header -->
@@ -84,172 +85,155 @@
 	<br>
 	<div class="container">
 
-		
-<%
-String cpf = request.getParameter("cpf");
-//int id_curso = Integer.parseInt(request.getParameter("id_curso"));
 
-	
-if(cpf != null)
-{
+		<%
+			String cpf = request.getParameter("cpf");
+			//int id_curso = Integer.parseInt(request.getParameter("id_curso"));
 
+			if (cpf != null) {
 
-		     PreparedStatement ps= null;
-		 	  Connection con = null;
-		 	  ResultSet rs = null;
-		 	 
-		 	  {
+				PreparedStatement ps = null;
+				Connection con = null;
+				ResultSet rs = null;
 
-		 	 try
-		 	 	{
-		 	      Class.forName("org.postgresql.Driver").newInstance();
-		 	     con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres","252107");
-		 	     //con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres",
-											//"*abomax9637");
-		 	      ps = con.prepareStatement("select * from cursista where cpf=?"); 
-		 	      ps.setString(1,cpf);
-		 	      rs = ps.executeQuery();
+				{
 
-		 	     
-		 	      if(rs.next())
-		      		{
-		 	    	  %>
-				<form id="frm" name="frm" action="matricula.jsp" method="post">
-					<div class="row">
-						<div class="col-sm-3">
-							<label for="comment"
-								style="text-transform: uppercase; color: gray;">CPF:</label> 
-								<input type="hidden" name="id_cursista"	value="<%=rs.getInt("id_cursista")%>" style="text-transform: uppercase;" class="form-control" /> 
-								<input type="text" name="cpf" readonly="true" value="<%=rs.getString("cpf")%>"
-								style="text-transform: uppercase;" class="form-control" /> <br>
-						</div>
-						<div class="col-sm-9">
-							<label for="comment"
-								style="text-transform: uppercase; color: gray;">CURSISTA:</label> <input
-								type="text" name="nome" readonly="true"
-								value="<%=rs.getString("nome")%>"
-								style="text-transform: uppercase;" class="form-control" /> <br>
-						</div>
-					</div>
+					try {
+						Class.forName("org.postgresql.Driver").newInstance();
+						con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres", "252107");
+						//con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres",
+						//"*abomax9637");
+						ps = con.prepareStatement("select * from cursista where cpf=?");
+						ps.setString(1, cpf);
+						rs = ps.executeQuery();
+
+						if (rs.next()) {
+		%>
+		<form id="frm" name="frm" action="matricula.jsp" method="post">
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="comment"
+						style="text-transform: uppercase; color: gray;">CPF:</label> <input
+						type="hidden" name="id_cursista"
+						value="<%=rs.getInt("id_cursista")%>"
+						style="text-transform: uppercase;" class="form-control" /> <input
+						type="text" name="cpf" readonly="true"
+						value="<%=rs.getString("cpf")%>"
+						style="text-transform: uppercase;" class="form-control" /> <br>
+				</div>
+				<div class="col-sm-9">
+					<label for="comment"
+						style="text-transform: uppercase; color: gray;">CURSISTA:</label>
+					<input type="text" name="nome" readonly="true"
+						value="<%=rs.getString("nome")%>"
+						style="text-transform: uppercase;" class="form-control" /> <br>
+				</div>
+			</div>
 
 
-					<%
-						} else
+			<%
+				} else
 
-									{
-							
-				
-										response.sendRedirect("erroPage.jsp");
-									}
+							{
 
-								} catch (ClassNotFoundException erroClass) /*erro caso ele não localize a classe o driver*/
-								{
-									out.println("Classe Driver JDBC não foi localizado, erro " + erroClass);
-								}
-
-								catch (SQLException erroSQL) /* erro no banco de dados */
-								{
-									out.println("Erro de conexão com o banco de dados , erro" + erroSQL);
-								} finally {
-									if (rs != null)
-										rs.close();
-									if (ps != null)
-										ps.close();
-									if (con != null)
-										con.close();
-								}
+								response.sendRedirect("erroPage.jsp");
 							}
+
+						} catch (ClassNotFoundException erroClass) /*erro caso ele não localize a classe o driver*/
+						{
+							out.println("Classe Driver JDBC não foi localizado, erro " + erroClass);
 						}
-					%>
 
-					<%
-
-
-int id_evento = Integer.parseInt(request.getParameter("id_evento"));
-
-	
-if(id_evento != 0)
-{
-
-
-		     PreparedStatement ps1= null;
-		 	  Connection con1 = null;
-		 	  ResultSet rs1 = null;
-		 	 
-		 	  {
-
-		 	 try
-		 	 	{
-		 	      Class.forName("org.postgresql.Driver").newInstance();
-		 	      con1 = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres",
-							"252107");
-		 	      ps1 = con1.prepareStatement("select * from evento where id_evento = ?"); 
-		 	      ps1.setInt(1,id_evento);
-		 	      rs1 = ps1.executeQuery();
-
-		 	     
-		 	      if(rs1.next())
-		      		{
-		 	    	
-
-		 	    %>
-		 	    
-					<input type="hidden" name="id_evento"
-						style="text-transform: uppercase;"
-						value="<%=rs1.getInt("id_evento") %>" class="form-control" /> <input
-						type="text" name="nome_evento" readonly="true"
-						style="text-transform: uppercase;"
-						value="<%=rs1.getString("nome_evento") %>" class="form-control" /> <br>
-						<div class="col-sm-12">
-					<div class="row">
-						<table class="table table-bordered">
-							<thead class="thead-light">
-								<th>TURNO</th>
-								<th>HORARIO</th>
-								<th>DIA</th>
-
-							</thead>
-							<tbody>
-								<tr>
-									<td><%= rs1.getString("turno")%></td>
-									<td><%= rs1.getString("horario")%></td>
-									<td><%= rs1.getString("data_evento")%></td>
-								</tr>
-
-							</tbody>
-
-						</table>
-
-					</div>
-					</div>
-
-
-					<%
-		 	    	
-                 }
-
+						catch (SQLException erroSQL) /* erro no banco de dados */
+						{
+							out.println("Erro de conexão com o banco de dados , erro" + erroSQL);
+						} finally {
+							if (rs != null)
+								rs.close();
+							if (ps != null)
+								ps.close();
+							if (con != null)
+								con.close();
+						}
+					}
 				}
-			catch(ClassNotFoundException erroClass) /*erro caso ele não localize a classe o driver*/
-		 	{
-		 	out.println("Classe Driver JDBC não foi localizado, erro "+erroClass);
-		 	}
+			%>
 
-		 	 catch(SQLException erroSQL) /* erro no banco de dados */
-		 	 {
-		 	 out.println("Erro de conexão com o banco de dados , erro"+erroSQL);
-		 	 }
-		 	 finally
-		          {
-		        	  if(rs1!= null)rs1.close();
-		        	  if(ps1!= null)ps1.close();
-		        	  if(con1!= null)con1.close();
-		          }
-		 	  }
-}
+			<%
+				int id_evento = Integer.parseInt(request.getParameter("id_evento"));
 
-		%> 
-					<button type="submit" class="btn btn-success btn-block"
-						style="width: 83px;">Próximo</button>
+				if (id_evento != 0) {
+
+					PreparedStatement ps1 = null;
+					Connection con1 = null;
+					ResultSet rs1 = null;
+
+					{
+
+						try {
+							Class.forName("org.postgresql.Driver").newInstance();
+							con1 = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres", "252107");
+							ps1 = con1.prepareStatement("select * from evento where id_evento = ?");
+							ps1.setInt(1, id_evento);
+							rs1 = ps1.executeQuery();
+
+							if (rs1.next()) {
+			%>
+
+			<input type="hidden" name="id_evento"
+				style="text-transform: uppercase;"
+				value="<%=rs1.getInt("id_evento")%>" class="form-control" /> <input
+				type="text" name="nome_evento" readonly="true"
+				style="text-transform: uppercase;"
+				value="<%=rs1.getString("nome_evento")%>" class="form-control" /> <br>
+			<div class="col-sm-12">
+				<div class="row">
+					<table class="table table-bordered">
+						<thead class="thead-light">
+							<th>TURNO</th>
+							<th>HORARIO</th>
+							<th>DIA</th>
+
+						</thead>
+						<tbody>
+							<tr>
+								<td><%=rs1.getString("turno")%></td>
+								<td><%=rs1.getString("horario")%></td>
+								<td><%=rs1.getString("data_evento")%></td>
+							</tr>
+
+						</tbody>
+
+					</table>
+
+				</div>
+			</div>
+
+
+			<%
+				}
+
+						} catch (ClassNotFoundException erroClass) /*erro caso ele não localize a classe o driver*/
+						{
+							out.println("Classe Driver JDBC não foi localizado, erro " + erroClass);
+						}
+
+						catch (SQLException erroSQL) /* erro no banco de dados */
+						{
+							out.println("Erro de conexão com o banco de dados , erro" + erroSQL);
+						} finally {
+							if (rs1 != null)
+								rs1.close();
+							if (ps1 != null)
+								ps1.close();
+							if (con1 != null)
+								con1.close();
+						}
+					}
+				}
+			%>
+			<button type="submit" class="btn btn-success btn-block"
+				style="width: 83px;">Próximo</button>
 	</div>
 
 	<br>

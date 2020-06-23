@@ -77,7 +77,7 @@
 
 							<div class="form-group">
 								<input name="senha" id="senha" placeholder="Senha" class="form-control"
-									type="text" required="">
+									type="password" required="">
 							</div>
 							<div class="form-group">
 								<button type="submit" class="btn btn-success btn-block">Login</button>

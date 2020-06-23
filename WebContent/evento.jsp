@@ -6,7 +6,8 @@
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.util.Date"%>
 
-<%@page contentType="text/html; charset=ISO-8859-1" language="java" pageEncoding="UTF-8" import="java.sql.*" errorPage="" %>
+<%@page contentType="text/html; charset=ISO-8859-1" language="java"
+	pageEncoding="UTF-8" import="java.sql.*" errorPage=""%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
@@ -49,11 +50,47 @@
 			var selecao = document.getElementById("cat_evento").value;
 
 			if (selecao == 1) {
-				document.getElementById("periodo").disabled = false;
+				document.getElementById("periodo").hidden = false;
 			} else {
-				document.getElementById("periodo").disabled = true;
+				document.getElementById("periodo").hidden = true;
 
 			}
+
+		}
+
+		function addAssinatura2() {
+			var selecao = document.getElementById("assinatura2").value;
+
+			if (selecao == 1) {
+				document.getElementById("responsavel2").hidden = false;
+				document.getElementById("responsavel2.1").hidden = false;
+				document.getElementById("responsavel2.2").hidden = false;
+			} else {
+				document.getElementById("responsavel2").hidden = true;
+				document.getElementById("responsavel2.1").hidden = true;
+				document.getElementById("responsavel2.2").hidden = true;
+
+			}
+		}
+
+		function addAssinatura3() {
+			var selecao = document.getElementById("assinatura3").value;
+
+			if (selecao == 1) {
+				document.getElementById("responsavel3").hidden = false;
+				document.getElementById("responsavel3.1").hidden = false;
+
+			} else {
+				document.getElementById("responsavel3").hidden = true;
+				document.getElementById("responsavel3.1").hidden = true;
+
+			}
+		}
+	</script>
+
+	<script type="text/javascript">
+		function insereTexto() {
+			document.getElementById('divTeste').innerHTML = 'Evento enviado!!';
 		}
 	</script>
 
@@ -104,25 +141,24 @@
 					<div class="row">
 						<div class="col-sm-3">
 							<label>DATA DO EVENTO:</label> <input type="Date"
-								name="data_evento"  class="form-control"
-								required="required" />
+								name="data_evento" class="form-control" required="required" />
 						</div>
 						<div class="col-sm-9">
 							<label>NOME DO EVENTO:</label> <input type="text"
-								name="nome_evento"  
-								class="form-control" required="required" /> <br>
+								name="nome_evento" class="form-control" required="required" />
+							<br>
 						</div>
 					</div>
 
 					<div class="row">
 
-						<div class="col-sm-6">
+						<div class="col-sm-4">
 							<label>QUANTIDADE DE TURMAS:</label> <input type="number"
 								name="qtd_turmas" class="form-control" required="required">
 							<br>
 						</div>
 
-						<div class="col-sm-6">
+						<div class="col-sm-4">
 							<label>TURNO:</label> <select name="turno" class="form-control"
 								required="required">
 								<option></option>
@@ -132,13 +168,24 @@
 							</select> <br>
 						</div>
 
+
+						<div class="col-sm-4">
+							<label>STATUS DO EVENTO:</label> <select name="estado"
+								class="form-control" required="required">
+								<option></option>
+								<option>DISPONÍVEL</option>
+								<option>CANCELADO</option>
+								<option>FINALIZADO</option>
+								<option>PENDENTE</option>
+							</select> <br>
+						</div>
 					</div>
 
 
 					<div class="row">
 						<div class="col-sm-6">
 							<label>TIPO DO EVENTO:</label> <select name="tipo_evento"
-								id="tipo_evento" class="form-control" required ="required">
+								id="tipo_evento" class="form-control" required="required">
 								<option></option>
 								<option>PALESTRAS</option>
 								<option>SIMPÓSIOS</option>
@@ -163,87 +210,102 @@
 					<div class="row">
 						<div class="col-sm-4">
 							<label>CARGA HORÁRIA:</label> <input type="text"
-								name="carga_horaria"  style="text-transform: uppercase;"
+								name="carga_horaria" style="text-transform: uppercase;"
 								class="form-control" required="required" /> <br>
 						</div>
-						<div class="col-sm-4">
+						<div class="col-sm-4" id="periodo" hidden>
 							<label>PERÍODO:</label> <input type="text" name="periodo"
-								id="periodo"  
-								class="form-control" disabled /> <br>
+								class="form-control" /> <br>
 						</div>
 						<div class="col-sm-4">
 							<label>HORÁRIO:</label> <input type="time" name="horario"
-								value=""  class="form-control" />
-							<br>
+								value="" class="form-control" /> <br>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-12">
-							<label>EMENTA:</label> <input type="text" name="ementa" 
-								 class="form-control" required="required"/> <br>
+							<label>EMENTA:</label> <input type="text" name="ementa"
+								class="form-control" required="required" /> <br>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-12">
 							<label>SETOR RESPONSÁVEL:</label> <input type="text" name="setor"
-								  class="form-control" />
-							<br>
+								class="form-control" /> <br>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-12">
 							<label>CARGO/FUNÇÃO:</label> <input type="text" name="cargo"
-								  class="form-control" />
-							<br>
+								class="form-control" /> <br>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-12">
 							<label>1ª RESPONSÁVEL PELO EVENTO:</label> <input type="text"
-								name="responsavel1" 
-								class="form-control" required="required"/> <br>
+								name="responsavel1" class="form-control" required="required" />
+							<br>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-12">
 							<label>1ª ASSINATURA DIGITAL:</label> <input type="file"
-								name="file"  
-								class="form-control" required ="required" /> <br>
+								name="file" class="form-control" /> <br>
 						</div>
 					</div>
-						<div class="row">
-						<div class="col-sm-12">
-							<label>2ª RESPONSÁVEL PELO EVENTO:</label> <input type="text"
-								name="responsavel2" 
-								class="form-control" required="required"/> <br>
-						</div>
-					</div>
+
 					<div class="row">
+						<div class="col-sm-3">
+							<label>ADICIONAR 2ª RESPONSÁVEL?</label> <select
+								name="assinatura2" id="assinatura2" onchange="addAssinatura2()"
+								class="form-control">
+								<option value=""></option>
+								<option value="1">SIM</option>
+								<option value="0">NAO</option>
+							</select> <br>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-12" id="responsavel2" hidden>
+							<label>2ª RESPONSÁVEL PELO EVENTO:</label> <input type="text"
+								name="responsavel2" class="form-control" /> <br>
+						</div>
+					</div>
+					<div class="row" id="responsavel2.1" hidden>
 						<div class="col-sm-12">
 							<label>2ª ASSINATURA DIGITAL:</label> <input type="file"
-								name="file2"  
-								class="form-control" required ="required" /> <br>
+								name="file2" class="form-control" /> <br>
 						</div>
 					</div>
-						<div class="row">
+
+					<div class="row" id="responsavel2.2" hidden>
+						<div class="col-sm-3">
+							<label>ADICIONAR 3ª RESPONSÁVEL?</label> <select
+								name="assinatura3" id="assinatura3" onchange="addAssinatura3()"
+								class="form-control">
+								<option value=""></option>
+								<option value="1">SIM</option>
+								<option value="0">NAO</option>
+							</select> <br>
+						</div>
+					</div>
+					<div class="row" id="responsavel3" hidden>
 						<div class="col-sm-12">
 							<label>3ª RESPONSÁVEL PELO EVENTO:</label> <input type="text"
-								name="responsavel3" 
-								class="form-control" required="required"/> <br>
+								name="responsavel3" class="form-control" /> <br>
 						</div>
 					</div>
-					<div class="row">
+					<div class="row" id="responsavel3.1" hidden>
 						<div class="col-sm-12">
 							<label>3ª ASSINATURA DIGITAL:</label> <input type="file"
-								name="file3"  
-								class="form-control" required ="required" /> <br>
+								name="file3" class="form-control" /> <br>
 						</div>
 					</div>
-					
 
-					
+
 					<button type="submit" class="btn btn-success btn-block"
-						style="width: 83px;">Salvar</button>
+						style="width: 83px;" onclick='insereTexto()' value='Inserir texto'>Salvar</button>
 
 				</form>
 

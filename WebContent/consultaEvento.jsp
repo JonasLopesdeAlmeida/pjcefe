@@ -6,7 +6,8 @@
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.util.Date"%>
 
-<%@page contentType="text/html; charset=ISO-8859-1" language="java" pageEncoding="UTF-8" import="java.sql.*" errorPage="" %>
+<%@page contentType="text/html; charset=ISO-8859-1" language="java"
+	pageEncoding="UTF-8" import="java.sql.*" errorPage=""%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
@@ -104,7 +105,7 @@
 							<th style="text-align: center;">CURSISTAS</th>
 							<th style="text-align: center;">LISTA DE FREQUÊNCIA</th>
 							<th style="text-align: center;">EDITAR</th>
-							<th style="text-align: center;">EXCLUIR</th>
+
 
 						</tr>
 					</thead>
@@ -129,7 +130,7 @@
 									con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres", "252107");
 
 									ps = con.prepareStatement(
-											"select id_evento, COALESCE(evento.nome_evento,'') as nome_evento , COALESCE(evento.data_evento,'') as data_evento,COALESCE(evento.turno,'') as turno,COALESCE(evento.tipo_evento,'') as tipo_evento,COALESCE(evento.carga_horaria,'') as carga_horaria, COALESCE(evento.periodo,'') as periodo from evento where nome_evento~*? and turno=? and data_evento=? ");
+											"select id_evento, COALESCE(evento.nome_evento,'') as nome_evento , COALESCE(evento.data_evento,'') as data_evento,COALESCE(evento.turno,'') as turno,COALESCE(evento.tipo_evento,'') as tipo_evento,COALESCE(evento.carga_horaria,'') as carga_horaria, COALESCE(evento.periodo,'') as periodo from evento where nome_evento=? and turno=? and data_evento=? ");
 									ps.setString(1, nome_evento);
 									ps.setString(2, turno);
 									ps.setString(3, data_evento);
@@ -143,24 +144,24 @@
 						<tr>
 							<td style="text-align: center;"><%=rs.getString("nome_evento")%></td>
 							<td style="text-align: center;"><%=rs.getString("data_evento")%></td>
-							<td style="text-align: center;"><%=rs.getString("turno")%>
-							</td>
+							<td style="text-align: center;"><%=rs.getString("turno")%></td>
 							<td align="center"><%=rs.getString("tipo_evento")%></td>
 							<td align="center"><%=rs.getString("carga_horaria")%></td>
 							<td align="center"><%=rs.getString("periodo")%></td>
 							<td align="center"><a
-								href="ListaCursista.jsp?id_evento=<%=rs.getInt("id_evento")%>"><img alt=""
-									width="35" src="img/user.png"></a></td>
-									<td align="center"><a
-								href="ImprimirLista.jsp?id_evento=<%=rs.getInt("id_evento")%>"><img alt=""
-									width="35" src="img/listaAlunos.png"></a></td>
-									<td align="center"><a
-								href="alterarEvento.jsp?id_evento=<%=rs.getInt("id_evento")%>"><img alt=""
-									width="35" src="img/editar.png"></a></td>
-									<td align="center"><a
-								href="removerEvento.jsp?id_evento=<%=rs.getInt("id_evento")%>"><img alt=""
-									width="35" src="img/delete.png"></a></td>
-							
+								href="ListaCursista.jsp?id_evento=<%=rs.getInt("id_evento")%>"><img
+									alt="" width="35" src="img/user.png"></a></td>
+							<td align="center"><a
+								href="ImprimirLista.jsp?id_evento=<%=rs.getInt("id_evento")%>"><img
+									alt="" width="35" src="img/listaAlunos.png"></a></td>
+							<td align="center"><a
+								href="alterarEvento.jsp?id_evento=<%=rs.getInt("id_evento")%>"><img
+									alt="" width="35" src="img/editar.png"></a></td>
+
+							<!--	<td align="center"><a
+								href="removerEvento.jsp?id_evento=rs.getInt("id_evento")"><img alt=""
+									width="35" src="img/delete.png"></a></td>-->
+
 
 							<%
 								} else

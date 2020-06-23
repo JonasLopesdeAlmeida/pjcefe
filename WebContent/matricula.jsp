@@ -6,7 +6,8 @@
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.util.Date"%>
 
-<%@page contentType="text/html; charset=ISO-8859-1" language="java" pageEncoding="UTF-8" import="java.sql.*" errorPage="" %>
+<%@page contentType="text/html; charset=ISO-8859-1" language="java"
+	pageEncoding="UTF-8" import="java.sql.*" errorPage=""%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
@@ -46,7 +47,7 @@
 	<!--==========================
   Header
   ============================-->
-<header id="header">
+	<header id="header">
 	<div class="container">
 
 		<div id="logo" class="pull-left">
@@ -63,8 +64,8 @@
 			<li><a href="acessoCursista.jsp">Espaço Cursista</a></li>
 			<li><a href="#team">Espaço Fisico</a></li>
 			<li><a href="#">Contato</a></li>
-			
-		<!-- #nav-menu-container -->
+
+			<!-- #nav-menu-container -->
 	</div>
 	</header>
 	<!-- #header -->
@@ -119,13 +120,12 @@
 							try {
 
 								Class.forName("org.postgresql.Driver").newInstance();
-								con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres",
-										"252107");
+								con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres", "252107");
 								// ps = con.prepareStatement(
-										//"select data_mat,cursista.id_cursista as id_cursista,cursista.nome as nome,cursista.cpf as cpf,evento.nome_evento as evento,evento.periodo as periodo,evento.horario as horario,evento.data_evento as data_evento,evento.turno as turno from matricula inner join evento on matricula.id_evento= evento.id_evento inner join cursista on matricula.id_cursista = cursista.id_cursista where cpf = ? ");
+								//"select data_mat,cursista.id_cursista as id_cursista,cursista.nome as nome,cursista.cpf as cpf,evento.nome_evento as evento,evento.periodo as periodo,evento.horario as horario,evento.data_evento as data_evento,evento.turno as turno from matricula inner join evento on matricula.id_evento= evento.id_evento inner join cursista on matricula.id_cursista = cursista.id_cursista where cpf = ? ");
 								//	     select data_matricula,aluno.id_aluno,aluno.nome as nome,aluno.cpf as cpf,curso.descricao as curso,curso.periodo as periodo,curso.horario as horario,curso.diassemana as dias,curso.turno as turno from matricula inner join curso on matricula.id_curso = curso.id_curso inner join aluno on matricula.id_aluno = aluno.id_aluno
 
-							  ps = con.prepareStatement("select * from cursista where cpf=?"); 
+								ps = con.prepareStatement("select * from cursista where cpf=?");
 
 								ps.setString(1, cpf);
 								rs = ps.executeQuery();
@@ -195,8 +195,7 @@
 
 							try {
 								Class.forName("org.postgresql.Driver").newInstance();
-								con1 = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres",
-										"252107");
+								con1 = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres", "252107");
 								ps1 = con1.prepareStatement("select * from evento where id_evento = ? ");
 								ps1.setInt(1, id_evento);
 								rs1 = ps1.executeQuery();
@@ -237,10 +236,11 @@
 					}
 				%>
 
-			</div><br>
-			
-					<button type="submit" class="btn btn-success btn-block"
-						style="width:95px;">Adicionar</button>
+			</div>
+			<br>
+
+			<button type="submit" class="btn btn-success btn-block"
+				style="width: 95px;">Adicionar</button>
 
 
 		</form>

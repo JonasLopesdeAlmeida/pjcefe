@@ -96,6 +96,8 @@ public class ServerMatricula extends HttpServlet {
    		if(md != null)
    		{
    			md.gravar(m);
+   		
+   		
    		}
 
    		response.sendRedirect("sucessomatricula.jsp?id_cursista="+ id_cursista);

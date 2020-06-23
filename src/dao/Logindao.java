@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import conexao.Conecta;
-import dados.login;
+import dados.Login;
 
 public class Logindao extends Conecta {
 
@@ -14,7 +14,7 @@ public class Logindao extends Conecta {
 	PrintWriter out = null;
 	ResultSet rs = null;
 
-	public void gravar(login l) {
+	public void gravar(Login l) {
 
 		try
 
@@ -36,7 +36,7 @@ public class Logindao extends Conecta {
 
 	}
 
-	public void atualizar(login l) {
+	public void atualizar(Login l) {
 
 		try
 
@@ -58,7 +58,7 @@ public class Logindao extends Conecta {
 
 	}
 
-	public void delete(login l) {
+	public void delete(Login l) {
 
 		try
 

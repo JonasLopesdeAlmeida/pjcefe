@@ -6,7 +6,8 @@
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.util.Date"%>
 
-<%@page contentType="text/html; charset=ISO-8859-1" language="java" pageEncoding="UTF-8" import="java.sql.*" errorPage="" %>
+<%@page contentType="text/html; charset=ISO-8859-1" language="java"
+	pageEncoding="UTF-8" import="java.sql.*" errorPage=""%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
@@ -47,23 +48,23 @@
   Header
   ============================-->
 	<header id="header">
-    <div class="container">
+	<div class="container">
 
-      <div id="logo" class="pull-left">
-        <a href="#hero"><img src="img/logo.png" alt="" title="" /></img></a>
-        <!-- Uncomment below if you prefer to use a text logo -->
-        <!--<h1><a href="#hero">Regna</a></h1>-->
-      </div>
-  
-      <nav id="nav-menu-container">
-        <ul class="nav-menu">
-          <li class="menu-active"><a href="index.jsp">Home</a></li>
-          <li><a href="consultaonline.jsp">Inscrições On-line</a></li>
-          <li><a href="#solicitacoescursos">Solicitação de Cursos</a></li>
-              <li><a href="acessoCursista.jsp">Espaço Cursista</a></li>
-          <li><a href="#team">Espaço Fisico</a></li>
-          <li><a href="#">Contato</a></li>
-		<!-- #nav-menu-container -->
+		<div id="logo" class="pull-left">
+			<a href="#hero"><img src="img/logo.png" alt="" title="" /></img></a>
+			<!-- Uncomment below if you prefer to use a text logo -->
+			<!--<h1><a href="#hero">Regna</a></h1>-->
+		</div>
+
+		<nav id="nav-menu-container">
+		<ul class="nav-menu">
+			<li class="menu-active"><a href="index.jsp">Home</a></li>
+			<li><a href="consultaonline.jsp">Inscrições On-line</a></li>
+			<li><a href="#solicitacoescursos">Solicitação de Cursos</a></li>
+			<li><a href="acessoCursista.jsp">Espaço Cursista</a></li>
+			<li><a href="#team">Espaço Fisico</a></li>
+			<li><a href="#">Contato</a></li>
+			<!-- #nav-menu-container -->
 	</div>
 	</header>
 	<!-- #header -->
@@ -78,56 +79,12 @@
 	<br>
 
 	<div class="container">
-		<%
-			String nome = request.getParameter("nome");
 
-			if (nome != null) {
 
-				PreparedStatement ps = null;
-				Connection con = null;
-				ResultSet rs = null;
-
-				try {
-					Class.forName("org.postgresql.Driver").newInstance();
-					con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres","252107");
-					//con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres",
-											//"*abomax9637");
-					ps = con.prepareStatement("select * from cursista where nome like ?");
-					ps.setString(1, '%' + nome + '%');
-					rs = ps.executeQuery();
-					if (rs.next()) {
-		%>
 		<br>
 		<h2 style="text-align: center">Cursista cadastrado com Sucesso!</h2>
 		<hr>
-		<h1 style="text-align: center"><%=rs.getString("nome")%></h1>
-		<hr>
-
-
-
-	<%
-		}
-
-			} catch (ClassNotFoundException erroClass) /*erro caso ele não localize a classe o driver*/
-			{
-				out.println("Classe Driver JDBC não foi localizado, erro " + erroClass);
-			}
-
-			catch (SQLException erroSQL) /* erro no banco de dados */
-			{
-				out.println("Erro de conexão com o banco de dados , erro" + erroSQL);
-			} finally {
-				if (rs != null)
-					rs.close();
-				if (ps != null)
-					ps.close();
-				if (con != null)
-					con.close();
-			}
-		}
-	%>
-
-
+		<h1 style="text-align: center;"><a href="index.jsp">Sair</a></h1>
 
 
 	</div>
@@ -142,7 +99,9 @@
 	<br>
 	<br>
 	<br>
-
+	<br>
+	<br>
+	<br>
 	</main>
 
 	<!--==========================

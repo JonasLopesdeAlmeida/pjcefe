@@ -159,4 +159,24 @@
     <servlet-name>ServerCertificado</servlet-name>
     <url-pattern>/ServerCertificado</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServerRelEmenta</display-name>
+    <servlet-name>ServerRelEmenta</servlet-name>
+    <servlet-class>servidor.ServerRelEmenta</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServerRelEmenta</servlet-name>
+    <url-pattern>/ServerRelEmenta</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServerLoginAtualizar</display-name>
+    <servlet-name>ServerLoginAtualizar</servlet-name>
+    <servlet-class>servidor.ServerLoginAtualizar</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServerLoginAtualizar</servlet-name>
+    <url-pattern>/ServerLoginAtualizar</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -21,14 +21,14 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
  */
 public class Upload {
 	   private String folderUpload;
-	   private List<String> files;
+	   private List<String> files ;
+	   
 	   Map<String,String> form ;
 
 
 	    public List<String> getFiles() {
 	        return files;
 	    }
-	   
 	    public Map getForm() {
 	        return form;
 	    }
@@ -37,10 +37,11 @@ public class Upload {
 	   public Upload()
 	   {
 	       this.folderUpload = "upload";
-	       files = new ArrayList<String>();
+           files = new ArrayList<String>();
+	
 	   }
-
-	    public String getFolderUpload() {
+	   
+	   public String getFolderUpload() {
 	        return folderUpload;
 	    }
 
@@ -52,7 +53,7 @@ public class Upload {
 	        this.form = new HashMap<String,String>();
 	        Map<String, String> itemForm;
 	        
-	        File file;
+	        File file;   
 	        int maxFileSize = 5000 * 1024;
 	        int maxMemSize = 5000 * 1024;
 	        //String filePath = sc.getRealPath("/WebContent/WEB-INF/"+this.folderUpload);
@@ -84,10 +85,12 @@ public class Upload {
 	                            boolean isInMemory = fi.isInMemory();
 	                            long sizeInBytes = fi.getSize();
 	                            String name = new Date().getTime() + fileName;
+	                         
 	                            
 	                            file = new File(filePath + "/" + name);
 	                            fi.write(file);
 	                            files.add(name);
+	                           
 	                        }
 	                    }
 	                    else
@@ -108,4 +111,5 @@ public class Upload {
 	        }
 	        return ret;
 	    }
+	      
 	}

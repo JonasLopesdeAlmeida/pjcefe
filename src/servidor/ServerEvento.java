@@ -1,8 +1,10 @@
 package servidor;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +17,8 @@ import util.Upload;
 /**
  * Servlet implementation class ServerEvento
  */
+
+
 public class ServerEvento extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final String UPLOAD_DIRECTORY = "c:/upload";
@@ -83,17 +87,16 @@ public class ServerEvento extends HttpServlet {
 		response.setContentType("text/html");
 
 		Upload upload = new Upload();
+
 		upload.setFolderUpload(UPLOAD_DIRECTORY);
 
 		if (upload.formProcess(getServletContext(), request)) {
-			
-			//usando cast para converter de objeto para String. 
-			
-	        String file = (String) UPLOAD_DIRECTORY + "/" + upload.getFiles().get(0);
-            String file2 = (String) UPLOAD_DIRECTORY + "/" + upload.getFiles().get(1);
-            String file3 = (String) UPLOAD_DIRECTORY + "/" + upload.getFiles().get(2);
+
+			// usando cast para converter de objeto para String.
+
 			String data_evento = (String) upload.getForm().get("data_evento");
 			String nome_evento = (String) upload.getForm().get("nome_evento");
+			String estado = (String) upload.getForm().get("estado");
 			String turno = (String) upload.getForm().get("turno");
 			String cat_evento = (String) upload.getForm().get("cat_evento");
 			String tipo_evento = (String) upload.getForm().get("tipo_evento");
@@ -107,13 +110,16 @@ public class ServerEvento extends HttpServlet {
 			String qtd_turmas = (String) upload.getForm().get("qtd_turmas");
 			String responsavel2 = (String) upload.getForm().get("responsavel2");
 			String responsavel3 = (String) upload.getForm().get("responsavel3");
-
-
+			String assinatura2 = (String) upload.getForm().get("assinatura2");
+			String assinatura3 = (String) upload.getForm().get("assinatura3");
+			//PrintWriter out = response.getWriter();
+			
 			Evento ee = new Evento();
 			Eventodao ev = new Eventodao();
 
 			ee.setData_evento(data_evento);
 			ee.setNome_evento(nome_evento);
+			ee.setEstado(estado);
 			ee.setTurno(turno);
 			ee.setCat_evento(cat_evento);
 			ee.setTipo_evento(tipo_evento);
@@ -125,19 +131,50 @@ public class ServerEvento extends HttpServlet {
 			ee.setCargo(cargo);
 			ee.setResponsavel1(responsavel1);
 			ee.setQtd_turmas(qtd_turmas);
-			ee.setFile(file);
 			ee.setResponsavel2(responsavel2);
-			ee.setFile2(file2);
 			ee.setResponsavel3(responsavel3);
-			ee.setFile3(file3);
+			ee.setAssinatura2(assinatura2);
+			ee.setAssinatura3(assinatura3);
+
+			
+			//Lógica para dinamismo das assinaturas e corrigir erro: java.lang.IndexOutOfBoundsException
+			if (upload.getFiles().size() > 0) {
+
+				if (upload.getFiles().size() == 1) {
+
+					String file = (String) UPLOAD_DIRECTORY + "/" + upload.getFiles().get(0);
+					ee.setFile(file);
+
+				} else if (upload.getFiles().size() <= 2) {
+
+					String file = (String) UPLOAD_DIRECTORY + "/" + upload.getFiles().get(0);
+					ee.setFile(file);
+
+					String file2 = (String) UPLOAD_DIRECTORY + "/" + upload.getFiles().get(1);
+					ee.setFile2(file2);
+
+				} else if (upload.getFiles().size() <= 3) {
+					String file = (String) UPLOAD_DIRECTORY + "/" + upload.getFiles().get(0);
+					ee.setFile(file);
+
+					String file2 = (String) UPLOAD_DIRECTORY + "/" + upload.getFiles().get(1);
+					ee.setFile2(file2);
+
+					String file3 = (String) UPLOAD_DIRECTORY + "/" + upload.getFiles().get(2);
+					ee.setFile3(file3);
+				}
+
+			} 
 
 			ev.open();
 			if (ev != null) {
 				ev.gravar(ee);
 
 			}
-
-			response.sendRedirect("sucessoevento.jsp?nome_evento=" + nome_evento);
+            
+			 response.sendRedirect("sucessoevento.jsp");
+			//response.sendRedirect("sucessoevento.jsp?nome_evento=" + nome_evento);
+		    
 
 		} else {
 			System.out.print("erro");

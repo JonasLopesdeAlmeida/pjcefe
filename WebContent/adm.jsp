@@ -60,12 +60,14 @@
 			<li class="menu-active"><a href="index.jsp">Home</a></li>
 			<li><a href="acessoEscola.jsp">Consultar Escola</a></li>
 			<li><a href="acessoEvento.jsp">Consultar Evento</a></li>
-			<li class="menu-has-children"><a href="">Cadastro</a>
+			<li class="menu-has-children"><a href="#">Cadastro</a>
 				<ul>
 					<li><a href="evento.jsp">Evento</a></li>
 					<li><a href="escola.jsp">Escola</a></li>
 				</ul></li>
+			
 		</ul>
+		
 		</nav>
 		<!-- #nav-menu-container -->
 	</div>
@@ -77,12 +79,13 @@
   ============================-->
 	<section id="hero_1"> </section>
 	<!-- #hero -->
-
+    
 	<main id="main"> <br>
 	<br>
 	<div class="container">
 		<div class="card">
 			<div class="card-body">
+			
 
 <%
 						String usuario = request.getParameter("usuario");
@@ -111,10 +114,12 @@
 					%>
 
 					<section id="hero">
+					
 				    <div class="hero-container">
+				   
 					<h1>SECRETARIA MUNICIPAL DE EDUCAÇÃO</h1>
 					<h2>CENTRO DE FORMAÇÃO DO EDUCADOR.</h2>
-
+                    <h2><a class="btn btn-success btn-block" href="alterarLogin.jsp?id_login=<%=rs.getInt("id_login")%>" >Atualizar Login</a></h2>
 				</div>
 				</section>
 				<!-- #hero -->

@@ -6,7 +6,8 @@
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.util.Date"%>
 
-<%@page contentType="text/html; charset=ISO-8859-1" language="java" pageEncoding="UTF-8" import="java.sql.*" errorPage="" %>
+<%@page contentType="text/html; charset=ISO-8859-1" language="java"
+	pageEncoding="UTF-8" import="java.sql.*" errorPage=""%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
@@ -43,6 +44,8 @@
 </head>
 
 <body>
+
+
 	<!--==========================
   Header
   ============================-->
@@ -63,10 +66,13 @@
 			<li><a href="acessoCursista.jsp">Espaço Cursista</a></li>
 			<li><a href="#team">Espaço Fisico</a></li>
 			<li><a href="#">Contato</a></li>
-			
-		<!-- #nav-menu-container -->
+
+			<!-- #nav-menu-container -->
 	</div>
 	</header>
+	<script>
+		//...
+	</script>
 	<!-- #header -->
 
 	<!--==========================
@@ -89,11 +95,12 @@
 		<br>
 		<div class="panel panel-primary">
 			<div class="panel-body">
-				<table class="table">
+				<table id="example" class="table table-striped table-bordered">
 					<thead class="thead-light">
 						<tr>
 							<th>Nome</th>
 							<th>Turno</th>
+							<th>Estado do evento</th>
 							<th style="text-align: center;">Data</th>
 							<th style="text-align: center;">Tipo</th>
 							<th style="text-align: center;">Carga Horária</th>
@@ -108,6 +115,10 @@
 					</thead>
 
 					<%
+						Date dataAtual = new Date();
+						SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+						String dataStr = sdf.format(dataAtual);
+
 						//String descricao = request.getParameter("descricao");
 
 						//if(descricao != null)
@@ -133,8 +144,9 @@
 								Class.forName("org.postgresql.Driver").newInstance();
 								con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres", "252107");
 								//con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres","*abomax9637");
-								ps = con.prepareStatement("select id_evento, COALESCE(evento.nome_evento,'') as nome_evento, COALESCE(evento.turno,'') as turno, COALESCE(evento.data_evento,'') as data_evento, COALESCE(evento.tipo_evento,'') as tipo_evento, COALESCE(evento.carga_horaria,'') as carga_horaria, COALESCE(evento.periodo,'') as periodo, COALESCE(evento.horario,'') as horario from evento limit 5 offset " + offset);
-								//  ps.setString(1,'%'+descricao+'%');
+								ps = con.prepareStatement(
+										"select id_evento, COALESCE(evento.estado,'-') as estado, COALESCE(evento.nome_evento,'-') as nome_evento, COALESCE(evento.turno,'-') as turno, COALESCE(evento.data_evento,'-') as data_evento, COALESCE(evento.tipo_evento,'-') as tipo_evento, COALESCE(evento.carga_horaria,'-') as carga_horaria, COALESCE(evento.periodo,'-') as periodo, COALESCE(evento.horario,'-') as horario from evento where estado like 'DISPONÍVEL' limit 5 offset "
+												+ offset);
 								rs = ps.executeQuery();
 
 								while (rs.next()) {
@@ -145,6 +157,7 @@
 						<tr>
 							<td><%=rs.getString("nome_evento")%></td>
 							<td><%=rs.getString("turno")%></td>
+							<td><%=rs.getString("estado")%></td>
 							<td align="center"><%=rs.getString("data_evento")%></td>
 							<td align="center"><%=rs.getString("tipo_evento")%></td>
 							<td align="center"><%=rs.getString("carga_horaria")%></td>
@@ -197,14 +210,9 @@
 					int totalPaginas = totalRegistros / limite;
 					if (totalRegistros % limite != 0)
 						totalPaginas++;
-					//out.println("Quantidade de registros: " + totalRegistros);
-					//out.println("Quantidade de paginas: " + totalPaginas);
 				%>
 				<nav aria-label="Navegação de página exemplo">
 				<ul class="pagination justify-content-center">
-
-
-
 
 
 					<%
@@ -219,23 +227,43 @@
 					%>
 
 					<%
-						for (int i = 1; i <= totalPaginas; i++) {
+						//interação para delimitar quantidade de link de paginas na tela.
+						int i = (Integer.parseInt(numPagina) - 4);
 
-							out.println("<li class= page-item ><a class=page-link  href= consultaonline.jsp?numpagina=" + i + ">"
-									+ i + "</a></li>");
+						for (limite = i + 3; i <= limite; i++) {
 
+							if (i < 1) {
+								i = 1;
+								limite = 4;
+							}
+							if (limite > totalPaginas) {
+								limite = totalPaginas;
+								i = limite - 4;
+							}
+							if (i < 1) {
+								i = 1;
+								limite = totalPaginas;
+							}
+
+							if (i == Integer.parseInt(numPagina))
+								out.println("<li class= page-item ><b><a class=page-link  href= consultaonline.jsp?numpagina=" + i
+										+ ">" + i + "</a></b></li>");
+							else
+								out.println("<li class= page-item ><a class=page-link  href= consultaonline.jsp?numpagina=" + i
+										+ ">" + i + "</a></li>");
 						}
 					%>
 
 					<%
-						int pagProxima;
-						if ((totalRegistros - (Integer.parseInt(numPagina) * limite)) > 0) {
+					int pagProxima;
+					if ((totalRegistros - (Integer.parseInt(numPagina) * limite)) > 0) {
 
-							pagProxima = Integer.parseInt(numPagina) + 1;
+					pagProxima = Integer.parseInt(numPagina) + 1;
 
-							out.println("<li class= page-item > <a class=page-link  href= consultaonline.jsp?numpagina="
-									+ pagProxima + "> Próximo </a></li>");
-						}
+					out.println("<li class= page-item> <a class=page-link  href= consultaonline.jsp?numpagina="
+							+ pagProxima + "> Próximo </a></li>");
+					
+					}
 					%>
 
 				</ul>
@@ -269,6 +297,8 @@
 
 	<!-- Template Main Javascript File -->
 	<script src="js/main.js"></script>
+
+
 
 </body>
 </html>

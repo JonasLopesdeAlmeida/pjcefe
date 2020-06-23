@@ -6,14 +6,15 @@
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.util.Date"%>
 
-<%@page contentType="text/html; charset=ISO-8859-1" language="java" pageEncoding="UTF-8" import="java.sql.*" errorPage="" %>
+<%@page contentType="text/html; charset=ISO-8859-1" language="java"
+	pageEncoding="UTF-8" import="java.sql.*" errorPage=""%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
 <head>
 
 <title>CEFE</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<META http-equiv="Content-Type" content="text/html; charset=utf-8">
 
 <!-- Favicons -->
 <link href="img/favicon.png" rel="icon">
@@ -82,59 +83,19 @@
 	<br>
 
 	<div class="container">
-		<%
-			String nome_evento = request.getParameter("nome_evento");
-
-			if (nome_evento != null) {
-
-				PreparedStatement ps = null;
-				Connection con = null;
-				ResultSet rs = null;
-
-				try {
-					Class.forName("org.postgresql.Driver").newInstance();
-					con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres", "252107");
-					//con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres","*abomax9637");
-					ps = con.prepareStatement("select * from evento where nome_evento like ?");
-					ps.setString(1, '%' + nome_evento + '%');
-					rs = ps.executeQuery();
-					if (rs.next()) {
-		%>
+		
 		<br>
 		<h2 style="text-align: center">Evento cadastrado com Sucesso!</h2>
 		<hr>
-		<h1 style="text-align: center"><%=rs.getString("nome_evento")%></h1>
+		<h1 style="text-align: center;">
+			<a href="evento.jsp">Deseja cadastrar outro Evento?</a>
+		</h1>
 		<hr>
-
-
-	<%
-		}
-
-			} catch (ClassNotFoundException erroClass) /*erro caso ele não localize a classe o driver*/
-			{
-				out.println("Classe Driver JDBC não foi localizado, erro " + erroClass);
-			}
-
-			catch (SQLException erroSQL) /* erro no banco de dados */
-			{
-				out.println("Erro de conexão com o banco de dados , erro" + erroSQL);
-			} finally {
-				if (rs != null)
-					rs.close();
-				if (ps != null)
-					ps.close();
-				if (con != null)
-					con.close();
-			}
-		}
-	%>
-
-
-
-
+		<h1 style="text-align: center;"><a href="index.jsp">Sair</a></h1>
+		<hr>
 	</div>
 
-    <br>
+	<br>
 	<br>
 	<br>
 	<br>
@@ -164,7 +125,7 @@
 	<div class="container">
 		<div class="credits">
 			<br> <br> <br>
-			
+
 			<!--
           All the links in the footer should remain intact.
           You can delete the links only if you purchased the pro version.

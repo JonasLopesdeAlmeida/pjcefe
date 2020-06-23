@@ -77,32 +77,17 @@
     Hero Section
   ============================-->
 	<script>
-
-
-	Você assim para coletar os IDs que deseja alterar, depois envia o novo array com IDs para seu PHP salva no banco.
-
-	function coletaDados(){
-	   var ids = document.getElementsByClassName('editar');
-	   coletaIDs(ids);         
-	}  
-	        
-	function coletaIDs(dados){
-	   var array_dados = dados; 
-	   var newArray = [];
-	   for(var x = 0; x <= array_dados.length; x++){     
-	        if(typeof array_dados[x] == 'object'){
-	          if(array_dados[x].checked){
-	             newArray.push(array_dados[x].id)          
-	          }          
-	        }
-	   }
-	  if(newArray.length <= 0){
-	    alert("Selecione um pelo menos 1 item!");     
-	  }else{
-	    alert("Seu novo array de IDs tem os seguites ids [ "+newArray+" ]");
-	  }  
-	}
+	var $divLogin = $("#certificado");
+	$divLogin.click(function(){
+	if ($divLogin.hasClass("btn btn-success"))
+	    $divLogin.addClass("btn btn-secondary").removeClass("btn btn-success");
+	else
+	    $divLogin.addClass("btn btn-success").removeClass("btn btn-secondary");
+	});
 	</script>
+	<style>
+    
+    </style>
 
 	<section id="hero_1"> </section>
 	<!-- #hero -->
@@ -159,40 +144,37 @@
 						<td align="center"><%=rs.getString("nome")%></td>
 						<td align="center"><%=rs.getString("fone")%></td>
 						<td align="center"><%=rs.getString("email")%></td>
+						<td align="center"><a class="btn btn-success btn-block" style="width: 95px;"
+							href="adicionarCursistaCertificado.jsp?id_mat=<%=rs.getInt("id_mat")%>">ATRIBUIR</a>
 						<td align="center"><a
-							href="adicionarCursistaCertificado.jsp?id_mat=<%=rs.getInt("id_mat")%>">ADICIONAR</a>
-							<td align="center"><a
-							href="RemoverCursistaDoEvento.jsp?id_mat=<%=rs.getInt("id_mat")%>"><img alt="" width="35" src="img/delete.png"></a></td>
+							href="RemoverCursistaDoEvento.jsp?id_mat=<%=rs.getInt("id_mat")%>"><img
+								alt="" width="35" src="img/delete.png"></a></td>
 
 
+						<%
+							}
 
-
-
-
-								<%
+									} catch (ClassNotFoundException erroClass) /*erro caso ele não localize a classe o driver*/
+									{
+										out.println("Classe Driver JDBC não foi localizado, erro " + erroClass);
 									}
 
-											} catch (ClassNotFoundException erroClass) /*erro caso ele não localize a classe o driver*/
-											{
-												out.println("Classe Driver JDBC não foi localizado, erro " + erroClass);
-											}
-
-											catch (SQLException erroSQL) /* erro no banco de dados */
-											{
-												out.println("Erro de conexão com o banco de dados , erro" + erroSQL);
-											} finally {
-												if (rs != null)
-													rs.close();
-												if (ps != null)
-													ps.close();
-												if (con != null)
-													con.close();
-											}
-
-										}
+									catch (SQLException erroSQL) /* erro no banco de dados */
+									{
+										out.println("Erro de conexão com o banco de dados , erro" + erroSQL);
+									} finally {
+										if (rs != null)
+											rs.close();
+										if (ps != null)
+											ps.close();
+										if (con != null)
+											con.close();
 									}
-								%>
-						
+
+								}
+							}
+						%>
+
 					</tr>
 
 				</tbody>

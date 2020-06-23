@@ -42,6 +42,50 @@
     Author: BootstrapMade.com
     License: https://bootstrapmade.com/license/
   ======================================================= -->
+
+<script>
+//validador CPF
+function verificarCPF(c){
+    var i;
+    s = c;
+    var c = s.substr(0,9);
+    var dv = s.substr(9,2);
+    var d1 = 0;
+    var v = false;
+ 
+    for (i = 0; i < 9; i++){
+        d1 += c.charAt(i)*(10-i);
+    }
+    if (d1 == 0){
+        alert("CPF Inválido")
+        v = true;
+        return false;
+    }
+    d1 = 11 - (d1 % 11);
+    if (d1 > 9) d1 = 0;
+    if (dv.charAt(0) != d1){
+        alert("CPF Inválido")
+        v = true;
+        return false;
+    }
+ 
+    d1 *= 2;
+    for (i = 0; i < 9; i++){
+        d1 += c.charAt(i)*(11-i);
+    }
+    d1 = 11 - (d1 % 11);
+    if (d1 > 9) d1 = 0;
+    if (dv.charAt(1) != d1){
+        alert("CPF Inválido")
+        v = true;
+        return false;
+    }
+    if (!v) {
+        alert("CPF Válido")
+    }
+}
+</script>
+
 </head>
 
 <body>
@@ -95,9 +139,9 @@
 					<div class="row">
 						<div class="col-sm-4">
 							<label for="exampleInputEmail1">CPF</label><br> <input
-								type="text" minlength="14" maxlength="14" name="cpf"
-								class="form-control"
-								onkeypress="$(this).mask('000.000.000-00');" required="required" />
+								type="text" minlength="11" maxlength="11" name="cpf"
+								class="form-control" placeholder="somente números."
+								 required="required"onblur="return verificarCPF(this.value)"/>
 							<br>
 						</div>
 						<div class="col-sm-8">
@@ -143,9 +187,10 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-sm-2">
+						<div class="col-sm-3">
 							<label for="exampleInputEmail1">MATRÍCULA</label><br> <input
-								type="text" minlength="5" maxlength="6" name="matricula"
+								type="text"  name="matricula"
+								placeholder="somente números."
 								class="form-control" required="required" />
 
 						</div>
@@ -157,7 +202,7 @@
 								required="required" /> <br>
 
 						</div>
-						<div class="col-sm-8">
+						<div class="col-sm-7">
 							<label for="exampleInputEmail1">E-MAIL</label><br> <input
 								type="Email" name="email" class="form-control" />
 						</div>
@@ -165,7 +210,7 @@
 					</div>
                         
 					<button type="submit" class="btn btn-success btn-block"
-						style="width: 83px;">Salvar</button>
+						style="width: 83px;" onblur="return verificarCPF(this.value)">Salvar</button>
 
 						</div>
 					</div>
@@ -226,9 +271,6 @@
 	<script src="lib/superfish/hoverIntent.js"></script>
 	<script src="lib/superfish/superfish.min.js"></script>
 	
-
-	
-	
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 	<!-- Contact Form JavaScript File -->
@@ -236,6 +278,8 @@
 
 	<!-- Template Main Javascript File -->
 	<script src="js/main.js"></script>
+	
+	<script type="text/javascript" src="funcoes_cpf.js"></script>
 
 </body>
 </html>

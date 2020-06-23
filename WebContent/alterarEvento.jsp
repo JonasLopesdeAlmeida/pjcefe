@@ -7,7 +7,8 @@
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.util.Date"%>
 
-<%@page contentType="text/html; charset=ISO-8859-1" language="java" pageEncoding="UTF-8" import="java.sql.*" errorPage="" %>
+<%@page contentType="text/html; charset=ISO-8859-1" language="java"
+	pageEncoding="UTF-8" import="java.sql.*" errorPage=""%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
@@ -45,14 +46,43 @@
 
 <body>
 
-<script>
+	<script>
 		function validarForm() {
 			var selecao = document.getElementById("cat_evento").value;
 
 			if (selecao == 1) {
-				document.getElementById("periodo").disabled = false;
+				document.getElementById("periodo").hidden = false;
 			} else {
-				document.getElementById("periodo").disabled = true;
+				document.getElementById("periodo").hidden = true;
+
+			}
+
+		}
+
+		function addAssinatura2() {
+			var selecao = document.getElementById("assinatura2").value;
+
+			if (selecao == 1) {
+				document.getElementById("responsavel2").hidden = false;
+				document.getElementById("responsavel2.1").hidden = false;
+
+			} else {
+				document.getElementById("responsavel2").hidden = true;
+				document.getElementById("responsavel2.1").hidden = true;
+
+			}
+		}
+
+		function addAssinatura3() {
+			var selecao = document.getElementById("assinatura3").value;
+
+			if (selecao == 1) {
+				document.getElementById("responsavel3").hidden = false;
+				document.getElementById("responsavel3.1").hidden = false;
+
+			} else {
+				document.getElementById("responsavel3").hidden = true;
+				document.getElementById("responsavel3.1").hidden = true;
 
 			}
 		}
@@ -98,7 +128,6 @@
 		<div class="card">
 			<div class="card-body">
 				<%
-					
 					int id_evento = Integer.parseInt(request.getParameter("id_evento"));
 
 					if (id_evento != 0) {
@@ -121,20 +150,19 @@
 				<h1 style="text-align: center;">EVENTO FORMATIVO</h1>
 
 				<form method="post" action="ServerEventoAtualizar" name="frmAdd"
-					enctype="multipart/formdata">
+					enctype="multipart/form-data">
 
 					<div class="row">
 						<div class="col-sm-3">
-							<label>DATA DO EVENTO:</label>
-							<input type="hidden" name="id_evento" value="<%= rs.getInt("id_evento")%>"/>
-							 <input type="Date"
-								name="data_evento" class="form-control"
-								required="required" value="<%=rs.getString("data_evento")%>"/>
+							<label>DATA DO EVENTO:</label> <input type="hidden"
+								name="id_evento" value="<%=rs.getInt("id_evento")%>" /> <input
+								type="Date" name="data_evento" class="form-control"
+								value="<%=rs.getString("data_evento")%>" />
 						</div>
 						<div class="col-sm-9">
 							<label>NOME DO EVENTO:</label> <input type="text"
-								name="nome_evento"  style="text-transform: uppercase;"
-								class="form-control" required="required" value="<%=rs.getString("nome_evento")%>" /> <br>
+								name="nome_evento" class="form-control"
+								value="<%=rs.getString("nome_evento")%>" /> <br>
 						</div>
 					</div>
 
@@ -142,13 +170,14 @@
 
 						<div class="col-sm-6">
 							<label>QUANTIDADE DE TURMAS:</label> <input type="number"
-								name="qtd_turmas" class="form-control" required="required" value="<%=rs.getInt("qtd_turmas")%>"/>
-							<br>
+								name="qtd_turmas" class="form-control"
+								value="<%=rs.getInt("qtd_turmas")%>" /> <br>
 						</div>
 
 						<div class="col-sm-6">
-							<label>TURNO:</label> <select name="turno" value="<%=rs.getString("turno")%>" class="form-control"
-								required="required" >
+							<label>TURNO:</label> <select name="turno"
+								value="<%=rs.getString("turno")%>" class="form-control"
+								required="required">
 								<option>MATUTINO</option>
 								<option>VESPERTINO</option>
 								<option>NOTURNO</option>
@@ -159,8 +188,9 @@
 
 					<div class="row">
 						<div class="col-sm-6">
-							<label>TIPO DO EVENTO:</label> <select  name="tipo_evento"
-								value="<%=rs.getString("tipo_evento")%>" id="tipo_evento" class="form-control" >
+							<label>TIPO DO EVENTO:</label> <select name="tipo_evento"
+								value="<%=rs.getString("tipo_evento")%>" id="tipo_evento"
+								class="form-control">
 								<option>PALESTRAS</option>
 								<option>SIMPÓSIOS</option>
 								<option>CONFERÊNCIAS</option>
@@ -172,7 +202,7 @@
 						<div class="col-sm-6">
 							<label>CATEGORIA EVENTO:</label> <select name="cat_evento"
 								id="cat_evento" onchange="validarForm()" class="form-control"
-								required="required" >
+								required="required">
 								<option></option>
 								<option value="1">COM PERIODO</option>
 								<option value="0">SEM PERIODO</option>
@@ -184,84 +214,39 @@
 					<div class="row">
 						<div class="col-sm-4">
 							<label>CARGA HORÁRIA:</label> <input type="text"
-								name="carga_horaria"  style="text-transform: uppercase;"
-								class="form-control" required="required" value="<%=rs.getString("carga_horaria")%>" /> <br>
+								name="carga_horaria" class="form-control"
+								value="<%=rs.getString("carga_horaria")%>" /> <br>
 						</div>
-						<div class="col-sm-4">
+						<div class="col-sm-4" id="periodo" hidden>
 							<label>PERÍODO:</label> <input type="text" name="periodo"
-								id="periodo" style="text-transform: uppercase;"
-								class="form-control" disabled  value="<%=rs.getString("periodo")%>"/> <br>
+								class="form-control" /> <br>
 						</div>
 						<div class="col-sm-4">
 							<label>HORÁRIO:</label> <input type="time" name="horario"
-							style="text-transform: uppercase;" class="form-control" value="<%=rs.getString("horario")%>"/>
-							<br>
+								class="form-control" value="<%=rs.getString("horario")%>" /> <br>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-12">
-							<label>EMENTA:</label> <input type="text" name="ementa" 
-								style="text-transform: uppercase;" class="form-control" value="<%=rs.getString("ementa")%>"/> <br>
+							<label>EMENTA:</label> <input type="text" name="ementa"
+								class="form-control" value="<%=rs.getString("ementa")%>" /> <br>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-12">
 							<label>SETOR RESPONSÁVEL:</label> <input type="text" name="setor"
-								 style="text-transform: uppercase;" class="form-control" value="<%=rs.getString("setor")%>"/>
-							<br>
+								class="form-control" value="<%=rs.getString("setor")%>" /> <br>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-12">
 							<label>CARGO/FUNÇÃO:</label> <input type="text" name="cargo"
-								 style="text-transform: uppercase;" class="form-control" value="<%=rs.getString("cargo")%>"/>
-							<br>
+								class="form-control" value="<%=rs.getString("cargo")%>" /> <br>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<label>RESPONSÁVEL PELO EVENTO:</label> <input type="text"
-								name="responsavel1"  style="text-transform: uppercase;"
-								class="form-control" value="<%=rs.getString("responsavel1")%>"/> <br>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<label>ASSINATURA DIGITAL:</label> <input type="file"
-								name="img1"  style="text-transform: uppercase;"
-								class="form-control"  value="<%=rs.getBytes("img1")%>"> <br>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<label>RESPONSÁVEL PELO EVENTO:</label> <input type="text"
-								name="responsavel2"  style="text-transform: uppercase;"
-								class="form-control" value="<%=rs.getString("responsavel2")%>"/> <br>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<label>ASSINATURA DIGITAL:</label> <input type="file"
-								name="img2"  style="text-transform: uppercase;"
-								class="form-control" value="<%=rs.getBytes("img2")%>"/> <br>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<label>RESPONSÁVEL PELO EVENTO:</label> <input type="text"
-								name="responsavel3"  style="text-transform: uppercase;"
-								class="form-control" value="<%=rs.getString("responsavel3")%>"/> <br>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<label>ASSINATURA DIGITAL:</label> <input type="file"
-								name="img3"  style="text-transform: uppercase;"
-								class="form-control" value="<%=rs.getBytes("img3")%>"/> <br>
-						</div>
-					</div>
-
 					
+
+
 					<button type="submit" class="btn btn-success btn-block"
 						style="width: 83px;">Salvar</button>
 
@@ -269,8 +254,7 @@
 				</form>
 
 				<%
-								
-								}
+					}
 
 							} catch (ClassNotFoundException erroClass) /*erro caso ele não localize a classe o driver*/
 							{
@@ -290,7 +274,7 @@
 							}
 						}
 					}
-					%>
+				%>
 
 
 
@@ -303,15 +287,19 @@
 
 	</main>
 
+	<br>
+	<br>
+
 	<!--==========================
     Footer
   ============================-->
 	<footer id="footer" class="foter">
-    <div class="footer-top">
-      <div class="container">
-		<p>Desenvolvimento Secretaria Municipal de Informação de Tecnologia - SEMIT</p>
-      </div>
-    </div>
+	<div class="footer-top">
+		<div class="container">
+			<p>Desenvolvimento Secretaria Municipal de Informação de
+				Tecnologia - SEMIT</p>
+		</div>
+	</div>
 
 	<div class="container">
 		<div class="credits">

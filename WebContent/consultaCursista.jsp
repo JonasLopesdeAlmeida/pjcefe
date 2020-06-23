@@ -76,8 +76,8 @@
 			<li><a href="acessoCursista.jsp">Espaço Cursista</a></li>
 			<li><a href="#team">Espaço Fisico</a></li>
 			<li><a href="#">Contato</a></li>
-			
-		<!-- #nav-menu-container -->
+
+			<!-- #nav-menu-container -->
 	</div>
 	</header>
 	<!-- #header -->
@@ -334,7 +334,8 @@
 									<th style="text-align: center;">PERIODO</th>
 									<th style="text-align: center;">TURNO</th>
 									<th style="text-align: center;">DATA DE CONCLUSÃO</th>
-									<th style="text-align: center;">OBTER CERTIFICADO</th>
+									<th style="text-align: center;">CERTIFICADO</th>
+									<th style="text-align: center;">EMENTA</th>
 
 
 
@@ -387,6 +388,9 @@
 									<td align="center"><a
 										href="ImprimirCertificado.jsp?id_certificado=<%=rs.getInt("id_certificado")%>"><img
 											id="cetificado" alt="" width="30" src="img/cert.png"></a></td>
+									<td align="center"><a
+										href="ImprimirEmenta.jsp?id_certificado=<%=rs.getInt("id_certificado")%>"><img
+											id="cetificado" alt="" width="30" src="img/ementa.png"></a></td>
 
 
 

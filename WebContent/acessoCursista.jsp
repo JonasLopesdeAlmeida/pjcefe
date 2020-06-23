@@ -93,14 +93,14 @@
 
 						<div class="col-sm-6">
 							<label>CPF:</label> <input type="text" name="cpf" value=""
-								id="cpf" class="form-control"
-								onkeypress="$(this).mask('000.000.000-00');" required="required" />
+								id="cpf"  minlength="11" maxlength="11" class="form-control"
+								 required="required" />
 							<br>
 						</div>
 					</div>
 
 					<button type="submit" class="btn btn-success btn-block"
-						style="width: 83px;">Salvar</button>
+						style="width: 83px;">Entrar</button>
 
 
 

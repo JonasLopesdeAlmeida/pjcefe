@@ -78,57 +78,18 @@
 	<br>
 
 	<div class="container">
-		<%
-			String instituicao = request.getParameter("instituicao");
-
-			if (instituicao != null) {
-
-				PreparedStatement ps = null;
-				Connection con = null;
-				ResultSet rs = null;
-
-				try {
-					Class.forName("org.postgresql.Driver").newInstance();
-					con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres", "252107");
-					//con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres",
-											//"*abomax9637");
-					ps = con.prepareStatement("select * from escola where instituicao like ?");
-					ps.setString(1, '%' + instituicao + '%');
-					rs = ps.executeQuery();
-					if (rs.next()) {
-		%>
+		
 		<br>
 		<h2 style="text-align: center">Escola cadastrada com Sucesso!</h2>
 		<hr>
-		<h1 style="text-align: center"><%=rs.getString("instituicao")%></h1>
+		<h1 style="text-align: center;">
+			<a href="escola.jsp">Deseja cadastrar outra Escola?</a>
+		</h1>
+		<hr>
+		<h1 style="text-align: center;"><a href="index.jsp">Sair</a></h1>
 		<hr>
 
 	
-	<%
-		}
-
-			} catch (ClassNotFoundException erroClass) /*erro caso ele não localize a classe o driver*/
-			{
-				out.println("Classe Driver JDBC não foi localizado, erro " + erroClass);
-			}
-
-			catch (SQLException erroSQL) /* erro no banco de dados */
-			{
-				out.println("Erro de conexão com o banco de dados , erro" + erroSQL);
-			} finally {
-				if (rs != null)
-					rs.close();
-				if (ps != null)
-					ps.close();
-				if (con != null)
-					con.close();
-			}
-		}
-	%>
-
-
-
-
 	</div>
 
 	<br>

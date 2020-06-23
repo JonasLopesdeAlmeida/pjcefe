@@ -6,7 +6,8 @@
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.util.Date"%>
 
-<%@page contentType="text/html; charset=ISO-8859-1" language="java" pageEncoding="UTF-8" import="java.sql.*" errorPage="" %>
+<%@page contentType="text/html; charset=ISO-8859-1" language="java"
+	pageEncoding="UTF-8" import="java.sql.*" errorPage=""%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
@@ -40,6 +41,46 @@
     Author: BootstrapMade.com
     License: https://bootstrapmade.com/license/
   ======================================================= -->
+
+<script language="javascript">
+	function VerificaCPF() {
+		if (vercpf(document.frmcpf.cpf.value)) {
+			document.frmcpf.submit();
+		} else {
+			errors = "1";
+			if (errors)
+				alert('CPF NÃO VÁLIDO');
+			document.retorno = (errors == '');
+		}
+	}
+	function vercpf(cpf) {
+		if (cpf.length != 11 || cpf == "00000000000" || cpf == "11111111111"
+				|| cpf == "22222222222" || cpf == "33333333333"
+				|| cpf == "44444444444" || cpf == "55555555555"
+				|| cpf == "66666666666" || cpf == "77777777777"
+				|| cpf == "88888888888" || cpf == "99999999999")
+			return false;
+		add = 0;
+		for (i = 0; i < 9; i++)
+			add += parseInt(cpf.charAt(i)) * (10 - i);
+		rev = 11 - (add % 11);
+		if (rev == 10 || rev == 11)
+			rev = 0;
+		if (rev != parseInt(cpf.charAt(9)))
+			return false;
+		add = 0;
+		for (i = 0; i < 10; i++)
+			add += parseInt(cpf.charAt(i)) * (11 - i);
+		rev = 11 - (add % 11);
+		if (rev == 10 || rev == 11)
+			rev = 0;
+		if (rev != parseInt(cpf.charAt(10)))
+			return false;
+		alert('O CPF É VÁLIDO.');
+		return true;
+	}
+</script>
+
 </head>
 
 <body>
@@ -63,8 +104,8 @@
 			<li><a href="acessoCursista.jsp">Espaço Cursista</a></li>
 			<li><a href="#team">Espaço Fisico</a></li>
 			<li><a href="#">Contato</a></li>
-			
-		<!-- #nav-menu-container -->
+
+			<!-- #nav-menu-container -->
 	</div>
 	</header>
 	<!-- #header -->
@@ -85,7 +126,8 @@
 	<br>
 	<div class="container">
 
-		<form method="post" action="entre.jsp" name="frmAdd enctype="application/x-www-form-urlencoded">
+		<form method="post" action="entre.jsp" name="frmAdd enctype="
+			application/x-www-form-urlencoded" onsubmit="VerificaCPF();">
 
 			<div class="row">
 				<div class="col-sm-8">
@@ -102,17 +144,18 @@
 
 								try {
 									Class.forName("org.postgresql.Driver").newInstance();
-									con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres","252107");
+									con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres", "252107");
 									//con = DriverManager.getConnection("jdbc:postgresql://localhost/bdcefe", "postgres",
-											//"*abomax9637");
-									
+									//"*abomax9637");
+
 									ps = con.prepareStatement("select * from evento where id_evento = ? ");
 									ps.setInt(1, id_evento);
 									rs = ps.executeQuery();
 
 									while (rs.next()) {
 					%>
-					<input type="hidden" name="id_evento" style="text-transform: uppercase;"
+					<input type="hidden" name="id_evento"
+						style="text-transform: uppercase;"
 						value="<%=rs.getInt("id_evento")%>" class="form-control" /> <label>EVENTO:</label>
 					<input type="text" name="nome_evento" readonly="true"
 						style="text-transform: uppercase;"
@@ -143,13 +186,13 @@
 				%>
 
 				<div class="col-sm-4">
-					<label>CPF:</label> <input type="text" name="cpf" minlength="14" maxlength="14" value=""
-						class="form-control" onkeypress="$(this).mask('000.000.000-00');" />
+					<label>CPF:</label> <input type="text" name="cpf" minlength="11"
+						maxlength="11" value="" class="form-control" />
 				</div>
 			</div>
-			
-					<button type="submit" class="btn btn-success btn-block"
-						style="width: 83px;">Próximo</button>
+
+			<button type="submit" class="btn btn-success btn-block"
+				style="width: 83px;" >Próximo</button>
 		</form>
 	</div>
 
@@ -169,7 +212,8 @@
 	<script src="lib/counterup/counterup.min.js"></script>
 	<script src="lib/superfish/hoverIntent.js"></script>
 	<script src="lib/superfish/superfish.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 
 	<!-- Contact Form JavaScript File -->
 	<script src="contactform/contactform.js"></script>

@@ -142,7 +142,7 @@
 			</div>
 
 			<button type="submit" class="btn btn-success btn-block"
-						style="width: 83px;">Salvar</button>
+						style="width: 100px;">Confirmar</button>
             
        
 
