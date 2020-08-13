@@ -45,6 +45,52 @@
 
 <body>
 
+<script>
+//funcao responsavel por mostrar a senha quando clicar no icone.
+//a senha permance em texto plano enquanto o cursor do mouse permanecer sobre o icone.
+function mouseoverPass(senha) {
+	  var senha = document.getElementById('senhaConfig');
+	  senha.type = "text";
+	}
+//funcao que oculta a senha quando o mouse nao estiver mais sobre o icone.
+	function mouseoutPass(senha) {
+	  var senha = document.getElementById('senhaConfig');
+	  senha.type = "password";
+	 
+	}
+</script>
+<style>
+
+.olho {
+  cursor: pointer;
+  left: 145px;
+  position: absolute;
+  width: 25px;
+}
+
+[data-tooltip] {
+  position: relative;
+  font-weight: bold;
+}
+
+[data-tooltip]:after {
+  display: none;
+  position: absolute;
+  top: -5px;
+  padding: 2px;
+  border-radius: 3px;
+  left: 115px;
+  content: attr(data-tooltip);
+  white-space: nowrap;
+  background-color: #a6a59f;
+  color: White;
+}
+
+[data-tooltip]:hover:after {
+  display: block;
+}
+</style>
+
 	<!--==========================
   Header
   ============================-->
@@ -76,8 +122,11 @@
 							</div>
 
 							<div class="form-group">
-								<input name="senha" id="senha" placeholder="Senha" class="form-control"
+							
+							 <img src="img/eye3.png" onclick="mouseoverPass();" onmouseout="mouseoutPass();" id="olho" class="olho"/>
+								<input name="senha" id="senhaConfig" placeholder="Senha" class="form-control"
 									type="password" required="">
+									
 							</div>
 							<div class="form-group">
 								<button type="submit" class="btn btn-success btn-block">Login</button>
