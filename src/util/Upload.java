@@ -29,7 +29,7 @@ public class Upload {
 	    public List<String> getFiles() {
 	        return files;
 	    }
-	    public Map getForm() {
+	    public Map<String, String> getForm() {
 	        return form;
 	    }
 	    
@@ -51,7 +51,9 @@ public class Upload {
 	   
 	    public boolean formProcess(ServletContext sc, HttpServletRequest request) {
 	        this.form = new HashMap<String,String>();
-	        Map<String, String> itemForm;
+	        
+	        @SuppressWarnings("unused")
+			Map<String, String> itemForm;
 	        
 	        File file;   
 	        int maxFileSize = 5000 * 1024;

@@ -1,10 +1,11 @@
 package servidor;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -92,27 +93,32 @@ public class ServerEvento extends HttpServlet {
 
 		if (upload.formProcess(getServletContext(), request)) {
 
-			// usando cast para converter de objeto para String.
-
-			String data_evento = (String) upload.getForm().get("data_evento");
-			String nome_evento = (String) upload.getForm().get("nome_evento");
-			String estado = (String) upload.getForm().get("estado");
-			String turno = (String) upload.getForm().get("turno");
-			String cat_evento = (String) upload.getForm().get("cat_evento");
-			String tipo_evento = (String) upload.getForm().get("tipo_evento");
-			String carga_horaria = (String) upload.getForm().get("carga_horaria");
-			String periodo = (String) upload.getForm().get("periodo");
-			String horario = (String) upload.getForm().get("horario");
-			String ementa = (String) upload.getForm().get("ementa");
-			String setor = (String) upload.getForm().get("setor");
-			String cargo = (String) upload.getForm().get("cargo");
-			String responsavel1 = (String) upload.getForm().get("responsavel1");
-			String qtd_turmas = (String) upload.getForm().get("qtd_turmas");
-			String responsavel2 = (String) upload.getForm().get("responsavel2");
-			String responsavel3 = (String) upload.getForm().get("responsavel3");
-			String assinatura2 = (String) upload.getForm().get("assinatura2");
-			String assinatura3 = (String) upload.getForm().get("assinatura3");
+			String data_evento = upload.getForm().get("data_evento");
+			String nome_evento =  upload.getForm().get("nome_evento");
+			String estado =  upload.getForm().get("estado");
+			String turno = upload.getForm().get("turno");
+			String cat_evento = upload.getForm().get("cat_evento");
+			String tipo_evento = upload.getForm().get("tipo_evento");
+			String carga_horaria = upload.getForm().get("carga_horaria");
+			String periodo = upload.getForm().get("periodo");
+			String horario = upload.getForm().get("horario");
+			String ementa =  upload.getForm().get("ementa");
+			String setor =  upload.getForm().get("setor");
+			String cargo =  upload.getForm().get("cargo");
+			String responsavel1 = upload.getForm().get("responsavel1");
+			String qtd_turmas =  upload.getForm().get("qtd_turmas");
+			String responsavel2 = upload.getForm().get("responsavel2");
+			String responsavel3 =  upload.getForm().get("responsavel3");
+			String assinatura2 = upload.getForm().get("assinatura2");
+			String assinatura3 =  upload.getForm().get("assinatura3");
+			String file = UPLOAD_DIRECTORY + "/" + upload.getFiles().get(0);
+			String file2 = UPLOAD_DIRECTORY + "/" + upload.getFiles().get(1);
+			String file3 = UPLOAD_DIRECTORY + "/" + upload.getFiles().get(2);
 			//PrintWriter out = response.getWriter();
+			
+			
+			List<String> files = Arrays.asList(file, file2, file3);
+			Iterator<String> it = files.iterator();
 			
 			Evento ee = new Evento();
 			Eventodao ev = new Eventodao();
@@ -135,37 +141,16 @@ public class ServerEvento extends HttpServlet {
 			ee.setResponsavel3(responsavel3);
 			ee.setAssinatura2(assinatura2);
 			ee.setAssinatura3(assinatura3);
-
 			
-			//Lógica para dinamismo das assinaturas e corrigir erro: java.lang.IndexOutOfBoundsException
-			if (upload.getFiles().size() > 0) {
-
-				if (upload.getFiles().size() == 1) {
-
-					String file = (String) UPLOAD_DIRECTORY + "/" + upload.getFiles().get(0);
-					ee.setFile(file);
-
-				} else if (upload.getFiles().size() <= 2) {
-
-					String file = (String) UPLOAD_DIRECTORY + "/" + upload.getFiles().get(0);
-					ee.setFile(file);
-
-					String file2 = (String) UPLOAD_DIRECTORY + "/" + upload.getFiles().get(1);
-					ee.setFile2(file2);
-
-				} else if (upload.getFiles().size() <= 3) {
-					String file = (String) UPLOAD_DIRECTORY + "/" + upload.getFiles().get(0);
-					ee.setFile(file);
-
-					String file2 = (String) UPLOAD_DIRECTORY + "/" + upload.getFiles().get(1);
-					ee.setFile2(file2);
-
-					String file3 = (String) UPLOAD_DIRECTORY + "/" + upload.getFiles().get(2);
-					ee.setFile3(file3);
-				}
-
-			} 
-
+			//Iterando na lista de files enquanto tiver arquivo.
+			while(it.hasNext()) 
+			{
+			ee.setFile(it.next());
+			ee.setFile2(it.next());
+			ee.setFile3(it.next());			
+		    }
+   
+			
 			ev.open();
 			if (ev != null) {
 				ev.gravar(ee);
